@@ -1,8 +1,8 @@
 language: ruby
 
-cache: bundler
+# cache: bundler
 
-before_install: gem install bundler
+# before_install: gem install bundler
 
 rvm:
   - 2.0.0
@@ -10,4 +10,4 @@ rvm:
 before_script:
   - psql -c 'create database wine-tasting_test;' -U postgres
 
-script: 'bundle exec rspec spec'
+script: 'bundle exec rspec spec/'
