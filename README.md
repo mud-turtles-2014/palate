@@ -1,4 +1,5 @@
-wine-tasting
+wine-tasting ![travis-ci-status](https://travis-ci.org/mud-turtles-2014/wine-tasting.svg?branch=master)
+==============
 ============
 
 ### Installation
