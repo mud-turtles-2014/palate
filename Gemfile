@@ -36,6 +36,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'time_zone_ext'
 
+gem 'seed_dump'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
