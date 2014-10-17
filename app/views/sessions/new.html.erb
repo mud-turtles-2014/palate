@@ -8,12 +8,12 @@
         <%end%>
       <%end%>
     </div>
-    <%= form_for @user do |f| %>
+    <%= form_for @user, :html => {:class => "pure-form"} do |f| %>
       <p><%= f.text_field :name, placeholder: "Name" %><br>
       <%= f.text_field :email, placeholder: "Email" %><br>
       <%= f.password_field :password, placeholder: "Password" %><br>
       <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %></p>
-      <%= f.submit "Sign Up", :id => "btn-sign-up" %>
+      <%= f.submit "Sign Up", :id => "btn-sign-up", class: 'pure-button' %>
 
     <% end  %>
   </div>
@@ -24,10 +24,10 @@
       <%=flash[:error]%>
     </div>
       <p><%=flash[:login_message]%></p>
-    <%= form_for :session, url: login_path do |f| %>
+    <%= form_for :session, url: login_path, :html => {:class => "pure-form"} do |f| %>
       <p><%= f.text_field :name, placeholder: 'Name' %><br>
       <%= f.password_field :password, placeholder: "Password" %></p>
-      <%= f.submit "Log In", :id => "btn-log-in" %>
+      <%= f.submit "Log In", :id => "btn-log-in", class: 'pure-button' %>
     <% end %>
   </div>
 </section>
