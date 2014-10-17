@@ -1,1 +1,9 @@
+<div class="error">
+  <% if flash[:event_error] %>
+    <% flash[:event_error].each do |msg| %>
+      <p><%= msg %></p>
+    <%end%>
+  <%end%>
+</div>
+
 <%= render "form" %>
