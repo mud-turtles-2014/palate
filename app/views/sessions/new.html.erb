@@ -1,0 +1,33 @@
+
+<div class="signup-box">
+    <h3>Sign Up</h3>
+    <div class="error">
+      <% if flash[:signin_error] %>
+        <% flash[:signin_error].each do |msg| %>
+        <%= msg %>
+        <%end%>
+      <%end%>
+    </div>
+    <%= form_for @user do |f| %>
+      <p><%= f.text_field :name, placeholder: "Name" %><br>
+      <%= f.text_field :email, placeholder: "Email" %><br>
+      <%= f.password_field :password, placeholder: "Password" %><br>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %></p>
+      <%= f.submit "Sign Up", :id => "btn-sign-up" %>
+
+    <% end  %>
+  </div>
+
+<div class="login-box">
+    <h3>Log In</h3>
+    <div class="error">
+      <%=flash[:error]%>
+    </div>
+      <p><%=flash[:login_message]%></p>
+    <%= form_for :session, url: login_path do |f| %>
+      <p><%= f.text_field :name, placeholder: 'Name' %><br>
+      <%= f.password_field :password, placeholder: "Password" %></p>
+      <%= f.submit "Log In", :id => "btn-log-in" %>
+    <% end %>
+  </div>
+</section>
