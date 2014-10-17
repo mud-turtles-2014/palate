@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20141016230247) do
   create_table "events", force: true do |t|
     t.string   "name",       null: false
     t.string   "location",   null: false
+    t.datetime "date",       null: false
     t.datetime "time",       null: false
     t.integer  "user_id"
     t.datetime "created_at"

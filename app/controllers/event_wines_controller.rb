@@ -4,7 +4,7 @@ class EventWinesController < ApplicationController
     # but obviously need to change this
     # either pass info in via hidden form fields
     # or get info from url params
-    current_event = Event.second
+    current_event = Event.first
     wine = Wine.first
     @event_wine = EventWine.new(wine_bringer: params[:wine_bringer], wine: wine, event: current_event)
 

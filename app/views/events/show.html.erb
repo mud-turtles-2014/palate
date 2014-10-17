@@ -19,9 +19,11 @@
 <% end %>
 
 <h2>Guests</h2>
+
 <%= @event.event_wines.each do |invitation| %>
   <p><%= invitation.wine_bringer.name %></p>
 <% end %>
+
 
 <% if session[:id] == @event.user_id %>
   <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :id => "btn-edit-event" %>
