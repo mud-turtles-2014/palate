@@ -7,6 +7,9 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
+<% if session[:id] %>
+  <a href="/logout">Log Out</a>
+<% end %>
 <body>
 
 <%= yield %>

@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(name: session_params[:name])
+    @user = User.find_by(email: session_params[:email])
     .try(:authenticate, session_params[:password])
     if @user
       session[:user_id] = @user.id
@@ -23,6 +23,6 @@ class SessionsController < ApplicationController
   private
 
   def session_params
-    params.require(:session).permit(:name, :password)
+    params.require(:session).permit(:email, :password)
   end
 end
