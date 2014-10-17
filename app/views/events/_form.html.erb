@@ -1,0 +1,12 @@
+<%= form_for @event, :html => {:class => "pure-form"} do |f|%>
+  <fieldset>
+    <%= f.text_field :name, placeholder: "Name" %><br>
+
+    <%= f.text_field :time, placeholder: "Time" %><br>
+
+    <%= f.text_field :location, placeholder: "Location" %><br>
+
+    <p>Figure out how to invite other ppl here.</p>
+    <%= f.submit 'Save', class: 'pure-button' %>
+  </fieldset>
+<% end %>
