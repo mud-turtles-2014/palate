@@ -12,6 +12,7 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       flash[:login_message] = "Success!"
       redirect_to user_path(@user)
+      # TODO: redirect to list of events user is attending/invited to
     else
       flash[:signin_error] = @user.errors.full_messages
       redirect_to '/login'
