@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :event_wines
+  has_many :events
 
   validates :email,     presence: true,
                         format: { :with => /\w+@\w+\.\w+/}
