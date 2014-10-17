@@ -11,4 +11,12 @@ class User < ActiveRecord::Base
   validates :password,  length: { minimum: 3 },
                         confirmation: true,
                         presence: true
+
+  def upcoming_events
+    self.events.where(['date >= ?', Time.now])
+  end
+
+  def past_events
+    self.events.where(['date < ?', Time.now])
+  end
 end
