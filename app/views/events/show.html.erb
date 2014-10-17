@@ -2,7 +2,28 @@
 <p><%= @event.date.to_s[0..9]%></p>
 <p><%= @event.time.to_s[10..15] %></p>
 <p><%= @event.location %></p>
-<p>Attendees here.</p>
+
+<div class="error">
+  <% if flash[:event_wine_error] %>
+    <% flash[:event_wine_error].each do |msg| %>
+      <p><%= msg %></p>
+    <%end%>
+  <%end%>
+</div>
+
+<%= form_for @new_invite, :html => {:class => "pure-form"} do |f| %>
+  <fieldset>
+    <%= f.text_field :wine_bringer, placeholder: "Guest id" %><br>
+    <%= f.submit 'Invite', class: 'pure-button' %>
+  </fieldset>
+<% end %>
+
+<h2>Guests</h2>
+
+<%= @event.event_wines.each do |invitation| %>
+  <p><%= invitation.wine_bringer.name %></p>
+<% end %>
+
 
 <% if session[:id] == @event.user_id %>
   <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :id => "btn-edit-event" %>
@@ -12,3 +33,4 @@
 
 <!-- Need to either format the display to show just the
 date and the time or save it better in the database. -->
+
