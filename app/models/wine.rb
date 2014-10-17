@@ -1,5 +1,6 @@
 class Wine < ActiveRecord::Base
-  belongs_to :wine_question
+  has_many :wine_properties
+  has_many :properties, through: :wine_properties
   belongs_to :event_wine
 
   validates :name, presence: true
