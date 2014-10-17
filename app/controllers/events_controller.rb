@@ -40,6 +40,12 @@ class EventsController < ApplicationController
     end
   end
 
+  def show_quiz
+    # hard coding this for now
+    @wine = Wine.first
+    @user = current_user
+  end
+
   private
 
   def get_event
