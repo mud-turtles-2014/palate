@@ -5,7 +5,7 @@ EventWine.create!([
   {is_attending: nil, event_id: 1, wine_id: 1, user_id: 1}
 ])
 Question.create!([
-  {question: "fruits"}
+  {question: "fruits"},
   {question: "mineral"},
   {question: "mineral_level"},
   {question: "oak"},
@@ -33,8 +33,8 @@ WineQuestion.create!([
   {correct_answer: "2", question_id: 6, wine_id: 1},
   {correct_answer: "4", question_id: 7, wine_id: 1},
   {correct_answer: "4", question_id: 8, wine_id: 1},
-  {correct_answer: "true", question_id: 9, wine_id: 1}
-  {correct_answer: "true", question_id: 10, wine_id: 1}
-  {correct_answer: "France", question_id: 11, wine_id: 1}
+  {correct_answer: "true", question_id: 9, wine_id: 1},
+  {correct_answer: "true", question_id: 10, wine_id: 1},
+  {correct_answer: "France", question_id: 11, wine_id: 1},
   {correct_answer: "Gamay", question_id: 12, wine_id: 1}
 ])
