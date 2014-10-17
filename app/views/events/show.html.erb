@@ -2,4 +2,9 @@
 <p><%= @event.time %></p>
 <p><%= @event.location %></p>
 <p>Attendees here.</p>
+
+<% if session[:id] == @event.user_id %>
+  <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :id => "btn-edit-event" %>
+<% end %>
+
 <p>Button to start tasting.</p>
