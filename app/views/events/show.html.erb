@@ -2,12 +2,26 @@
 <p><%= @event.time %></p>
 <p><%= @event.location %></p>
 
+<div class="error">
+  <% if flash[:event_wine_error] %>
+    <% flash[:event_wine_error].each do |msg| %>
+      <p><%= msg %></p>
+    <%end%>
+  <%end%>
+</div>
+
 <%= form_for @new_invite, :html => {:class => "pure-form"} do |f| %>
   <fieldset>
-    <%= f.text_field :wine_bringer, placeholder: "Guest's email" %><br>
+    <%= f.text_field :wine_bringer, placeholder: "Guest id" %><br>
     <%= f.submit 'Invite', class: 'pure-button' %>
   </fieldset>
 <% end %>
-<p>Button to start tasting.</p>
 
-<!-- Event.first.event_wines.create(wine_bringer: User.first, wine: Wine.first, is_attending: true) -->
+<h2>Guests</h2>
+<%= @event.event_wines.each do |invitation| %>
+  <p><%= invitation.wine_bringer.name %></p>
+<% end %>
+
+<h2>Button to start tasting.</h2>
+
+

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :users
   resources :events
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   resources :users, except: :index
+  resource :event_wines, only: [:create]
 
   # root 'sessions#new'
 
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get '/login' => 'users#new'
   post '/login' => 'users#create'
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
