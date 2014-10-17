@@ -1,6 +1,6 @@
 <h1><%= @event.name %></h1>
-<p><%= @event.date %></p>
-<p><%= @event.time %></p>
+<p><%= @event.date.to_s[0..9]%></p>
+<p><%= @event.time.to_s[10..15] %></p>
 <p><%= @event.location %></p>
 <p>Attendees here.</p>
 
