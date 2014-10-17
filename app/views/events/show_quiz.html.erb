@@ -1,0 +1,15 @@
+form_for @user
+
+<% @wine.properties.each do |property| %>
+  <p><%= property.property %></p>
+  <%  property.options.each do |option| %>
+    <p><%= option.option %></p>
+    <!-- print option w radio button -->
+  <% end %>
+<% end %>
+
+<!-- option    property_id
+        1           1
+        2           1
+        3           1 -->
+
