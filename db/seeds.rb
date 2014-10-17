@@ -15,7 +15,7 @@ Question.create!([
   {question: "alcohol", answer_data_type: nil}
 ])
 User.create!([
-  {name: "steph", email: "stephtzhang@gmail.com", password_digest: "$2a$10$bPe9.haPI5uWfGk5Mk.ja.Sbw1zjy3XxTZRlocfJsLDOb24t5IlmW"}
+  {name: "steph", email: "stephtzhang@gmail.com", password:"test", password_confirmation:"test"}
 ])
 Wine.create!([
   {name: "French Gamay", color: "red", description: "Gamay gets a bad rap, but Cru Beaujolais - from one of the 10 designated cru areas in the region - shows why the grape gets called the poor man's Pinot."}
