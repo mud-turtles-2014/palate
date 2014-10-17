@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :get_event, only: [:show, :edit, :update, :destroy]
+
   def new
     @event = Event.new
   end
@@ -19,8 +21,27 @@ class EventsController < ApplicationController
     @new_invite = EventWine.new
   end
 
+  def edit
+    @current_user = User.find(@event.user_id)
+
+    if @current_user!= User.find(session[:id])
+      flash[:edit_error] = "You are not allowed to edit this event. Please ask the #{creator}"
+      redirect_to event_path
+    end
+  end
+
+  def update
+    @event.update(event_params)
+    redirect_to event_path
+  end
+
   private
+
+  def get_event
+    @event = Event.find(params[:id])
+  end
+
   def event_params
-    params.require(:event).permit([:name, :location, :time])
+    params.require(:event).permit([:name, :location, :date, :time])
   end
 end
