@@ -6,9 +6,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    # should replace User.first with current_user method
-    # from application_controller
-    @event = User.first.events.new(event_params)
+    @event = current_user.events.new(event_params)
 
     if @event.save
       redirect_to event_path(@event)
@@ -42,6 +40,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit([:name, :location, :time])
+    params.require(:event).permit([:name, :location, :date, :time])
   end
 end
