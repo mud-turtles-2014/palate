@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/my_events' => 'events#user_events'
 
+  get '/quiz' => 'events#show_quiz'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
