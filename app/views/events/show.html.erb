@@ -1,5 +1,13 @@
 <h1><%= @event.name %></h1>
 <p><%= @event.time %></p>
 <p><%= @event.location %></p>
-<p>Attendees here.</p>
+
+<%= form_for @new_invite, :html => {:class => "pure-form"} do |f| %>
+  <fieldset>
+    <%= f.text_field :wine_bringer, placeholder: "Guest's email" %><br>
+    <%= f.submit 'Invite', class: 'pure-button' %>
+  </fieldset>
+<% end %>
 <p>Button to start tasting.</p>
+
+<!-- Event.first.event_wines.create(wine_bringer: User.first, wine: Wine.first, is_attending: true) -->
