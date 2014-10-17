@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destroy'
 
+  get '/my_events' => 'events#user_events'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
