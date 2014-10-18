@@ -1,6 +1,7 @@
 Event.create!([
   {name: "Intro to Blind Tasting", location: "48 Wall St, NY, NY", date: "2014-10-17 16:45:19", time: "2014-10-17 16:45:19", user_id: 1}
 ])
+
 EventWine.create!([
   {is_attending: nil, event_id: 1, wine_id: 1, user_id: 1}
 ])
@@ -17,18 +18,8 @@ Wine.create!([
   {name: "French Gamay", color: "red", description: "Gamay gets a bad rap, but Cru Beaujolais - from one of the 10 designated cru areas in the region - shows why the grape gets called the poor man's Pinot."}
 ])
 
-WineQuestion.create!([
-  {correct_answer: "red", question_id: 1, wine_id: 1},
-  {correct_answer: "stone", question_id: 2, wine_id: 1},
-  {correct_answer: "4", question_id: 3, wine_id: 1},
-  {correct_answer: "false", question_id: 4, wine_id: 1},
-  {correct_answer: "true", question_id: 5, wine_id: 1},
-  {correct_answer: "2", question_id: 6, wine_id: 1},
-  {correct_answer: "4", question_id: 7, wine_id: 1},
-  {correct_answer: "4", question_id: 8, wine_id: 1},
-  {correct_answer: "true", question_id: 9, wine_id: 1}
-  {correct_answer: "true", question_id: 10, wine_id: 1}
-  {correct_answer: "France", question_id: 11, wine_id: 1}
-  {correct_answer: "Gamay", question_id: 12, wine_id: 1}
-])
-
+# seed pascaline's 'super user' tastings for grading
+Tasting.create!([
+  {user: User.first, wine: Wine.first, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 2, dry: 1, acid: 2, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'gamay' },
+  {user: User.first, wine: Wine.first, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 2, dry: 1, acid: 2, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'gamay' }
+  ])

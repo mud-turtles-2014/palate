@@ -38,6 +38,8 @@ gem 'time_zone_ext'
 
 gem 'seed_dump'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

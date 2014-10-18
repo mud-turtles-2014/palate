@@ -7,10 +7,12 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<% if session[:id] %>
+<% if session[:user_id] %>
   <a href="/logout">Log Out</a>
 <% end %>
 <body>
+
+<%= flash[:alert] %>
 
 <%= yield %>
 

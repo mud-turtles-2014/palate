@@ -9,7 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      session[:id] = @user.id
+      session[:user_id] = @user.id
+
+      UserMailer.welcome_email(@user).deliver!
+
       flash[:login_message] = "Success!"
       redirect_to user_path(@user)
       # TODO: redirect to list of events user is attending/invited to
@@ -20,7 +23,7 @@ class UsersController < ApplicationController
   end
 
  	private
-  
+
   def get_user
     @user = User.find(params[:id])
   end
