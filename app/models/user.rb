@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :event_wines
   has_many :events
+  has_many :tastings
 
   validates :email,     presence: true,
                         format: { :with => /\w+@\w+\.\w+/}
