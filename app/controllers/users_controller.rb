@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
+
       UserMailer.welcome_email(@user).deliver!
 
       flash[:login_message] = "Success!"
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
   end
 
  	private
-  
+
   def get_user
     @user = User.find(params[:id])
   end

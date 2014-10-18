@@ -51,6 +51,15 @@ class EventsController < ApplicationController
     redirect_to event_path
   end
 
+  def user_events
+    if !current_user
+      redirect_to '/login'
+    else
+      @upcoming_events = current_user.upcoming_events
+      @past_events = current_user.past_events
+    end
+  end
+
   private
 
   def get_event
