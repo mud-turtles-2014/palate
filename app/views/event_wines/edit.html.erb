@@ -3,9 +3,14 @@
 
 <p>You have been invited to a blind wine tasting by <%= User.find_by(id: @event_wine.event.user_id).name %>.</p> <!-- TODO: refactor this -->
 
-<p>Your mission, should you choose to accept it, is to bring a </p>
+<p>Your mission, should you choose to accept it, is to bring a <%= @my_wine.name %>. <%= @my_wine.description %></p>
 
-<p>Accept</p>
+<%= form_for :event_wine do |f| %>
+ <%= f.hidden_field :is_attending, value: true %>
+ <%= f.hidden_field :wine_id, value: @my_wine.id %>
+<%= f.submit "Accept Mission" %>
+<% end %>
+
+
 <p>Decline</p>
-
 
