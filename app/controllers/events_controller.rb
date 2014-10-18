@@ -49,11 +49,12 @@ class EventsController < ApplicationController
   end
 
   def show_quiz
-    # hard coding this for now
-    @wine = Wine.first
-    # @tasting = @wine.tastings.new
+    @event = Event.first
+    @wines = @event.winelist
   end
 
+  # route to next quiz if next quiz
+  # route to event page if no next quiz
   def save_quiz
     wine = Wine.first
     Tasting.create( user: current_user, wine: wine, red_fruits: params[:red_fruits], white_fruits: params[:white_fruits], minerality: params[:minerality], oak: params[:oak], dry: params[:dry], acid: params[:acid], tannin: params[:tannin], alcohol: params[:alcohol], climate: params[:climate], country: params[:country], red_grape: params[:red_grape], white_grape: params[:white_grape] )
