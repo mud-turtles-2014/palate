@@ -15,7 +15,19 @@ User.create!([
 ])
 
 Wine.create!([
-  {name: "French Gamay", color: "red", description: "Gamay gets a bad rap, but Cru Beaujolais - from one of the 10 designated cru areas in the region - shows why the grape gets called the poor man's Pinot."}
+  {name: "French Gamay", color: "red", description: "Gamay gets a bad rap, but Cru Beaujolais - from one of the 10 designated cru areas in the region - shows why the grape gets called the poor man's Pinot."},
+  {name: "US Pinot Noir", color: "red", description: "TKTKTK"},
+  {name: "Australian Shiraz", color: "red", description: "TKTKTK"},
+  {name: "Argentinian Malbec", color: "red", description: "TKTKTK"},
+  {name: "US Cabernet Sauvignon", color: "red", description: "TKTKTK"},
+  {name: "US Merlot", color: "red", description: "TKTKTK"},
+  {name: "US Zinfandel", color: "red", description: "TKTKTK"},
+  {name: "French Cabernet Sauvignon", color: "red", description: "TKTKTK"},
+  {name: "Italian Sangiovese", color: "red", description: "TKTKTK"},
+  {name: "Italian Nebbiolo", color: "red", description: "TKTKTK"},
+  {name: "French Merlot", color: "red", description: "TKTKTK"},
+  {name: "French Pinot Noir", color: "red", description: "TKTKTK"},
+  {name: "French Syrah", color: "red", description: "TKTKTK"}
 ])
 
 # seed pascaline's 'super user' tastings for grading
