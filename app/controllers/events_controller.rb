@@ -13,6 +13,9 @@ class EventsController < ApplicationController
       render :new
     else
       if @event.save
+        creator_wine = Wine.all.sample
+        EventWine.create!(event: @event, wine_bringer: current_user, wine: creator_wine)
+
         invite_users
         redirect_to event_path(@event)
       else
@@ -23,6 +26,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event_wine = EventWine.find_by(wine_bringer: current_user, event: @event)
   end
 
   def edit
