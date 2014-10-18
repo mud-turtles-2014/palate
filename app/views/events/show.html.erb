@@ -5,6 +5,9 @@
 <p>Attendees here.</p>
 
 <% if session[:user_id] == @event.user_id %>
+
+	<p>You are bringing a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %></p>
+
   <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :id => "btn-edit-event" %>
 <% end %>
 
