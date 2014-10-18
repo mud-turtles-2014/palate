@@ -2,16 +2,17 @@
 <p><%= @event.date.strftime("%m/%d/%y")%></p>
 <p><%= @event.time.strftime("%l:%M %p") %></p>
 <p><%= @event.location %></p>
-<p>Attendees here.</p>
+<h2>Attendees</h2>
+<ul><% @event.attending_users.each do |user| %>
+  <li><%= user.name%></li>
+  <!-- link to profile? later -->
+<% end %></ul>
 
-<% if session[:user_id] == @event.user_id %>
+<% if @event.attending_users.include?(User.find(session[:user_id])) %>
 
 	<p>You are bringing a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %></p>
 
   <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :id => "btn-edit-event" %>
 <% end %>
 
-<p>Button to start tasting.</p>
-
-<!-- Need to either format the display to show just the
-date and the time or save it better in the database. -->
+<%= button_to "Start Tasting!", "/events/#{@event.id}/quiz", :method => :get %>
