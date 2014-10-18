@@ -8,7 +8,8 @@
 
     <%= f.text_field :location, placeholder: "Location" %><br>
 
-    <p>Figure out how to invite other ppl here.</p>
     <%= f.submit 'Save', class: 'pure-button' %>
   </fieldset>
+
+  <%= text_area_tag :emails, "Enter emails separated by commas" %><br>
 <% end %>

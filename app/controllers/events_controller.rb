@@ -8,11 +8,24 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.new(event_params)
 
-    if @event.save
-      redirect_to event_path(@event)
-    else
-      flash[:event_error] = @event.errors.full_messages
+    if @event.new_record? && params[:emails].blank?
+      flash[:alert] = "Can't add an event without emails!"
       render :new
+    else
+      email_array = params[:emails].split(',')
+      email_array.each do |email|
+        event_wine = EventWine.create(wine: nil,
+                          event: @event,
+                          wine_bringer: nil)
+        UserMailer.invite_email(email, event_wine).deliver!
+      end
+
+      if @event.save
+        redirect_to event_path(@event)
+      else
+        flash[:event_error] = @event.errors.full_messages
+        render :new
+      end
     end
   end
 
@@ -27,6 +40,13 @@ class EventsController < ApplicationController
   end
 
   def update
+    email_array = params[:emails].split(',')
+    email_array.each do |email|
+      event_wine = EventWine.create(wine: nil,
+                                  event: @event,
+                                  wine_bringer: nil)
+      UserMailer.invite_email(email, event_wine).deliver!
+    end
     @event.update(event_params)
     redirect_to event_path
   end
