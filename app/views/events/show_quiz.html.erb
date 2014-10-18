@@ -1,9 +1,12 @@
 <h2>Tasting</h2>
-<%= form_for :tasting do |f| %>
-  <% if @wine.color == 'red' %>
-    <%= render 'red_wine' %>
-  <% else %>
-    <%= render 'white_wine' %>
+  <% @wines.each do |wine| %>
+  <!-- have links instead of forms here -->
+  <%= form_for :tasting do |f| %>
+    <% if wine.color == 'red' %>
+      <%= render 'red_wine' %>
+    <% else %>
+      <%= render 'white_wine' %>
+    <% end %>
+  <%= f.submit %>
   <% end %>
-<%= f.submit %>
 <% end %>

@@ -61,9 +61,13 @@ class EventsController < ApplicationController
   end
 
   def show_quiz
-    # hard coding this for now
-    @wine = Wine.first
+    # original way:
+    # @wine = Wine.first
     # @tasting = @wine.tastings.new
+
+    # start new way:
+    @event = Event.first
+    @wines = @event.winelist
   end
 
   def save_quiz
