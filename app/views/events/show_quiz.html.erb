@@ -1,12 +1,18 @@
 <h2>Tasting</h2>
-  <% @wines.each do |wine| %>
-  <!-- have links instead of forms here -->
-  <%= form_for :tasting do |f| %>
-    <% if wine.color == 'red' %>
+<h3><%= @wine.name %></h3>
+  <%= form_for @tasting do |f| %>
+    <% if @wine.color == 'red' %>
       <%= render 'red_wine' %>
     <% else %>
       <%= render 'white_wine' %>
     <% end %>
+
+    <p><%= @event_wine.id %></p>
+
+    <%= hidden_field_tag :event_wine_id, @event_wine.id %>
+
+    <!-- @event.event_wines(where wine == wine) -->
+
   <%= f.submit %>
   <% end %>
-<% end %>
+

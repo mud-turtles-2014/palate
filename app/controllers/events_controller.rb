@@ -53,16 +53,20 @@ class EventsController < ApplicationController
   end
 
   def show_quiz
-    @event = Event.first
-    @wines = @event.winelist
-  end
-
-  # route to next quiz if next quiz
-  # route to event page if no next quiz
-  def save_quiz
-    wine = Wine.first
-    Tasting.create( user: current_user, wine: wine, red_fruits: params[:red_fruits], white_fruits: params[:white_fruits], minerality: params[:minerality], oak: params[:oak], dry: params[:dry], acid: params[:acid], tannin: params[:tannin], alcohol: params[:alcohol], climate: params[:climate], country: params[:country], red_grape: params[:red_grape], white_grape: params[:white_grape] )
-    redirect_to '/'
+    # TO DO: refactor into model methods
+    # change each enumerator to a map
+    @event = Event.find(params[:id])
+    all_wines = @event.winelist
+    tasted_wines_tastings = Tasting.joins(:event_wine).where('event_wines.event_id = ?', @event.id).where(user: current_user).to_a
+    tasted_wines = []
+    tasted_wines_tastings.each do |tasting|
+      tasted_wines << tasting.event_wine.wine
+    end
+    untasted_wines = all_wines - tasted_wines
+    @wine = untasted_wines[0]
+    @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
+    @tasting = Tasting.new
+    redirect_to event_path(@event) unless @wine
   end
 
   private
@@ -95,9 +99,5 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit([:name, :location, :date, :time])
-  end
-
-  def tasting_params
-    params.require(:tasting).permit([:red_fruits, :white_fruits, :minerality, :oak, :dry, :acid, :tannin, :alcohol, :climate, :country, :red_grape, :white_grape])
   end
 end
