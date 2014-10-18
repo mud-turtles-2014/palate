@@ -16,8 +16,4 @@ class Event < ActiveRecord::Base
   def winelist
     self.event_wines.map {|event_wine| event_wine.wine }
   end
-
-  # def winelist=(new_val)
-  #   @winelist = new_val
-  # end
 end
