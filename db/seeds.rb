@@ -53,7 +53,7 @@ Wine.create!([
   {name: "French Syrah", color: "red", description: "TKTKTK"}
 ])
 
-# seed pascaline's 'super user' tastings for grading
+# old seed data for production scoring
 # Tasting.create!([
 #   {user: User.first, wine: Wine.find_by(name: "French Gamay"), red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 2, dry: 1, acid: 2, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'gamay' },
 #   {user: User.first, wine: Wine.find_by(name: "US Pinot Noir"), red_fruits: 'red', fruit_condition: 4, minerality: 3, oak: 4, dry: 2, acid: 3, tannin: 3, alcohol: 4, climate: 'warm', country: 'us', red_grape: 'pinot_noir' },
@@ -71,6 +71,7 @@ Wine.create!([
 #   ])
 
 # seed data for production scoring
+# can change to event_wine: EventWine.find_by(wine: Wine.find_by(name: "French Gamay"))
 Tasting.create!([
   {user: User.first, event_wine_id: 1, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 2, dry: 1, acid: 2, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'gamay' },
   {user: User.first,  event_wine_id: 2, red_fruits: 'red', fruit_condition: 4, minerality: 3, oak: 4, dry: 2, acid: 3, tannin: 3, alcohol: 4, climate: 'warm', country: 'us', red_grape: 'pinot_noir' },
