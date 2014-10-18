@@ -1,2 +1,11 @@
+<!-- TODO: controls for user privacy -->
+<h3>Welcome, <%= @event_wine.wine_bringer.name %>!</h3>
+
+<p>You have been invited to a blind wine tasting by <%= User.find_by(id: @event_wine.event.user_id).name %>.</p> <!-- TODO: refactor this -->
+
+<p>Your mission, should you choose to accept it, is to bring a </p>
+
+<p>Accept</p>
+<p>Decline</p>
 
 
