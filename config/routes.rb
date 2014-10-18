@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   get '/my_events' => 'events#user_events'
 
+  get '/event_wines/:id/edit' => 'event_wines#edit'
+  post '/event_wines/:id/edit' => 'event_wines#update'
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
