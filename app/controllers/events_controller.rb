@@ -20,8 +20,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-
-    if current_user != User.find(session[:id])
+    if current_user != User.find(session[:user_id])
       flash[:edit_error] = "You are not allowed to edit this event."
       redirect_to event_path
     end
