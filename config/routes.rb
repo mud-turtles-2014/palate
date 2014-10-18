@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
 
-  get '/login' => 'users#new'
-  post '/login' => 'users#create'
-
   get '/logout' => 'sessions#destroy'
 
   get '/my_events' => 'events#user_events'

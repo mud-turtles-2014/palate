@@ -63,14 +63,12 @@ class EventsController < ApplicationController
   def show_quiz
     # hard coding this for now
     @wine = Wine.first
-    @user = current_user
-    @tasting = @wine.tastings.new
+    # @tasting = @wine.tastings.new
   end
 
   def save_quiz
-    user = User.first
     wine = Wine.first
-    Tasting.create( user: user, wine: wine, red_fruits: params[:red_fruits], white_fruits: params[:white_fruits], minerality: params[:minerality], oak: params[:oak], dry: params[:dry], acid: params[:acid], tannin: params[:tannin], alcohol: params[:alcohol], climate: params[:climate], country: params[:country], red_grape: params[:red_grape], white_grape: params[:white_grape] )
+    Tasting.create( user: current_user, wine: wine, red_fruits: params[:red_fruits], white_fruits: params[:white_fruits], minerality: params[:minerality], oak: params[:oak], dry: params[:dry], acid: params[:acid], tannin: params[:tannin], alcohol: params[:alcohol], climate: params[:climate], country: params[:country], red_grape: params[:red_grape], white_grape: params[:white_grape] )
     redirect_to '/'
   end
 
