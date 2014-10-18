@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :users, except: :index
   resources :events
   resource :tastings, only: :create
+  resources :event_wines, except: :index
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,6 +15,10 @@ Rails.application.routes.draw do
   get '/my_events' => 'events#user_events'
 
   get '/events/:id/quiz' => 'events#show_quiz'
+
+  # get '/event_wines/:id/show' => 'event_wines#show'
+  # get '/event_wines/:id/edit' => 'event_wines#edit'
+  post '/event_wines/:id/edit' => 'event_wines#update'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

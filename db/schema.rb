@@ -35,6 +35,13 @@ ActiveRecord::Schema.define(version: 20141018184732) do
     t.datetime "updated_at"
   end
 
+  create_table "questions", force: true do |t|
+    t.string   "question"
+    t.string   "answer_data_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tastings", force: true do |t|
     t.integer  "red_fruits"
     t.integer  "white_fruits"
@@ -55,10 +62,28 @@ ActiveRecord::Schema.define(version: 20141018184732) do
     t.integer  "event_wine_id"
   end
 
+  create_table "user_answers", force: true do |t|
+    t.string   "answer"
+    t.boolean  "correctness"
+    t.integer  "wine_question_id"
+    t.integer  "event_wine_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
-    t.string   "name",            null: false
+    t.string   "name"
     t.string   "email",           null: false
     t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "wine_questions", force: true do |t|
+    t.string   "correct_answer"
+    t.integer  "question_id"
+    t.integer  "wine_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
