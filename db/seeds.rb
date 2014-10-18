@@ -39,4 +39,12 @@ Tasting.create!([
   {user: User.first, wine: Wine.find_by(name: "Argentinian Malbec"), red_fruits: 'black', fruit_condition: 4, minerality: 2, oak: 4, dry: 2, acid: 3, tannin: 4, alcohol: 5, climate: 'warm', country: 'argentina', red_grape: 'malbec' },
   {user: User.first, wine: Wine.find_by(name: "US Cabernet Sauvignon"), red_fruits: 'black', fruit_condition: 4, minerality: 2, oak: 5, dry: 2, acid: 3, tannin: 4, alcohol: 4, climate: 'warm', country: 'us', red_grape: 'cabernet_sauvignon' },
   {user: User.first, wine: Wine.find_by(name: "US Merlot"), red_fruits: 'red', fruit_condition: 4, minerality: 2, oak: 5, dry: 2, acid: 3, tannin: 3, alcohol: 5, climate: 'warm', country: 'us', red_grape: 'merlot' },
+  ####
+  {user: User.first, wine: Wine.find_by(name: "US Zinfandel"), red_fruits: 'blue', fruit_condition: 5, minerality: 1, oak: 3, dry: 2, acid: 3, tannin: 3, alcohol: 5, climate: 'warm', country: 'us', red_grape: 'zinfandel' },
+  {user: User.first, wine: Wine.find_by(name: "French Cabernet Sauvignon"), red_fruits: 'black', fruit_condition: 3, minerality: 4, oak: 5, dry: 1, acid: 4, tannin: 4, alcohol: 4, climate: 'cool', country: 'france', red_grape: 'cabernet_sauvignon' },
+  {user: User.first, wine: Wine.find_by(name: "Italian Sangiovese"), red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 4, dry: 1, acid: 4, tannin: 4, alcohol: 4, climate: 'cool', country: 'italy', red_grape: 'sangiovese' },
+  {user: User.first, wine: Wine.find_by(name: "Italian Nebbiolo"), red_fruits: 'red', fruit_condition: 1, minerality: 5, oak: 3, dry: 1, acid: 5, tannin: 5, alcohol: 4, climate: 'cool', country: 'italy', red_grape: 'barolo' },
+  {user: User.first, wine: Wine.find_by(name: "French Merlot"), red_fruits: 'red', fruit_condition: 3, minerality: 4, oak: 5, dry: 1, acid: 3, tannin: 3, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'merlot' },
+  {user: User.first, wine: Wine.find_by(name: "French Pinot Noir"), red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 4, dry: 1, acid: 3, tannin: 3, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'pinot_noir' },
+  {user: User.first, wine: Wine.find_by(name: "French Syrah"), red_fruits: 'black', fruit_condition: 3, minerality: 4, oak: 4, dry: 1, acid: 4, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'syrah_shiraz' },
   ])
