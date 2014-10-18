@@ -12,9 +12,8 @@ class EventsController < ApplicationController
       flash[:alert] = "Can't add an event without emails!"
       render :new
     else
-      invite_users
-
       if @event.save
+        invite_users
         redirect_to event_path(@event)
       else
         flash[:event_error] = @event.errors.full_messages
