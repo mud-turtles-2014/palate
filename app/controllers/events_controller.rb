@@ -49,6 +49,18 @@ class EventsController < ApplicationController
     end
   end
 
+  def show_quiz
+    # hard coding this for now
+    @wine = Wine.first
+    # @tasting = @wine.tastings.new
+  end
+
+  def save_quiz
+    wine = Wine.first
+    Tasting.create( user: current_user, wine: wine, red_fruits: params[:red_fruits], white_fruits: params[:white_fruits], minerality: params[:minerality], oak: params[:oak], dry: params[:dry], acid: params[:acid], tannin: params[:tannin], alcohol: params[:alcohol], climate: params[:climate], country: params[:country], red_grape: params[:red_grape], white_grape: params[:white_grape] )
+    redirect_to '/'
+  end
+
   private
 
   # TODO: refactor into smaller methods
@@ -79,5 +91,9 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit([:name, :location, :date, :time])
+  end
+
+  def tasting_params
+    params.require(:tasting).permit([:red_fruits, :white_fruits, :minerality, :oak, :dry, :acid, :tannin, :alcohol, :climate, :country, :red_grape, :white_grape])
   end
 end

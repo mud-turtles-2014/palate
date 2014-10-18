@@ -7,15 +7,16 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
 
-  get '/login' => 'users#new'
-  post '/login' => 'users#create'
-
   get '/logout' => 'sessions#destroy'
 
   get '/my_events' => 'events#user_events'
 
   get '/event_wines/:id/edit' => 'event_wines#edit'
   post '/event_wines/:id/edit' => 'event_wines#update'
+
+  get '/quiz' => 'events#show_quiz'
+  post '/quiz' => 'events#save_quiz'
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

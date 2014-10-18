@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016230247) do
+ActiveRecord::Schema.define(version: 20141018143609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,35 +35,30 @@ ActiveRecord::Schema.define(version: 20141016230247) do
     t.datetime "updated_at"
   end
 
-  create_table "properties", force: true do |t|
-    t.string   "property"
-    t.boolean  "red_only"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "user_answers", force: true do |t|
-    t.string   "answer"
-    t.boolean  "correctness"
-    t.integer  "wine_property_id"
-    t.integer  "event_wine_id"
+  create_table "tastings", force: true do |t|
+    t.integer  "red_fruits"
+    t.integer  "white_fruits"
+    t.integer  "minerality"
+    t.integer  "oak"
+    t.integer  "dry"
+    t.integer  "acid"
+    t.integer  "tannin"
+    t.integer  "alcohol"
+    t.integer  "climate"
+    t.integer  "country"
+    t.integer  "red_grape"
+    t.integer  "white_grape"
     t.integer  "user_id"
+    t.integer  "wine_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fruit_condition"
   end
 
   create_table "users", force: true do |t|
     t.string   "name",            null: false
     t.string   "email",           null: false
     t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "wine_properties", force: true do |t|
-    t.string   "property_value"
-    t.integer  "property_id"
-    t.integer  "wine_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
