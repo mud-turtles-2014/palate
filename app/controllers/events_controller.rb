@@ -12,13 +12,7 @@ class EventsController < ApplicationController
       flash[:alert] = "Can't add an event without emails!"
       render :new
     else
-      email_array = params[:emails].split(',')
-      email_array.each do |email|
-        event_wine = EventWine.create(wine: nil,
-                          event: @event,
-                          wine_bringer: nil)
-        UserMailer.invite_email(email, event_wine).deliver!
-      end
+      invite_users
 
       if @event.save
         redirect_to event_path(@event)
@@ -40,13 +34,8 @@ class EventsController < ApplicationController
   end
 
   def update
-    email_array = params[:emails].split(',')
-    email_array.each do |email|
-      event_wine = EventWine.create(wine: nil,
-                                  event: @event,
-                                  wine_bringer: nil)
-      UserMailer.invite_email(email, event_wine).deliver!
-    end
+    invite_users
+
     @event.update(event_params)
     redirect_to event_path
   end
@@ -61,6 +50,28 @@ class EventsController < ApplicationController
   end
 
   private
+
+  # TODO: refactor into smaller methods
+  def invite_users
+    email_array = params[:emails].split(',')
+    email_array.each do |email|
+      existing_user = User.find_by(email: email)
+
+      if existing_user != nil
+        event_wine = EventWine.create(wine: nil,
+                        event: @event,
+                        wine_bringer: existing_user)
+      else
+        new_user = User.create(name: "Guest",
+                              email: email,
+                              password: "merlot1")
+        event_wine = EventWine.create(wine: nil,
+                        event: @event,
+                        wine_bringer: new_user)
+      end
+      UserMailer.invite_email(email, event_wine).deliver!
+    end
+  end
 
   def get_event
     @event = Event.find(params[:id])
