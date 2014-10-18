@@ -3,7 +3,8 @@ Event.create!([
 ])
 
 EventWine.create!([
-  {is_attending: nil, event_id: 1, wine_id: 1, user_id: 1}
+  {is_attending: nil, event_id: 1, wine_id: 1, user_id: 1},
+  {is_attending: nil, event_id: 1, wine_id: 2, user_id: 2}
 ])
 
 User.create!([
@@ -21,7 +22,6 @@ Wine.create!([
   {name: "Argentinian Malbec", color: "red", description: "TKTKTK"},
   {name: "US Cabernet Sauvignon", color: "red", description: "TKTKTK"},
   {name: "US Merlot", color: "red", description: "TKTKTK"},
-  # note to steph: tastings inputted up to here
   {name: "US Zinfandel", color: "red", description: "TKTKTK"},
   {name: "French Cabernet Sauvignon", color: "red", description: "TKTKTK"},
   {name: "Italian Sangiovese", color: "red", description: "TKTKTK"},
