@@ -5,3 +5,5 @@
   <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %></p>
   <%= f.submit "Submit", class: 'pure-button' %>
 <% end  %>
+
+<%= button_to "Delete Account", user_path(@user), method: :delete, class: 'pure-button' %>

@@ -29,6 +29,12 @@ class UsersController < ApplicationController
     redirect_to my_events_path
   end
 
+  def destroy
+    @user.delete
+    session[:user_id] = nil
+    redirect_to '/'
+  end
+
  	private
 
   def get_user
