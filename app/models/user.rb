@@ -14,11 +14,13 @@ class User < ActiveRecord::Base
                         presence: true
 
   def upcoming_events
-    self.event_wines.where(event: Event.where(['date >= ?', Time.now]))
+    reservations = self.event_wines.where(event: Event.where(['date >= ?', Time.now]))
+    reservations.map {|reservation| Event.find(reservation.event_id)} if reservations
   end
 
   def past_events
-    self.event_wines.where(event: Event.where(['date < ?', Time.now]))
+    reservations = self.event_wines.where(event: Event.where(['date < ?', Time.now]))
+    reservations.map {|reservation| Event.find(reservation.event_id)} if reservations
   end
 
 end
