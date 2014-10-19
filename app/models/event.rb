@@ -13,7 +13,14 @@ class Event < ActiveRecord::Base
   # return array of user objs
   # update to reflect is_attending col on event_wines
   def attending_users
-    self.wine_bringers
+    attending =[]
+    invites = self.event_wines
+    invites.each do |invite|
+      if invite.is_attending == true
+        attending << invite.wine_bringer
+      end
+    end
+    attending
   end
 
   def winelist
