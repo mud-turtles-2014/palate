@@ -11,6 +11,8 @@
 <%= f.submit "Accept Mission" %>
 <% end %>
 
-
-<p>Decline</p>
-
+<%= form_for :event_wine do |f| %>
+ <%= f.hidden_field :is_attending, value: false %>
+ <%= f.hidden_field :wine_id, value: nil %>
+<%= f.submit "Decline Mission" %>
+<% end %>

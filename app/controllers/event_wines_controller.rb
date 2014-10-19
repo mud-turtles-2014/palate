@@ -17,7 +17,12 @@ class EventWinesController < ApplicationController
 
   def update
   	@event_wine.update(event_wine_params)
-  	redirect_to event_wine_path(@event_wine)
+
+    if @event_wine.is_attending
+  	 redirect_to event_wine_path(@event_wine)
+    else
+      redirect_to '/'
+    end
   end
 
   def show
