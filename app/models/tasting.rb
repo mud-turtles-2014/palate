@@ -13,30 +13,21 @@ class Tasting < ActiveRecord::Base
   enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6, riesling: 7 }
 
   def raw_score(current_wine)
-    # pascaline's super user tastings
+    # super user tastings
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
     super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
 
     score = 0
     color = self.wine.color
+
     if color == "white"
-      score += 1 if self.white_fruits == super_tasting.white_fruits
-      score += 1 if self.white_grape == super_tasting.white_grape
+      attributes = white_tasting_attributes
     elsif color == "red"
-      score += 1 if self.red_fruits == super_tasting.red_fruits
-      score += 1 if self.red_grape == super_tasting.red_grape
+      attributes = red_tasting_attributes
     end
-
-    score += 1 if self.fruit_condition == super_tasting.fruit_condition
-    score += 1 if self.minerality == super_tasting.minerality
-    score += 1 if self.oak == super_tasting.oak
-    score += 1 if self.dry == super_tasting.dry
-    score += 1 if self.acid == super_tasting.acid
-    score += 1 if self.tannin == super_tasting.tannin
-    score += 1 if self.alcohol == super_tasting.alcohol
-    score += 1 if self.climate == super_tasting.climate
-    score += 1 if self.country == super_tasting.country
-
+    attributes.each do |attribute|
+      score += 1 if self.send(attribute) == super_tasting.send(attribute)
+    end
     return score
   end
 
@@ -51,7 +42,7 @@ class Tasting < ActiveRecord::Base
   end
 
   def white_tasting_attributes
-    get_tasting_attributes.reject {|attribute| /(red_)/.match(attribute)}
+    get_tasting_attributes.reject {|attribute| /(red_|tannin)/.match(attribute)}
   end
 end
 
