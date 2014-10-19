@@ -27,6 +27,7 @@ class EventsController < ApplicationController
 
   def show
     @event_wine = EventWine.find_by(wine_bringer: current_user, event: @event)
+    @attend
   end
 
   def edit
