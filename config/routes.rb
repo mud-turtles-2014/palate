@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   # get '/event_wines/:id/edit' => 'event_wines#edit'
   post '/event_wines/:id/edit' => 'event_wines#update'
 
+  get '/event_scores' => 'events#user_scores'
+
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
