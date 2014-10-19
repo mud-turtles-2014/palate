@@ -7,3 +7,5 @@
 </div>
 
 <%= render "form" %>
+
+<%= button_to "Delete Event", event_path(@event), method: :delete, confirm: "Are you sure you want to permanently delete your event?", class: 'pure-button' %>
