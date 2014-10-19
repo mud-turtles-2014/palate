@@ -80,7 +80,7 @@ class EventsController < ApplicationController
     @wine = untasted_wines[0]
     @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
     @tasting = Tasting.new
-    redirect_to event_path(@event) unless @wine
+    redirect_to my_results_path unless @wine
   end
 
   private
