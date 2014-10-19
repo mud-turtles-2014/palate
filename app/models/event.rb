@@ -10,27 +10,15 @@ class Event < ActiveRecord::Base
   validates :date, presence: true
   validates :time, presence: true
 
-  # return array of user objs
-  # update to reflect is_attending col on event_wines
+  def attending_invitations
+    self.event_wines.select {|invite| invite.is_attending}
+  end
+
   def attending_users
-    attending =[]
-    invites = self.event_wines
-    invites.each do |invite|
-      if invite.is_attending == true
-        attending << invite.wine_bringer
-      end
-    end
-    attending
+    attending_invitations.map {|invite| invite.wine_bringer}
   end
 
   def winelist
-    wines =[]
-    invites = self.event_wines
-    invites.each do |event_wine|
-      if event_wine.is_attending
-        wines << event_wine.wine
-      end
-    end
-    wines
+    attending_invitations.map {|invite| invite.wine}
   end
 end
