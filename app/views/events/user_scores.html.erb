@@ -1,0 +1,6 @@
+<h2>My Scores</h2>
+<ul>
+  <% @user_scores.each do |id, score| %>
+    <li>Wine <%= id %>: <%= score %></li>
+  <% end %>
+</ul>
