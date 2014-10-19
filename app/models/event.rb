@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  has_many :event_wines
+  has_many :event_wines, :dependent => :destroy
   has_many :wine_bringers, through: :event_wines
   has_many :wines, through: :event_wines
 
