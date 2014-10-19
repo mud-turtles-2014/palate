@@ -61,7 +61,7 @@ class EventsController < ApplicationController
       @user_tastings = Tasting.where(event_wine: current_user.event_wines.where(event_id: 1))
       @user_scores = {}
       @user_tastings.each do |tasting|
-        @user_scores[tasting.wine.name] = tasting.raw_score(tasting.wine)
+        @user_scores[tasting.wine.id] = tasting.raw_score(tasting.wine)
       end
     end
   end
