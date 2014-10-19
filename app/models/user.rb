@@ -20,4 +20,5 @@ class User < ActiveRecord::Base
   def past_events
     self.events.where(['date < ?', Time.now])
   end
+
 end
