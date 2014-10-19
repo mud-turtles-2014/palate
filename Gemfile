@@ -40,6 +40,8 @@ gem 'seed_dump'
 
 gem 'dotenv-rails', :groups => [:development, :test]
 
+gem 'foundation-rails'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
