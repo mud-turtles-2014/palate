@@ -14,11 +14,11 @@ class User < ActiveRecord::Base
                         presence: true
 
   def upcoming_events
-    self.events.where(['date >= ?', Time.now])
+    self.event_wines.where(event: Event.where(['date >= ?', Time.now]))
   end
 
   def past_events
-    self.events.where(['date < ?', Time.now])
+    self.event_wines.where(event: Event.where(['date < ?', Time.now]))
   end
 
 end
