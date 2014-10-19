@@ -1,0 +1,7 @@
+<%= form_for @user, :html => {:class => "pure-form"} do |f| %>
+  <p><%= f.text_field :name, placeholder: "Name" %><br>
+  <%= f.text_field :email, placeholder: "Email" %><br>
+  <%= f.password_field :password, placeholder: "New Password" %><br>
+  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %></p>
+  <%= f.submit "Submit", class: 'pure-button' %>
+<% end  %>

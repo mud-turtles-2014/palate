@@ -22,6 +22,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @user.update(user_params)
+    redirect_to my_events_path
+  end
+
  	private
 
   def get_user
