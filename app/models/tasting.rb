@@ -39,7 +39,23 @@ class Tasting < ActiveRecord::Base
 
     return score
   end
+
+  def get_tasting_attributes
+    all_attributes = Tasting.last.attributes.map {|attribute, val| attribute}
+    wine_attributes = all_attributes.reject {|attribute| /(_id|_at|\bid)/.match(attribute)}
+    wine_attributes.map! {|attribute| attribute.to_sym}
+  end
+
+  def red_tasting_attributes
+    get_tasting_attributes.reject {|attribute| /(white_)/.match(attribute)}
+  end
+
+  def white_tasting_attributes
+    get_tasting_attributes.reject {|attribute| /(red_)/.match(attribute)}
+  end
 end
+
+# self.send(:white_fruits)
 
 # all event wines for the current wine
 # current_wine = "French Gamay"
