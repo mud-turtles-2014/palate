@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     .try(:authenticate, session_params[:password])
     if @user
       session[:user_id] = @user.id
-      redirect_to '/'
+      redirect_to my_events_path
     else
       flash[:error] = "Login Failed"
       redirect_to login_path
@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.clear
-    redirect_to login_path
+    redirect_to '/'
   end
 
   private

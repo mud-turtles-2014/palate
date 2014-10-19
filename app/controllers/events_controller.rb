@@ -83,6 +83,11 @@ class EventsController < ApplicationController
     redirect_to event_path(@event) unless @wine
   end
 
+  def destroy
+    @event.delete
+    redirect_to my_events_path(session[:user_id])
+  end
+
   private
 
   # TODO: refactor into smaller methods

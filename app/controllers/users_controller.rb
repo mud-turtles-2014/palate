@@ -14,12 +14,25 @@ class UsersController < ApplicationController
       UserMailer.welcome_email(@user).deliver!
 
       flash[:login_message] = "Success!"
-      redirect_to user_path(@user)
-      # TODO: redirect to list of events user is attending/invited to
+      redirect_to my_events_path(@user)
     else
       flash[:signin_error] = @user.errors.full_messages
       redirect_to '/login'
     end
+  end
+
+  def edit
+  end
+
+  def update
+    @user.update(user_params)
+    redirect_to my_events_path
+  end
+
+  def destroy
+    @user.delete
+    session[:user_id] = nil
+    redirect_to '/'
   end
 
  	private
