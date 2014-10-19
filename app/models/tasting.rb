@@ -30,8 +30,16 @@ class Tasting < ActiveRecord::Base
     end
 
     score = "#{raw_score} / #{current_tasting_attributes.length}"
+    formatted_correct = formatted_categories(correct_categories)
+    formatted_incorrect = formatted_categories(incorrect_categories)
 
-    return {score: score, correct: correct_categories, incorrect: incorrect_categories}
+    return {score: score, correct: formatted_correct, incorrect: formatted_incorrect}
+  end
+
+  def formatted_categories(categories)
+    categories.map! do |category|
+      category.to_s.sub("red_","").sub("white_","").sub("_"," ").split.map(&:capitalize).join(' ')
+    end
   end
 
   def current_tasting_attributes
