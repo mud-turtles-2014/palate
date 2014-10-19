@@ -17,21 +17,21 @@ class Tasting < ActiveRecord::Base
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
     super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
 
-    score = 0
+    raw_score = 0
+    correct_categories = current_tasting_attributes
+    incorrect_categories = []
 
-    attributes = current_tasting_attributes
-
-    attributes.each do |attribute|
-      score += 1 if self.send(attribute) == super_tasting.send(attribute)
+    current_tasting_attributes.each do |attribute|
+      if self.send(attribute) == super_tasting.send(attribute)
+        raw_score += 1
+      else
+        incorrect_categories.push(correct_categories.delete(attribute))
+      end
     end
 
-    return score
-  end
+    score = "#{raw_score} / #{current_tasting_attributes.length}"
 
-  def correct_categories
-  end
-
-  def incorrect_categories
+    return {score: score, correct: correct_categories, incorrect: incorrect_categories}
   end
 
   def current_tasting_attributes
