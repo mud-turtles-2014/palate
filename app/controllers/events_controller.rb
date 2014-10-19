@@ -53,6 +53,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def user_scores
+    if !current_user
+      redirect_to '/login'
+    else
+      # all current_user's tastings for this event (array)
+      @user_tastings = Tasting.where(event_wine: current_user.event_wines.where(event_id: 1))
+      @user_scores = {}
+      @user_tastings.each do |tasting|
+        @user_scores[tasting.wine.id] = tasting.raw_score(tasting.wine)
+      end
+    end
+  end
+
   def show_quiz
     # TO DO: refactor into model methods
     # change each enumerator to a map
