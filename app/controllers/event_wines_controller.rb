@@ -3,7 +3,7 @@ class EventWinesController < ApplicationController
 
 	def edit
 		if @event_wine.is_attending
-			redirect_to :index
+			redirect_to my_events_path
 		else
 			event = @event_wine.event
 			all_wines = Wine.all
