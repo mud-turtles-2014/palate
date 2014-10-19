@@ -24,6 +24,13 @@ class Event < ActiveRecord::Base
   end
 
   def winelist
-    self.wines
+    wines =[]
+    invites = self.event_wines
+    invites.each do |event_wine|
+      if event_wine.is_attending
+        wines << event_wine.wine
+      end
+    end
+    wines
   end
 end
