@@ -18,33 +18,45 @@ class Tasting < ActiveRecord::Base
     super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
 
     score = 0
-    color = self.wine.color
 
-    if color == "white"
-      attributes = white_tasting_attributes
-    elsif color == "red"
-      attributes = red_tasting_attributes
-    end
+    attributes = current_tasting_attributes
+
     attributes.each do |attribute|
       score += 1 if self.send(attribute) == super_tasting.send(attribute)
     end
+
     return score
   end
 
-  def get_tasting_attributes
+  def correct_categories
+  end
+
+  def incorrect_categories
+  end
+
+  def current_tasting_attributes
+    wine_color == "white" ? white_tasting_attributes : red_tasting_attributes
+  end
+
+  def wine_color
+    self.wine.color
+  end
+
+  def parse_tasting_attributes
     all_attributes = Tasting.last.attributes.map {|attribute, val| attribute}
     wine_attributes = all_attributes.reject {|attribute| /(_id|_at|\bid)/.match(attribute)}
     wine_attributes.map! {|attribute| attribute.to_sym}
   end
 
   def red_tasting_attributes
-    get_tasting_attributes.reject {|attribute| /(white_)/.match(attribute)}
+    parse_tasting_attributes.reject {|attribute| /(white_)/.match(attribute)}
   end
 
   def white_tasting_attributes
-    get_tasting_attributes.reject {|attribute| /(red_|tannin)/.match(attribute)}
+    parse_tasting_attributes.reject {|attribute| /(red_|tannin)/.match(attribute)}
   end
 end
+
 
 # self.send(:white_fruits)
 
