@@ -13,31 +13,32 @@ class Tasting < ActiveRecord::Base
   enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6, riesling: 7 }
 
   def raw_score(current_wine)
-    score = 0
-
     # pascaline's super user tastings
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
-    pascaline_wine = super_tastings.find_by(event_wine: EventWine.find_by(wine: current_wine))#Wine.find_by(name: wine.name)))
+    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
 
-    score += 1 if self.red_fruits == pascaline_wine.red_fruits
-    # score += 1 if self.white_fruits == pascaline_wine.white_fruits
-    score += 1 if self.fruit_condition == pascaline_wine.fruit_condition
-    score += 1 if self.minerality == pascaline_wine.minerality
-    score += 1 if self.oak == pascaline_wine.oak
-    score += 1 if self.dry == pascaline_wine.dry
-    score += 1 if self.acid == pascaline_wine.acid
-    score += 1 if self.tannin == pascaline_wine.tannin
-    score += 1 if self.alcohol == pascaline_wine.alcohol
-    score += 1 if self.climate == pascaline_wine.climate
-    score += 1 if self.country == pascaline_wine.country
-    score += 1 if self.red_grape == pascaline_wine.red_grape
-    # score += 1 if self.white_grape == pascaline_wine.white_grape
+    score = 0
+    color = self.wine.color
+    if color == "white"
+      score += 1 if self.white_fruits == super_tasting.white_fruits
+      score += 1 if self.white_grape == super_tasting.white_grape
+    elsif color == "red"
+      score += 1 if self.red_fruits == super_tasting.red_fruits
+      score += 1 if self.red_grape == super_tasting.red_grape
+    end
+
+    score += 1 if self.fruit_condition == super_tasting.fruit_condition
+    score += 1 if self.minerality == super_tasting.minerality
+    score += 1 if self.oak == super_tasting.oak
+    score += 1 if self.dry == super_tasting.dry
+    score += 1 if self.acid == super_tasting.acid
+    score += 1 if self.tannin == super_tasting.tannin
+    score += 1 if self.alcohol == super_tasting.alcohol
+    score += 1 if self.climate == super_tasting.climate
+    score += 1 if self.country == super_tasting.country
+
     return score
   end
-
-  # def current_wine
-  #   self.wine.name
-  # end
 end
 
 # all event wines for the current wine
