@@ -57,8 +57,8 @@ class EventsController < ApplicationController
     if !current_user
       redirect_to '/login'
     else
-      # all current_user's tastings for this event (array)
-      @user_tastings = Tasting.where(event_wine: current_user.event_wines.where(event_id: 1))
+      @event = Event.find(params[:id])
+      @user_tastings = Tasting.where(event_wine: current_user.event_wines.where(event: @event))
       @user_scores = {}
       @user_tastings.each do |tasting|
         @user_scores[tasting.wine.id] = tasting.raw_score(tasting.wine)
@@ -80,7 +80,7 @@ class EventsController < ApplicationController
     @wine = untasted_wines[0]
     @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
     @tasting = Tasting.new
-    redirect_to my_results_path unless @wine
+    redirect_to "/events/#{@event.id}/my_results" unless @wine
   end
 
   private
