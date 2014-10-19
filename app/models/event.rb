@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   has_many :event_wines
   has_many :wine_bringers, through: :event_wines
+  has_many :wines, through: :event_wines
 
   belongs_to :creator, class_name: "User", foreign_key: "user_id"
 
@@ -10,11 +11,12 @@ class Event < ActiveRecord::Base
   validates :time, presence: true
 
   # return array of user objs
+  # update to reflect is_attending col on event_wines
   def attending_users
-    self.event_wines.map {|event_wine| event_wine.wine_bringer }
+    self.wine_bringers
   end
 
   def winelist
-    self.event_wines.map {|event_wine| event_wine.wine }
+    self.wines
   end
 end
