@@ -5,13 +5,13 @@
     <li>Correct categories:</li>
     <ul>
       <% score[:correct].each do |category| %>
-        <li><%= category.to_s.sub("red_","").sub("white_","").sub("_"," ").split.map(&:capitalize).join(' ') %></li>
+        <li><%= category %></li>
       <% end %>
     </ul>
     <li>Incorrect categories:</li>
     <ul>
       <% score[:incorrect].each do |category| %>
-        <li><%= category.to_s.sub("red_","").sub("white_","").sub("_"," ").split.map(&:capitalize).join(' ') %></li>
+        <li><%= category %></li>
       <% end %>
     </ul>
     <li>Score: <%= score[:score] %></li>
