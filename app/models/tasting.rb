@@ -20,14 +20,10 @@ class Tasting < ActiveRecord::Base
     score = 0
     color = self.wine.color
 
-    if color == "white"
-      attributes = white_tasting_attributes
-    elsif color == "red"
-      attributes = red_tasting_attributes
-    end
-    attributes.each do |attribute|
-      score += 1 if self.send(attribute) == super_tasting.send(attribute)
-    end
+    attributes = color == "white" ? white_tasting_attributes : red_tasting_attributes
+
+    attributes.each { |attribute| score += 1 if self.send(attribute) == super_tasting.send(attribute) }
+
     return score
   end
 
@@ -45,6 +41,7 @@ class Tasting < ActiveRecord::Base
     get_tasting_attributes.reject {|attribute| /(red_|tannin)/.match(attribute)}
   end
 end
+
 
 # self.send(:white_fruits)
 
