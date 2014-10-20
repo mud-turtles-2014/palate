@@ -1,0 +1,30 @@
+nav.top-bar {
+    background: #86A02D;
+}
+
+nav.top-bar h1 {
+    background: #86A02D;
+}
+
+nav.top-bar h1 a{
+    font-size: 1.5em;
+}
+
+.top-bar-section li a:not(.button) {
+    background: #86A02D !important;
+}
+
+.top-bar-section li a:not(.button):hover {
+    background: #4d591a !important;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.container{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #dadada;
+}

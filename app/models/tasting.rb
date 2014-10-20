@@ -34,14 +34,22 @@ class Tasting < ActiveRecord::Base
     score = "#{raw_score} / #{current_tasting_attributes.length}"
     formatted_correct = formatted_categories(correct_categories)
     formatted_incorrect = formatted_categories(incorrect_categories)
+    user_guess = wine_color == "white" ? self.white_grape : self.red_grape
+    user_guess = format_category(user_guess)
+    correct_wine = wine_color == "white" ? super_tasting.white_grape : super_tasting.red_grape
+    correct_wine = format_category(correct_wine)
 
-    return {score: score, correct: formatted_correct, incorrect: formatted_incorrect}
+    return {score: score, correct: formatted_correct, incorrect: formatted_incorrect, user_guess: user_guess, correct_wine: correct_wine}
   end
 
   def formatted_categories(categories)
     categories.map! do |category|
-      category.to_s.sub("red_","").sub("white_","").sub("_"," ").split.map(&:capitalize).join(' ')
+      format_category(category)
     end
+  end
+
+  def format_category(category)
+    category.to_s.sub("red_","").sub("white_","").sub("_"," ").split.map(&:capitalize).join(' ')
   end
 
   def current_tasting_attributes
