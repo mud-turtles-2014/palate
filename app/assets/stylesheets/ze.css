@@ -51,12 +51,19 @@ input.button, a.button {
   background-color: #86a02d;
 }
 
+input.button#taste {
+  background-color: #9685a0;
+}
+
+body {
+  background-color: #e3ebd6 !important;
+}
+
 body a {
   color: #33cc33;
 }
 
 button:hover, button:focus, .button:hover, .button:focus {
-/*, input[type="submit"]:hover {*/
   background-color: #4d591a !important;
 }
 

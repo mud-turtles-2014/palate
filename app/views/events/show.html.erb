@@ -16,6 +16,6 @@
 <% end %>
 
 <!-- User shouldn't see either of these if they've already taken all of their tastings, but they should see them if they've only taken some of them. -->
-<%= button_to "Start Tasting!", "/events/#{@event.id}/quiz", :method => :get, :class =>"button [radius round]" %>
+<%= button_to "Start Tasting!", "/events/#{@event.id}/quiz", :method => :get, :class =>"button [radius round]", :id => "taste" %>
 <%= link_to "See Results", "/events/#{@event.id}/my_results", :method => :get, :class =>"button [radius round]" %>
 
