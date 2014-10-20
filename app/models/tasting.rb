@@ -94,6 +94,11 @@ class Tasting < ActiveRecord::Base
     get_euclidian_dist(super_tasting)
   end
 
+  def is_reasonable_conclusion
+    reasonability_factor = 2.5
+    score_observations_against_guessed_wine < reasonability_factor
+  end
+
   def attributes_stored_by_int
     attributes = [:minerality, :oak, :dry, :acid, :alcohol, :fruit_condition]
     attributes << :tannin if self.wine.color == "red"
