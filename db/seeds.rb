@@ -65,12 +65,12 @@ EventWine.create!([
 Tasting.create!([
   # red wines
   {user: User.first, event_wine_id: 1, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 2, dry: 1, acid: 2, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'gamay' },
-  {user: User.first,  event_wine_id: 2, red_fruits: 'red', fruit_condition: 4, minerality: 3, oak: 4, dry: 2, acid: 3, tannin: 3, alcohol: 4, climate: 'warm', country: 'us', red_grape: 'pinot_noir' },
+  {user: User.first,  event_wine_id: 2, red_fruits: 'red', fruit_condition: 4, minerality: 3, oak: 4, dry: 2, acid: 3, tannin: 3, alcohol: 4, climate: 'warm', country: 'united_states', red_grape: 'pinot_noir' },
   {user: User.first,  event_wine_id: 3, red_fruits: 'red', fruit_condition: 5, minerality: 2, oak: 3, dry: 2, acid: 3, tannin: 3, alcohol: 5, climate: 'warm', country: 'australia', red_grape: 'syrah_shiraz' },
   {user: User.first,  event_wine_id: 4, red_fruits: 'black', fruit_condition: 4, minerality: 2, oak: 4, dry: 2, acid: 3, tannin: 4, alcohol: 5, climate: 'warm', country: 'argentina', red_grape: 'malbec' },
-  {user: User.first,  event_wine_id: 5, red_fruits: 'black', fruit_condition: 4, minerality: 2, oak: 5, dry: 2, acid: 3, tannin: 4, alcohol: 4, climate: 'warm', country: 'us', red_grape: 'cabernet_sauvignon' },
-  {user: User.first, event_wine_id: 6, red_fruits: 'red', fruit_condition: 4, minerality: 2, oak: 5, dry: 2, acid: 3, tannin: 3, alcohol: 5, climate: 'warm', country: 'us', red_grape: 'merlot' },
-  {user: User.first, event_wine_id: 7, red_fruits: 'blue', fruit_condition: 5, minerality: 1, oak: 3, dry: 2, acid: 3, tannin: 3, alcohol: 5, climate: 'warm', country: 'us', red_grape: 'zinfandel' },
+  {user: User.first,  event_wine_id: 5, red_fruits: 'black', fruit_condition: 4, minerality: 2, oak: 5, dry: 2, acid: 3, tannin: 4, alcohol: 4, climate: 'warm', country: 'united_states', red_grape: 'cabernet_sauvignon' },
+  {user: User.first, event_wine_id: 6, red_fruits: 'red', fruit_condition: 4, minerality: 2, oak: 5, dry: 2, acid: 3, tannin: 3, alcohol: 5, climate: 'warm', country: 'united_states', red_grape: 'merlot' },
+  {user: User.first, event_wine_id: 7, red_fruits: 'blue', fruit_condition: 5, minerality: 1, oak: 3, dry: 2, acid: 3, tannin: 3, alcohol: 5, climate: 'warm', country: 'united_states', red_grape: 'zinfandel' },
   {user: User.first, event_wine_id: 8, red_fruits: 'black', fruit_condition: 3, minerality: 4, oak: 5, dry: 1, acid: 4, tannin: 4, alcohol: 4, climate: 'cool', country: 'france', red_grape: 'cabernet_sauvignon' },
   {user: User.first, event_wine_id: 9, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 4, dry: 1, acid: 4, tannin: 4, alcohol: 4, climate: 'cool', country: 'italy', red_grape: 'sangiovese' },
   {user: User.first, event_wine_id: 10, red_fruits: 'red', fruit_condition: 1, minerality: 5, oak: 3, dry: 1, acid: 5, tannin: 5, alcohol: 4, climate: 'cool', country: 'italy', red_grape: 'nebbiolo' },
@@ -85,7 +85,7 @@ Tasting.create!([
   # change below back to
   # white_grape: 'pinot_grigio'
   {user: User.first, event_wine_id: 18, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 3, oak: 1, dry: 1, acid: 4, alcohol: 3, climate: 'cool', country: 'italy', white_grape: 'pinot_grigio' },
-  {user: User.first, event_wine_id: 19, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 2, oak: 4, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'us', white_grape: 'chardonnay' },
+  {user: User.first, event_wine_id: 19, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 2, oak: 4, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'united_states', white_grape: 'chardonnay' },
   {user: User.first, event_wine_id: 20, white_fruits: 'stone', fruit_condition: 3, minerality: 5, oak: 1, dry: 3, acid: 5, alcohol: 2, climate: 'cool', country: 'germany', white_grape: 'riesling' },
   {user: User.first, event_wine_id: 21, white_fruits: 'tropical', fruit_condition: 3, minerality: 2, oak: 1, dry: 1, acid: 4, alcohol: 4, climate: 'warm', country: 'new_zealand', white_grape: 'sauvignon_blanc' },
   {user: User.first, event_wine_id: 22, white_fruits: 'stone', fruit_condition: 3, minerality: 3, oak: 1, dry: 1, acid: 4, alcohol: 4, climate: 'warm', country: 'australia', white_grape: 'riesling' }
@@ -112,7 +112,7 @@ EventWine.create!([
 Tasting.create!([
   # steph's tastings
   {user: User.second, event_wine_id: 23, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 4, dry: 1, acid: 4, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'gamay' },
-  {user: User.second,  event_wine_id: 24, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 3, oak: 1, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'us', white_grape: 'chenin_blanc' },
+  {user: User.second,  event_wine_id: 24, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 3, oak: 1, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'united_states', white_grape: 'chenin_blanc' },
   # katherine's tastings
   {user: User.third, event_wine_id: 23, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 2, dry: 1, acid: 2, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'pinot_noir' },
   {user: User.third,  event_wine_id: 24, white_fruits: 'stone', fruit_condition: 4, minerality: 3, oak: 1, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'new_zealand', white_grape: 'sauvignon_blanc' }
