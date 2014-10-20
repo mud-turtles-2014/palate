@@ -1,21 +1,17 @@
 <h2>My Results</h2>
-<% @user_scores.each do |id, score| %>
-  <h3>Wine <%= id %>:</h3>
+<% @score_report.each do |report| %>
+  <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
-    <li>You guessed: <%= score[:user_guess] %> </li>
-    <li>The wine was: <%= score[:correct_wine] %> </li>
-    <li>Correct categories:</li>
-    <ul>
-      <% score[:correct].each do |category| %>
-        <li><%= category %></li>
+    <li>You guessed: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
+    <li>The wine was: <%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
+    <% report[:user_results].each do |attr, val| %>
+      <h4><%= attr %></h4>
+      <% if report[:user_results][attr] == report[:correct_answers][attr] %>
+        <font color="green"><li>Correct: <%= val %></li></font>
+      <% else %>
+        <font color="#8B0000"><li>Incorrect: <%= val %></li></font>
+        <font color="green"><li>Answer: <%= report[:correct_answers][attr] %></li></font>
       <% end %>
-    </ul>
-    <li>Incorrect categories:</li>
-    <ul>
-      <% score[:incorrect].each do |category| %>
-        <li><%= category %></li>
-      <% end %>
-    </ul>
-    <li>Score: <%= score[:score] %></li>
+    <% end %>
   </ul>
 <% end %>

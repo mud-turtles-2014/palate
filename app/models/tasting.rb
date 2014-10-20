@@ -15,29 +15,39 @@ class Tasting < ActiveRecord::Base
   def score_report
     # super user tastings
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
-    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
+    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name)))
 
-    raw_score = 0
-    correct_categories = current_tasting_attributes
-    incorrect_categories = []
-
-    current_tasting_attributes.each do |attribute|
-      if self.send(attribute) == super_tasting.send(attribute)
-        raw_score += 1
-      else
-        incorrect_categories.push(correct_categories.delete(attribute))
-      end
+    attributes = current_tasting_attributes
+    user_results = {}
+    correct_answers = {}
+    attributes.each do |attribute|
+      user_results[format_category(attribute)] = format_category(self.send(attribute))
+      correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
     end
+    wine_bringer = self.event_wine.wine_bringer.name_or_email
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer }
 
-    score = "#{raw_score} / #{current_tasting_attributes.length}"
-    formatted_correct = formatted_categories(correct_categories)
-    formatted_incorrect = formatted_categories(incorrect_categories)
-    user_guess = wine_color == "white" ? self.white_grape : self.red_grape
-    user_guess = format_category(user_guess)
-    correct_wine = wine_color == "white" ? super_tasting.white_grape : super_tasting.red_grape
-    correct_wine = format_category(correct_wine)
+    # raw_score = 0
+    # correct_categories = current_tasting_attributes
+    # incorrect_categories = []
 
-    return {score: score, correct: formatted_correct, incorrect: formatted_incorrect, user_guess: user_guess, correct_wine: correct_wine}
+    # current_tasting_attributes.each do |attribute|
+    #   if self.send(attribute) == super_tasting.send(attribute)
+    #     raw_score += 1
+    #   else
+    #     incorrect_categories.push(correct_categories.delete(attribute))
+    #   end
+    # end
+
+    # score = "#{raw_score} / #{current_tasting_attributes.length}"
+    # formatted_correct = formatted_categories(correct_categories)
+    # formatted_incorrect = formatted_categories(incorrect_categories)
+    # user_guess = wine_color == "white" ? self.white_grape : self.red_grape
+    # user_guess = format_category(user_guess)
+    # correct_wine = wine_color == "white" ? super_tasting.white_grape : super_tasting.red_grape
+    # correct_wine = format_category(correct_wine)
+
+    # return {score: score, correct: formatted_correct, incorrect: formatted_incorrect, user_guess: user_guess, correct_wine: correct_wine}
   end
 
   def make_user_results
@@ -60,7 +70,23 @@ class Tasting < ActiveRecord::Base
   end
 
   def format_category(category)
+    return convert_num_to_category(category) if category.to_s.match(/\b\d\b/)
     category.to_s.sub("red_","").sub("white_","").sub("_"," ").split.map(&:capitalize).join(' ')
+  end
+
+  def convert_num_to_category(category)
+    category = category.to_s.to_i
+    if category == 1
+      return "Low"
+    elsif category == 2
+      return "Med-Minus"
+    elsif category == 3
+      return "Med"
+    elsif category == 4
+      return "Med-Plus"
+    elsif category == 5
+      return "Hi"
+    end
   end
 
   def current_tasting_attributes
@@ -85,30 +111,5 @@ class Tasting < ActiveRecord::Base
     parse_tasting_attributes.reject {|attribute| /(red_|tannin)/.match(attribute)}
   end
 end
-
-
-# self.send(:white_fruits)
-
-# all event wines for the current wine
-# current_wine = "French Gamay"
-# EventWine.find_by(wine: Wine.find_by(name: current_wine))
-
-# all event wines for super user event
-# super_event = User.first.event_wines.where(event: Event.first)
-# super_event.where(wine: Wine.find_by(name: "French Gamay"))[0]
-
-# returns a tasting that seems to be the correct one
-# not sure why
-# Tasting.find_by(event_wine: User.first.event_wines.where(event: Event.first))
-
-# returns all pascaline's tastings from her super event
-# super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
-# returns the tasting for the given wine
-# current_wine = "French Gamay"
-# wine = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: current_wine)))
-# wine.red_fruits => "red"
-# etc ...
-
-
 
 
