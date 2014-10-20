@@ -32,9 +32,11 @@
   </section>
 </nav>
 
-  <div class="container">
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
+  <div id="wrapper">
+    <div class="container">
+      <%= yield %>
+      <%= javascript_include_tag "application" %>
+    </div>
   </div>
   </body>
 </html>
