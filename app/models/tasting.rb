@@ -69,7 +69,21 @@ class Tasting < ActiveRecord::Base
   # use euclidian distance to find accuracy of observations
   # comparing against super_user tastings
   def score_observations
+    super_tasting = get_super_tasting
 
+    sum = 0
+
+    attributes_stored_by_int.each do |attribute|
+      sum += (super_tasting[attribute] - self[attribute])**2
+    end
+
+    euclidian_dist = Math.sqrt(sum)
+  end
+
+  def attributes_stored_by_int
+    attributes = [:minerality, :oak, :dry, :acid, :alcohol, :fruit_condition]
+    attributes << :tannin if self.wine.color == "red"
+    attributes
   end
 
   def formatted_categories(categories)
