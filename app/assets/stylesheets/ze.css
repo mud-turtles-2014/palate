@@ -39,7 +39,12 @@ ul {
   padding-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(0,0,0,0.5);
+  /* TODO: change bg-color when finished testing */
+  background-color: #EDF5DF;
+}
+
+.container#home {
+  background-color: rgba(65,57,69,0.5);
 }
 
 input.button, a.button {
@@ -54,6 +59,15 @@ button:hover, button:focus, .button:hover, .button:focus {
 /*, input[type="submit"]:hover {*/
   background-color: #4d591a !important;
 }
-h1, h2, h3, h4, h5, p {
+
+input.button#taste:hover {
+  background-color: rgba(65,57,69,.8) !important;
+}
+
+h1, h2, h3, h4, h5, p #home {
+  color: black !important;
+}
+
+#home {
   color: white !important;
 }
