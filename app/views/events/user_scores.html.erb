@@ -1,0 +1,21 @@
+<h2>My Results</h2>
+<% @user_scores.each do |id, score| %>
+  <h3>Wine <%= id %>:</h3>
+  <ul>
+    <li>You guessed: <%= score[:user_guess] %> </li>
+    <li>The wine was: <%= score[:correct_wine] %> </li>
+    <li>Correct categories:</li>
+    <ul>
+      <% score[:correct].each do |category| %>
+        <li><%= category %></li>
+      <% end %>
+    </ul>
+    <li>Incorrect categories:</li>
+    <ul>
+      <% score[:incorrect].each do |category| %>
+        <li><%= category %></li>
+      <% end %>
+    </ul>
+    <li>Score: <%= score[:score] %></li>
+  </ul>
+<% end %>

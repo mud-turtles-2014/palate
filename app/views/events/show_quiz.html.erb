@@ -1,0 +1,11 @@
+<h2>Tasting</h2>
+  <%= form_for @tasting do |f| %>
+    <% if @wine.color == 'red' %>
+      <%= render 'red_wine' %>
+    <% else %>
+      <%= render 'white_wine' %>
+    <% end %>
+
+    <%= hidden_field_tag :event_wine_id, @event_wine.id %>
+  <%= f.submit "Submit" %>
+  <% end %>

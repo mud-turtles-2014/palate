@@ -1,0 +1,16 @@
+    <h3>Sign Up</h3>
+    <div class="error">
+      <% if flash[:signin_error] %>
+        <% flash[:signin_error].each do |msg| %>
+        <%= msg %>
+        <%end%>
+      <%end%>
+    </div>
+    <%= form_for @user do |f| %>
+      <%= f.text_field :name, placeholder: "Name" %>
+      <%= f.text_field :email, placeholder: "Email" %>
+      <%= f.password_field :password, placeholder: "Password" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+      <%= f.submit "Sign Up", :class => "button" %>
+
+    <% end  %>

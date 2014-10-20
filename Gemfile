@@ -34,6 +34,14 @@ gem 'simplecov', :require => false, :group => :test
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'time_zone_ext'
+
+gem 'seed_dump'
+
+gem 'dotenv-rails', :groups => [:development, :test]
+
+gem 'foundation-rails'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 

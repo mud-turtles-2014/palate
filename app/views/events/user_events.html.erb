@@ -1,0 +1,15 @@
+<h2>My Events</h2>
+<h3>Upcoming Events</h3>
+<ul>
+  <% @upcoming_events.each do |event| %>
+    <li><%= link_to event.name, event%></li>
+  <% end %>
+</ul>
+<h3>Past Events</h3>
+<ul>
+  <% @past_events.each do |event| %>
+    <li><%= link_to event.name, event%></li>
+  <% end %>
+</ul>
+
+<%= link_to "Create New Event", new_event_path, :class => "button" %>
