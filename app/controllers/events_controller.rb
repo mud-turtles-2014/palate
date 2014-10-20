@@ -9,7 +9,7 @@ class EventsController < ApplicationController
     @event = current_user.events.new(event_params)
 
     if @event.new_record? && params[:emails].blank?
-      flash[:alert] = "Can't add an event without emails!"
+      flash[:alert] = "Please include email addresses for guests!"
       render :new
     else
       if @event.save
