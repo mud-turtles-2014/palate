@@ -105,7 +105,8 @@ User.create!([
 
 EventWine.create!([
   {is_attending: true, event_id: 2, wine_id: 1, user_id: 2}, # 23
-  {is_attending: true, event_id: 2, wine_id: 22, user_id: 3} # 24
+  {is_attending: true, event_id: 2, wine_id: 22, user_id: 3}, # 24
+  {is_attending: true, event_id: 2, wine_id: 21, user_id: 4} # 25
 ])
 
 Tasting.create!([

@@ -12,9 +12,10 @@
 
 	<p>You are bringing a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %></p>
 
-  <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :id => "btn-edit-event" %>
+  <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :class =>"button [radius round]" %>
 <% end %>
 
-<!-- User shouldn't see either of these if they've already taken all of their tastings, but they should see them if they've only taken some of them.-->
-<%= button_to "Start Tasting!", "/events/#{@event.id}/quiz", :method => :get %>
-<%= link_to "See Results", "/events/#{@event.id}/my_results", :method => :get %>
+<!-- User shouldn't see either of these if they've already taken all of their tastings, but they should see them if they've only taken some of them. -->
+<%= button_to "Start Tasting!", "/events/#{@event.id}/quiz", :method => :get, :class =>"button [radius round]" %>
+<%= link_to "See Results", "/events/#{@event.id}/my_results", :method => :get, :class =>"button [radius round]" %>
+
