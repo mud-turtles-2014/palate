@@ -2,6 +2,8 @@
 <% @user_scores.each do |id, score| %>
   <h3>Wine <%= id %>:</h3>
   <ul>
+    <li>You guessed: <%= score[:user_guess] %> </li>
+    <li>The wine was: <%= score[:correct_wine] %> </li>
     <li>Correct categories:</li>
     <ul>
       <% score[:correct].each do |category| %>
