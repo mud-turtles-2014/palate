@@ -68,8 +68,32 @@ class Tasting < ActiveRecord::Base
 
   # use euclidian distance to find accuracy of observations
   # comparing against super_user tastings
+
+  # TODO
+  # add ability to track problem categories
+  # and strength categories
   def score_observations
     super_tasting = get_super_tasting
+
+    sum = 0
+
+    attributes_stored_by_int.each do |attribute|
+      sum += (super_tasting[attribute] - self[attribute])**2
+    end
+
+    euclidian_dist = Math.sqrt(sum)
+  end
+
+  def is_reasonable_observation
+    reasonability_factor = 2.5
+    score_observations < reasonability_factor
+  end
+
+  def score_observations_against_guessed_wine
+    return format_category(self.country) + " " + format_category(self.red_grape)
+
+    # refactor this later (duplicates score_observations)
+    super_tasting = get_super_tasting()
 
     sum = 0
 
