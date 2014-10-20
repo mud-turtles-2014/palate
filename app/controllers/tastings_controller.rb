@@ -4,7 +4,9 @@ class TastingsController < ApplicationController
   def create
     event_wine = EventWine.find(params[:event_wine_id])
     event = event_wine.event
-    current_user.tastings.create(tasting_params)
+    tasting = current_user.tastings.create(tasting_params)
+    tasting.make_user_results
+
     redirect_to "/events/#{event.id}/quiz"
   end
 
