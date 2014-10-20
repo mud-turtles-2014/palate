@@ -25,7 +25,7 @@
       <li><a href="#">Tutorial</a></li>
       <% if session[:user_id] %>
       <li><a href="/my_events">My Events</a></li>
-      <li><a href="#">My Account</a></li>
+      <li><a href='/users/<%="#{session[:user_id]}"%>/edit'>My Account</a></li>
       <li><a href="/logout">Log Out</a></li>
       <% end %>
     </ul>
