@@ -24,10 +24,8 @@ class Tasting < ActiveRecord::Base
     current_tasting_attributes.each do |attribute|
       if self.send(attribute) == super_tasting.send(attribute)
         raw_score += 1
-        UserResult.create(tasting: self, is_correct: true, category: attribute.to_s)
       else
         incorrect_categories.push(correct_categories.delete(attribute))
-        UserResult.create(tasting: self, is_correct: false, category: attribute.to_s)
       end
     end
 
@@ -40,6 +38,19 @@ class Tasting < ActiveRecord::Base
     correct_wine = format_category(correct_wine)
 
     return {score: score, correct: formatted_correct, incorrect: formatted_incorrect, user_guess: user_guess, correct_wine: correct_wine}
+  end
+
+  def make_user_results
+    super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
+    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
+
+    current_tasting_attributes.each do |attribute|
+      if self.send(attribute) == super_tasting.send(attribute)
+        UserResult.create(tasting: self, is_correct: true, category: attribute.to_s)
+      else
+        UserResult.create(tasting: self, is_correct: false, category: attribute.to_s)
+      end
+    end
   end
 
   def formatted_categories(categories)
