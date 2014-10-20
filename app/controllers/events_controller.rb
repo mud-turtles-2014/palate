@@ -58,10 +58,10 @@ class EventsController < ApplicationController
       redirect_to '/login'
     else
       @event = Event.find(params[:id])
-      @user_tastings = Tasting.where(event_wine: current_user.event_wines.where(event: @event))
+      @user_tastings = Tasting.where(event_wine: EventWine.where(event: @event), user: current_user)
       @user_scores = {}
-      @user_tastings.each do |tasting|
-        @user_scores[tasting.wine.id] = tasting.raw_score(tasting.wine)
+      @user_tastings.each_with_index do |tasting,tasting_index|
+        @user_scores[tasting_index + 1] = tasting.score_report
       end
     end
   end
