@@ -34,6 +34,6 @@ class EventWinesController < ApplicationController
   end
 
   def event_wine_params
-    params.require(:event_wine).permit([:event, :wine_id, :wine_bringer])
+    params.require(:event_wine).permit([:event, :wine_id, :wine_bringer, :is_attending])
   end
 end
