@@ -14,7 +14,7 @@ nav.top-bar h1 a{
     background: #86A02D !important;
 }
 
-.top-bar-section li a:not(.button):hover {
+.top-bar-section li a:hover {
     background: #4d591a !important;
 }
 
