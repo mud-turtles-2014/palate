@@ -14,7 +14,7 @@ class EventsController < ApplicationController
     else
       if @event.save
         creator_wine = Wine.all.sample
-        EventWine.create!(event: @event, wine_bringer: current_user, wine: creator_wine)
+        EventWine.create!(event: @event, wine_bringer: current_user, wine: creator_wine, is_attending: true)
 
         invite_users
         redirect_to event_path(@event)
