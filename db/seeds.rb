@@ -6,26 +6,26 @@ Wine.create!([
   {name: "French Gamay", color: "red", description: "Gamay gets a bad rap, but Cru Beaujolais - from one of the 10 designated cru areas in the region - shows why the grape gets called the poor man's Pinot."},
   {name: "US Pinot Noir", color: "red", description: "TKTKTK"},
   {name: "Australian Shiraz", color: "red", description: "TKTKTK"},
-  {name: "Argentinian Malbec", color: "red", description: "TKTKTK"},
+  {name: "Argentinian Malbec", color: "red", description: "Originally from western France, Malbec has become synonymous with Argentina, specifically the high-altitude region Mendoza."},
   {name: "US Cabernet Sauvignon", color: "red", description: "TKTKTK"},
   {name: "US Merlot", color: "red", description: "TKTKTK"},
-  {name: "US Zinfandel", color: "red", description: "TKTKTK"},
+  {name: "US Zinfandel", color: "red", description: "Genetically linked to native Italian and Croatian grapes, Zinfandel has become synonymous with California The uneven ripening grape often produces wines with both tart red and cooked blue fruit characteristics."},
   {name: "French Cabernet Sauvignon", color: "red", description: "TKTKTK"},
-  {name: "Italian Sangiovese", color: "red", description: "TKTKTK"},
-  {name: "Italian Nebbiolo", color: "red", description: "TKTKTK"},
+  {name: "Italian Sangiovese", color: "red", description: "Sangiovese is often depcited as a powerhouse grape, but traditional Chianti producers like Castello di Volpaia refrain from blending naturally light-bodied, red-fruited Sangiovese with fleshier grapes."},
+  {name: "Italian Nebbiolo", color: "red", description: "Nebbiolo is called the king of Italian grapes for reason. The grape reaches its apex in the regions Barolo and Barbaresco, but Langhe Nebbiolo from a good producer like Produttori del Barbaresco will work for a budget-friendly tasting."},
   {name: "French Merlot", color: "red", description: "TKTKTK"},
   {name: "French Pinot Noir", color: "red", description: "TKTKTK"},
   {name: "French Syrah", color: "red", description: "TKTKTK"},
   # whites
-  {name: "French Chardonnay", color: "white", description: "TKTKTK"},
-  {name: "French Sauvignon Blanc", color: "white", description: "TKTKTK"},
-  {name: "French Chenin Blanc", color: "white", description: "TKTKTK"},
+  {name: "French Chardonnay", color: "white", description: "Bring a focused Chardonnay from Chablis, the northernmost region in Burgundy. Alternatively, grab an impressive bottling from a lesser region like Chitry, Alice and Olivier de Moor make a good one."},
+  {name: "French Sauvignon Blanc", color: "white", description: "Bring a mineral-driven Sauvignon Blanc from Sancerre or Pouilly-Fume in Western France's Loire Valley."},
+  {name: "French Chenin Blanc", color: "white", description: "Chenin Blanc is often made in an oxidative style. Additional exposure to oxygen imparts distinct bitter nut and cheese rind characteristics to the wine. Bring a Vouvray Sec from the Loire Valley."},
   {name: "French Viognier", color: "white", description: "TKTKTK"},
-  {name: "Italian Pinot Grigio", color: "white", description: "TKTKTK"},
-  {name: "US Chardonnay", color: "white", description: "TKTKTK"},
-  {name: "German Riesling", color: "white", description: "TKTKTK"},
-  {name: "New Zealand Sauvignon Blanc", color: "white", description: "TKTKTK"},
-  {name: "Australian Riesling", color: "white", description: "TKTKTK"}
+  {name: "Italian Pinot Grigio", color: "white", description: "Sometimes Pinot Grigio can be classy. Pick up a bottle from Friuli in the northwestern corner of Italy. Look for producers like Venica & Venica or Livo Felluga."},
+  {name: "US Chardonnay", color: "white", description: "TKTKTKT"},
+  {name: "German Riesling", color: "white", description: "Germany has a unique classification system to describe a wine's ripeness. Grab a Spatlese bottling, a 'late harvest' wine, that has a more opulent fruit profile and generally some residual sugar."},
+  {name: "New Zealand Sauvignon Blanc", color: "white", description: "TKTKTKT"},
+  {name: "Australian Riesling", color: "white", description: "Unlike their German counterparts, Australian Rieslings from the Clare and Eden Valleys tend to be vinified dry -- meaning the fruit's sugar is completely fermented. You can still expect the grape's typical stone fruit and cut garden hose notes."}
 ])
 Event.create!([
   {name: "Pascaline's Super User Tasting", location: "48 Wall St, NY, NY", date: "2014-10-17 16:45:19", time: "2014-10-17 16:45:19", user_id: 1}
