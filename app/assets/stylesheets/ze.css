@@ -32,6 +32,6 @@ ul {
   background-color: #dadada;
 }
 
-input.button {
+input.button, a.button {
   background-color: #86a02d;
 }
