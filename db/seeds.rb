@@ -94,7 +94,7 @@ Tasting.create!([
 # seed data for testing and development
 # ok to delete
 Event.create!([
-  {name: "Intro to Blind Tasting", location: "48 Wall St, NY, NY", date: "2014-10-17 16:45:19", time: "2014-10-17 16:45:19", user_id: 2}
+  {name: "Intro to Blind Tasting", location: "48 Wall St, NY, NY", date: "2014-10-20 16:45:00", time: "2014-10-20 16:45:00", user_id: 2}
 ])
 
 User.create!([
@@ -116,4 +116,15 @@ Tasting.create!([
   # katherine's tastings
   {user: User.third, event_wine_id: 23, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 2, dry: 1, acid: 2, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'pinot_noir' },
   {user: User.third,  event_wine_id: 24, white_fruits: 'stone', fruit_condition: 4, minerality: 3, oak: 1, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'new_zealand', white_grape: 'sauvignon_blanc' }
+])
+
+# demo event
+Event.create!([
+  {name: "Woo App Testing", location: "48 Wall St, NY, NY", date: "2014-10-20 16:45:00", time: "2014-10-20 16:45:00", user_id: 2}
+])
+
+EventWine.create!([
+  {is_attending: true, event_id: 3, wine_id: 14, user_id: 2}, # 14 wine_id for chablis
+  {is_attending: true, event_id: 3, wine_id: 21, user_id: 3} # 21 wine_id for nz sauv blanc
+
 ])
