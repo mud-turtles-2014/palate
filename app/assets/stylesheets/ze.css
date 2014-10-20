@@ -24,6 +24,9 @@ ul {
 
 .container {
   width: 80%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-top: 2%;
   margin-left: auto;
   margin-right: auto;
   background-color: #dadada;
