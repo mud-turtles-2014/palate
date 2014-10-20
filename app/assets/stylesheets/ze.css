@@ -44,6 +44,7 @@ ul {
 
 .container#home {
   background-color: rgba(65,57,69,0.5);
+  height: 95%;
 }
 
 input.button, a.button {
@@ -80,6 +81,10 @@ input.button#taste:hover {
   color: white !important;
 }
 
+#home p {
+  font-size: 1.2em;
+}
+
 #tutorial a{
   color: #4d591a !important;
 }
@@ -93,4 +98,22 @@ input.button#taste:hover {
   color: #9685a0;
   background-color: rgba(150,133,160,.1) !important; /*background or no?*/
   padding-bottom: 1%;
+}
+
+/*#snippet1{
+
+}*/
+
+.glass-icon {
+  text-align:center;
+  display:block;
+}
+
+/*#snippet2{
+
+}*/
+
+.bottle-icon {
+  text-align:center;
+  display:block;
 }
