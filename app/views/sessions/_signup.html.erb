@@ -6,11 +6,11 @@
         <%end%>
       <%end%>
     </div>
-    <%= form_for @user, :html => {:class => "pure-form"} do |f| %>
-      <p><%= f.text_field :name, placeholder: "Name" %><br>
-      <%= f.text_field :email, placeholder: "Email" %><br>
-      <%= f.password_field :password, placeholder: "Password" %><br>
-      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %></p>
-      <%= f.submit "Sign Up", :id => "btn-sign-up", class: 'pure-button' %>
+    <%= form_for @user do |f| %>
+      <%= f.text_field :name, placeholder: "Name" %>
+      <%= f.text_field :email, placeholder: "Email" %>
+      <%= f.password_field :password, placeholder: "Password" %>
+      <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
+      <%= f.submit "Sign Up", :class => "button" %>
 
     <% end  %>

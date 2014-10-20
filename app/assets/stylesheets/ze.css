@@ -14,7 +14,7 @@ nav.top-bar h1 a{
     background: #86A02D !important;
 }
 
-.top-bar-section li a:not(.button):hover {
+.top-bar-section li a:hover {
     background: #4d591a !important;
 }
 
@@ -22,9 +22,20 @@ ul {
   list-style-type: none;
 }
 
-.container{
+.container {
   width: 80%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-top: 2%;
   margin-left: auto;
   margin-right: auto;
   background-color: #dadada;
+}
+
+input.button, a.button {
+  background-color: #86a02d;
+}
+
+body a {
+  color: #4d591a;
 }

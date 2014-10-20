@@ -2,5 +2,5 @@
 <h2>― Paulo Coelho, Brida</h2>
 
 <% unless session[:user_id] %>
-	<%= link_to "Log In/Sign Up", login_path %>
+	<%= link_to "Log In/Sign Up", login_path, :class => "button" %>
 <% end %>
