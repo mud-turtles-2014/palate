@@ -1,15 +1,12 @@
-<%= form_for @event, :html => {:class => "pure-form"} do |f|%>
+<%= form_for @event do |f|%>
+
+  <%= text_area_tag :emails, "Invite guests by entering emails separated by commas!" %>
+
   <fieldset>
-    <%= f.text_field :name, placeholder: "Name" %><br>
-
-    <%= f.date_field :date %><br>
-
-    <%= f.time_field :time %><br>
-
-    <%= f.text_field :location, placeholder: "Location" %><br>
-
-    <%= f.submit 'Save', class: 'pure-button' %>
+    <%= f.text_field :name, placeholder: "Event Name" %>
+    <%= f.date_field :date %>
+    <%= f.time_field :time %>
+    <%= f.text_field :location, placeholder: "Event Location" %>
+    <%= f.submit 'Save', class: 'button' %>
   </fieldset>
-
-  <%= text_area_tag :emails, "Enter emails separated by commas" %><br>
 <% end %>
