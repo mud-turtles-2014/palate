@@ -79,3 +79,18 @@ input.button#taste:hover {
 #home {
   color: white !important;
 }
+
+#tutorial a{
+  color: #4d591a !important;
+}
+
+#tutorial a:hover{
+  color: #9685a0 !important;
+}
+
+#tutorial blockquote{
+  border-left: none;
+  color: #9685a0;
+  background-color: rgba(150,133,160,.1) !important; /*background or no?*/
+  padding-bottom: 1%;
+}
