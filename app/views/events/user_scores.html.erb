@@ -1,6 +1,6 @@
 <h2>My Results</h2>
 <% @score_report.each do |report| %>
-  <h3>Wine Wine_Bringer Name Here:</h3>
+  <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
     <li>You guessed: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
     <li>The wine was: <%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
