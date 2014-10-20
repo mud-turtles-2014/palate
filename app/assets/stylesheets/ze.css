@@ -39,3 +39,7 @@ input.button, a.button {
 body a {
   color: #4d591a;
 }
+
+button:hover, button:focus, .button:hover, .button:focus, input[type="submit"]:hover {
+  background-color: #4d591a;
+}
