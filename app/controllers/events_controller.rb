@@ -83,7 +83,7 @@ class EventsController < ApplicationController
     untasted_wines = all_wines - tasted_wines
     @wine = untasted_wines[0]
     @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
-    @wine_bringer = @event_wine.wine_bringer.name_or_email
+    @wine_bringer = @event_wine.wine_bringer.name_or_email if @event_wine
     @tasting = Tasting.new
     redirect_to "/events/#{@event.id}/my_results" unless @wine
   end

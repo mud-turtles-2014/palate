@@ -1,6 +1,5 @@
 wine-tasting ![travis-ci-status](https://travis-ci.org/mud-turtles-2014/wine-tasting.svg?branch=master)
 ==============
-============
 
 ##The Problem
 Our goal in creating this app was to make wine more accessible to your average wine drinker who may enjoy wine socially, but not know much about how to critically examine it.  Wine knowledge should not be limited to the hands of master sommeliers, but should be available to all who are interested.
