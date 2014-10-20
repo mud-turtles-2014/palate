@@ -17,15 +17,15 @@ Wine.create!([
   {name: "French Pinot Noir", color: "red", description: "TKTKTK"},
   {name: "French Syrah", color: "red", description: "TKTKTK"},
   # whites
-  {name: "French Chardonnay", color: "white", description: "TKTKTK"},
-  {name: "French Sauvignon Blanc", color: "white", description: "TKTKTK"},
-  {name: "French Chenin Blanc", color: "white", description: "TKTKTK"},
+  {name: "French Chardonnay", color: "white", description: "Bring a focused Chardonnay from Chablis, the northernmost region in Burgundy. Don't substitute a Cote de Beaune Chardonnay from farther south in the region, as they tend to be a bit riper and noticibly more oaked."},
+  {name: "French Sauvignon Blanc", color: "white", description: "Bring a mineral-driven Sauvignon Blanc from Sancerre or Pouilly-Fume in Western France's Loire Valley."},
+  {name: "French Chenin Blanc", color: "white", description: "Chenin Blanc is often made in an oxidative style. Additional exposure to oxygen imparts distinct bitter nut and cheese rind characteristics to the wine. Bring a Vouvray Sec from the Loire Valley."},
   {name: "French Viognier", color: "white", description: "TKTKTK"},
-  {name: "Italian Pinot Grigio", color: "white", description: "TKTKTK"},
-  {name: "US Chardonnay", color: "white", description: "TKTKTK"},
-  {name: "German Riesling", color: "white", description: "TKTKTK"},
-  {name: "New Zealand Sauvignon Blanc", color: "white", description: "TKTKTK"},
-  {name: "Australian Riesling", color: "white", description: "TKTKTK"}
+  {name: "Italian Pinot Grigio", color: "white", description: "Sometimes Pinot Grigio can be classy. Pick up a bottle from Friuli in the northwestern corner of Italy. Look for producers like Venica & Venica or Livo Felluga."},
+  {name: "US Chardonnay", color: "white", description: "TKTKTKT"},
+  {name: "German Riesling", color: "white", description: "Germany has a unique classification system to describe a wine's ripeness. Grab a Spatlese bottling, a 'late harvest' wine, that has a more opulent fruit profile and generally some residual sugar."},
+  {name: "New Zealand Sauvignon Blanc", color: "white", description: "TKTKTKT"},
+  {name: "Australian Riesling", color: "white", description: "Unlike their German counterparts, Australian Rieslings from the Clare and Eden Valleys tend to be vinified dry -- meaning the fruit's sugar is completely fermented. You can still expect the grape's typical stone fruit and cut garden hose notes."}
 ])
 Event.create!([
   {name: "Pascaline's Super User Tasting", location: "48 Wall St, NY, NY", date: "2014-10-17 16:45:19", time: "2014-10-17 16:45:19", user_id: 1}
