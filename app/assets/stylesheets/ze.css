@@ -11,6 +11,7 @@ nav.top-bar h1 a{
 }
 
 .top-bar-section li a:not(.button) {
+    font-size: 1em;
     background: #86A02D !important;
 }
 
@@ -43,7 +44,7 @@ ul {
 }
 
 .container#home {
-  background-color: rgba(65,57,69,0.5);
+  background-color: rgba(65,57,69,0.6);
   height: 95%;
 }
 
@@ -72,7 +73,8 @@ input.button#taste:hover {
   background-color: rgba(65,57,69,.8) !important;
 }
 
-#home h2 {
+#home h3, h4 {
+  text-align: center;
   color: white !important;
   font-family: 'Noto Sans', sans-serif !important;
 }
@@ -91,6 +93,11 @@ input.button#taste:hover {
 
 #tutorial a:hover{
   color: #9685a0 !important;
+}
+
+#tutorial h4{
+  text-align: left;
+  color: black !important;
 }
 
 #tutorial blockquote{
@@ -116,4 +123,5 @@ input.button#taste:hover {
 .bottle-icon {
   text-align:center;
   display:block;
+  padding-bottom: 1%;
 }
