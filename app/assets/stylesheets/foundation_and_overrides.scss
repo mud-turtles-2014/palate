@@ -87,9 +87,9 @@ $include-html-global-classes: $include-html-classes;
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 // We use these to define default font stacks
-$font-family-sans-serif: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-$font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-$font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
+$font-family-sans-serif: 'Noto Sans', Roboto, Arial, sans-serif;
+// $font-family-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+// $font-family-monospace: Consolas, "Liberation Mono", Courier, monospace;
 
 // We use these to define default font weights
 $font-weight-normal: normal !default;
@@ -105,7 +105,7 @@ $warning-color: #f08a24;
 $info-color: #a0d3e8;
 
 $white       : #FFFFFF;
-// $ghost       : #FAFAFA;
+$ghost       : #FAFAFA;
 // $snow        : #F9F9F9;
 // $vapor       : #F6F6F6;
 // $white-smoke : #F5F5F5;
@@ -1057,35 +1057,35 @@ $button-round: $global-rounded;
 // 24. Range Slider
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-// $include-html-range-slider-classes: $include-html-classes;
+$include-html-range-slider-classes: $include-html-classes;
 
 // These variables define the slider bar styles
-// $range-slider-bar-width: 100%;
-// $range-slider-bar-height: rem-calc(16);
+$range-slider-bar-width: 100%;
+$range-slider-bar-height: rem-calc(16);
 
-// $range-slider-bar-border-width: 1px;
-// $range-slider-bar-border-style: solid;
-// $range-slider-bar-border-color: $gainsboro;
-// $range-slider-radius: $global-radius;
+$range-slider-bar-border-width: 1px;
+$range-slider-bar-border-style: solid;
+$range-slider-bar-border-color: $gainsboro;
+$range-slider-radius: $global-radius;
 // $range-slider-round: $global-rounded;
-// $range-slider-bar-bg-color: $ghost;
+$range-slider-bar-bg-color: $ghost;
 
 // Vertical bar styles
 // $range-slider-vertical-bar-width: rem-calc(16);
 // $range-slider-vertical-bar-height: rem-calc(200);
 
 // These variables define the slider handle styles
-// $range-slider-handle-width: rem-calc(32);
-// $range-slider-handle-height: rem-calc(22);
-// $range-slider-handle-position-top: rem-calc(-5);
-// $range-slider-handle-bg-color: $primary-color;
-// $range-slider-handle-border-width: 1px;
-// $range-slider-handle-border-style: solid;
-// $range-slider-handle-border-color: none;
-// $range-slider-handle-radius: $global-radius;
+$range-slider-handle-width: rem-calc(32);
+$range-slider-handle-height: rem-calc(22);
+$range-slider-handle-position-top: rem-calc(-5);
+$range-slider-handle-bg-color: $primary-color;
+$range-slider-handle-border-width: 1px;
+$range-slider-handle-border-style: solid;
+$range-slider-handle-border-color: none;
+$range-slider-handle-radius: $global-radius;
 // $range-slider-handle-round: $global-rounded;
-// $range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
-// $range-slider-handle-cursor: pointer;
+$range-slider-handle-bg-hover-color: scale-color($primary-color, $lightness: -12%);
+$range-slider-handle-cursor: pointer;
 
 // 25. Reveal
 // - - - - - - - - - - - - - - - - - - - - - - - - -

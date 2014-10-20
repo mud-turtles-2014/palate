@@ -56,6 +56,7 @@ input.button#taste {
 
 body {
   background-color: #e3ebd6 !important;
+  font-family: 'Noto Sans', sans-serif !important;
 }
 
 body a {
@@ -70,8 +71,9 @@ input.button#taste:hover {
   background-color: rgba(65,57,69,.8) !important;
 }
 
-h1, h2, h3, h4, h5, p #home {
-  color: black !important;
+#home h2 {
+  color: white !important;
+  font-family: 'Noto Sans', sans-serif !important;
 }
 
 #home {
