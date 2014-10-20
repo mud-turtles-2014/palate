@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
 
   def name_or_email
-    if self.name
+    if self.name != "Guest"
       return self.name
     else
       return self.email
