@@ -24,7 +24,7 @@ class Tasting < ActiveRecord::Base
       user_results[format_category(attribute)] = format_category(self.send(attribute))
       correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
     end
-    wine_bringer = wine_bringer_name
+    wine_bringer = self.event_wine.wine_bringer.name_or_email
     return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer }
 
     # raw_score = 0
@@ -48,14 +48,6 @@ class Tasting < ActiveRecord::Base
     # correct_wine = format_category(correct_wine)
 
     # return {score: score, correct: formatted_correct, incorrect: formatted_incorrect, user_guess: user_guess, correct_wine: correct_wine}
-  end
-
-  def wine_bringer_name
-    if self.event_wine.wine_bringer.name
-      return self.event_wine.wine_bringer.name
-    else
-      return self.event_wine.wine_bringer.email
-    end
   end
 
   def make_user_results
