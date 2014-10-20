@@ -60,12 +60,16 @@ class Tasting < ActiveRecord::Base
   # add ability to track problem categories
   # and strength categories
   def score_observations
-    super_tasting = get_super_tasting
+    super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
 
+    get_euclidian_dist(super_tasting)
+  end
+
+  def get_euclidian_dist(tasting)
     sum = 0
 
     attributes_stored_by_int.each do |attribute|
-      sum += (super_tasting[attribute] - self[attribute])**2
+      sum += (tasting[attribute] - self[attribute])**2
     end
 
     euclidian_dist = Math.sqrt(sum)
@@ -76,10 +80,8 @@ class Tasting < ActiveRecord::Base
     score_observations < reasonability_factor
   end
 
+  # shows distance from user's observations to user's selected wine
   def score_observations_against_guessed_wine
-    # puts format_category(self.country) + " " + format_category(self.red_grape)
-    # puts self.wine.country + " " + self.wine.grape
-
     if self.wine.color == "red"
       guessed_grape = format_category(self.red_grape)
     else
@@ -87,17 +89,9 @@ class Tasting < ActiveRecord::Base
     end
     guessed_country = format_category(self.country)
 
-    # refactor this later (duplicates score_observations)
-    super_tasting = get_super_tasting(guessed_grape, guessed_country) # refactor get_super_tasting
-    # to accept wine as input arg
+    super_tasting = get_super_tasting(guessed_grape, guessed_country)
 
-    sum = 0
-
-    attributes_stored_by_int.each do |attribute|
-      sum += (super_tasting[attribute] - self[attribute])**2
-    end
-
-    euclidian_dist = Math.sqrt(sum)
+    get_euclidian_dist(super_tasting)
   end
 
   def attributes_stored_by_int
