@@ -125,3 +125,12 @@ input.button#taste:hover {
   display:block;
   padding-bottom: 1%;
 }
+
+.container h4{
+  color: black !important;
+  text-align: left;
+}
+
+.container#home h4{
+  color: white !important;
+}
