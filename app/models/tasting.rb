@@ -24,8 +24,10 @@ class Tasting < ActiveRecord::Base
     current_tasting_attributes.each do |attribute|
       if self.send(attribute) == super_tasting.send(attribute)
         raw_score += 1
+        UserResult.create(tasting: self, is_correct: true, category: attribute.to_s)
       else
         incorrect_categories.push(correct_categories.delete(attribute))
+        UserResult.create(tasting: self, is_correct: false, category: attribute.to_s)
       end
     end
 
