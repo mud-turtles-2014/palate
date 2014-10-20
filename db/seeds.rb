@@ -12,7 +12,7 @@ Wine.create!([
   {name: "US Zinfandel", color: "red", description: "Genetically linked to native Italian and Croatian grapes, Zinfandel has become synonymous with California The uneven ripening grape often produces wines with both tart red and cooked blue fruit characteristics."},
   {name: "French Cabernet Sauvignon", color: "red", description: "TKTKTK"},
   {name: "Italian Sangiovese", color: "red", description: "Sangiovese is often depcited as a powerhouse grape, but traditional Chianti producers like Castello di Volpaia refrain from blending naturally light-bodied, red-fruited Sangiovese with fleshier grapes."},
-  {name: "Italian Nebbiolo", color: "red", description: "Nebbiolo is called the king of Italian grapes for reason. The grape reaches its apex in the regions Barolo and Barbaresco, but Langhe Nebbiolo from a good producer like Produttori del Barberesco will work for a budget-friendly tasting."},
+  {name: "Italian Nebbiolo", color: "red", description: "Nebbiolo is called the king of Italian grapes for reason. The grape reaches its apex in the regions Barolo and Barbaresco, but Langhe Nebbiolo from a good producer like Produttori del Barbaresco will work for a budget-friendly tasting."},
   {name: "French Merlot", color: "red", description: "TKTKTK"},
   {name: "French Pinot Noir", color: "red", description: "TKTKTK"},
   {name: "French Syrah", color: "red", description: "TKTKTK"},
