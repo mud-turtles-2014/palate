@@ -12,7 +12,7 @@ class Tasting < ActiveRecord::Base
   enum red_grape: { gamay: 1, cabernet_sauvignon: 2, merlot: 3, malbec: 4, syrah_shiraz: 5, pinot_noir: 6, sangiovese: 7, nebbiolo: 8, zinfandel: 9 }
   enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6, riesling: 7 }
 
-  def raw_score(current_wine)
+  def score_report
     # super user tastings
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
     super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
