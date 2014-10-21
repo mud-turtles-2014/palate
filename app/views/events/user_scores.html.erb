@@ -22,13 +22,15 @@
     <% end %>
     <li>Your observations were: <%= report[:observation_score] %></li>
     <li>Your wine choice based on your observations was: <%= report[:conclusion_score] %></li>
-    <% if report[:conclusion_feedback] %>
+    <% if report[:conclusion_problem_categories] %>
       <h4>How to make better conclusions based on your observations:</h4>
-      <%= report[:conclusion_feedback] %>
       <p>Your problem categories for mapping your observations to a conclusion were: </p>
       <% report[:conclusion_problem_categories].each do |category| %>
         <li><%= category.capitalize %></li>
       <% end %>
+    <% end %>
+    <% if report[:conclusion_feedback] %>
+      <%= report[:conclusion_feedback] %>
     <% end %>
   </ul>
 
