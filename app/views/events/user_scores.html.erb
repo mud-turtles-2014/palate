@@ -27,7 +27,7 @@
     <% if report[:conclusion_problem_categories] %>
       <h4>Your problem categories for mapping your observations to your conclusion were: </h4>
       <% report[:conclusion_problem_categories].each do |problem_categories| %>
-        <li><%= problem_categories[:category] %> -- <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %> is typically <%= problem_categories[:correct_response] %></li>
+        <li><%= problem_categories[:category] %>: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %> typically has <%= problem_categories[:correct_response] %> <%= problem_categories[:category].downcase %></li>
       <% end %>
     <% end %>
   </ul>
