@@ -1,9 +1,9 @@
 <%= form_for @user, :html => {:class => "pure-form"} do |f| %>
-  <p><%= f.text_field :name, placeholder: "Name" %><br>
-  <%= f.text_field :email, placeholder: "Email" %><br>
-  <%= f.password_field :password, placeholder: "New Password" %><br>
-  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %></p>
+  <%= f.text_field :name, placeholder: "Name" %>
+  <%= f.text_field :email, placeholder: "Email" %>
+  <%= f.password_field :password, placeholder: "New Password" %>
+  <%= f.password_field :password_confirmation, placeholder: "Confirm Password" %>
   <%= f.submit "Submit", class: 'button' %>
 <% end  %>
 
-<%= button_to "Delete Account", user_path(@user), method: :delete, confirm: "Are you sure you want to permanently delete your account and past scores?", class: 'button' %>
+<%= link_to "Delete Account", user_path(@user), method: :delete, confirm: "Are you sure you want to permanently delete your account and past scores?" %>

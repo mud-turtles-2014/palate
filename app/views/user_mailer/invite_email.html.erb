@@ -6,11 +6,19 @@
   <body>
     <h1>You're Invited</h1>
     <p>
-      You have been invited to a blind wine tasting, sommelier-style!<br>
+    <%= @inviter %> has invited you to a blind wine tasting, sommelier-style!
     </p>
+
     <p>
-      To login to the site, just go to this URL: <%= @url %>
+    Your mission, should you choose to accept it, is to bring a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %>
     </p>
-    <p>Happy sipping!</p>
+
+    <p>
+    To accept or decline, just go to this URL: <%= @url %>
+    </p>
+
+    <p>
+    Happy sipping!
+    </p>
   </body>
 </html>
