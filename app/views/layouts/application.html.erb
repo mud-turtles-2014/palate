@@ -4,17 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Wine" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans|Ubuntu' rel='stylesheet' type='text/css'>
   </head>
   <body>
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">Wine Tasting App</a></h1>
+      <h1><a href="/">Wine Tasting App</a></h1>
     </li>
     <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
   </ul>
@@ -22,7 +23,7 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li><a href="#">Tutorial</a></li>
+      <li><a href="/tasting_tutorial">Learn More</a></li>
       <% if session[:user_id] %>
       <li><a href="/my_events">My Events</a></li>
       <li><a href='/users/<%="#{session[:user_id]}"%>/edit'>My Account</a></li>

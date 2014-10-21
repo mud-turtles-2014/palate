@@ -11,11 +11,20 @@ nav.top-bar h1 a{
 }
 
 .top-bar-section li a:not(.button) {
+    font-size: 1em;
     background: #86A02D !important;
 }
 
 .top-bar-section li a:hover {
     background: #4d591a !important;
+}
+
+#wrapper {
+    background-image: url('/images/winery-003.jpg');
+    background-repeat: no-repeat;
+    width: 100% !important;
+    z-index: 0;
+    height: 100%;
 }
 
 ul {
@@ -27,15 +36,101 @@ ul {
   padding-right: 5%;
   padding-left: 5%;
   padding-top: 2%;
+  padding-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #dadada;
+  /* TODO: change bg-color when finished testing */
+  background-color: #EDF5DF;
+}
+
+.container#home {
+  background-color: rgba(65,57,69,0.6);
+  height: 95%;
 }
 
 input.button, a.button {
   background-color: #86a02d;
 }
 
+input.button#taste {
+  background-color: #9685a0;
+}
+
+body {
+  background-color: #e3ebd6 !important;
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
 body a {
-  color: #4d591a;
+  color: #33cc33;
+}
+
+button:hover, button:focus, .button:hover, .button:focus {
+  background-color: #4d591a !important;
+}
+
+input.button#taste:hover {
+  background-color: rgba(65,57,69,.8) !important;
+}
+
+#home h3, h4 {
+  text-align: center;
+  color: white !important;
+  font-family: 'Noto Sans', sans-serif !important;
+}
+
+#home {
+  color: white !important;
+}
+
+#home p {
+  font-size: 1.2em;
+}
+
+#tutorial a{
+  color: #4d591a !important;
+}
+
+#tutorial a:hover{
+  color: #9685a0 !important;
+}
+
+#tutorial h4{
+  text-align: left;
+  color: black !important;
+}
+
+#tutorial blockquote{
+  border-left: none;
+  color: #9685a0;
+  background-color: rgba(150,133,160,.1) !important; /*background or no?*/
+  padding-bottom: 1%;
+}
+
+/*#snippet1{
+
+}*/
+
+.glass-icon {
+  text-align:center;
+  display:block;
+}
+
+/*#snippet2{
+
+}*/
+
+.bottle-icon {
+  text-align:center;
+  display:block;
+  padding-bottom: 1%;
+}
+
+.container h4{
+  color: black !important;
+  text-align: left;
+}
+
+.container#home h4{
+  color: white !important;
 }

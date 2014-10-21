@@ -8,11 +8,11 @@
 <%= form_for :event_wine do |f| %>
  <%= f.hidden_field :is_attending, value: true %>
  <%= f.hidden_field :wine_id, value: @my_wine.id %>
-<%= f.submit "Accept Mission" %>
+<%= f.submit "Accept Mission", :class => "button" %>
 <% end %>
 
 <%= form_for :event_wine do |f| %>
  <%= f.hidden_field :is_attending, value: false %>
  <%= f.hidden_field :wine_id, value: nil %>
-<%= f.submit "Decline Mission" %>
+<%= f.submit "Decline Mission", :class => "button" %>
 <% end %>
