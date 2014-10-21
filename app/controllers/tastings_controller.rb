@@ -5,13 +5,17 @@ class TastingsController < ApplicationController
     event_wine = EventWine.find(params[:event_wine_id])
     event = event_wine.event
     tasting = current_user.tastings.create(tasting_params)
-    tasting.make_user_results
 
     redirect_to "/events/#{event.id}/quiz"
   end
 
+  def show_feedback
+
+    render ""
+  end
+
+  private
   def tasting_params
     params.permit([:event_wine_id, :red_fruits, :white_fruits, :fruit_condition, :minerality, :oak, :dry, :acid, :tannin, :alcohol, :climate, :country, :red_grape, :white_grape])
   end
-
 end
