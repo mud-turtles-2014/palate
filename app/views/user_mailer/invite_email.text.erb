@@ -1,7 +1,14 @@
 You're Invited
-===============================================
-You have been invited to a blind wine tasting, sommelier-style!
 
-To login to the site, just follow this link: <%= @url %>.
+===============================================
+
+<%= @inviter %> has invited you to a blind wine tasting, sommelier-style!
+
+
+Your mission, should you choose to accept it, is to bring a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %>
+
+
+To accept or decline, just go to this URL: <%= @url %>
+
 
 Happy sipping!
