@@ -101,7 +101,11 @@ class Tasting < ActiveRecord::Base
 
   def attributes_stored_by_int
     attributes = [:minerality, :oak, :dry, :acid, :alcohol, :fruit_condition]
-    attributes << :tannin if self.wine.color == "red"
+    if self.wine.color == "red"
+      attributes + [:tannin, :red_fruits]
+    else
+      attributes << :white_fruits
+    end
     attributes
   end
 
