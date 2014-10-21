@@ -118,18 +118,34 @@ input.button#taste:hover {
   padding-bottom: 1%;
 }
 
-/*#snippet1{
+div.marketing {
+  background-color: #EDF5DF;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  float:left;
+}
 
-}*/
+.snippet1 {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  padding: 5%;
+  height: 15%;
+}
+
+.snippet2 {
+  display: inline-block;
+  float: right;
+  width: 50%;
+  padding: 5%;
+  height: 15%;
+}
 
 .glass-icon {
   text-align:center;
   display:block;
 }
-
-/*#snippet2{
-
-}*/
 
 .bottle-icon {
   text-align:center;
