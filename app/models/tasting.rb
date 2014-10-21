@@ -21,6 +21,8 @@ class Tasting < ActiveRecord::Base
   ALCOHOL_FEEDBACK = "Alcohol can be hard to detect accurately. Exhale after you taste. The hotter your throat feels, the higher the alcohol probably is."
   FRUIT_CONDITION_FEEDBACK = "This is somewhat linked to acid and alcohol. Does the wine tast tart (highly acidic) or is the wine ripe and jammy (highly alcoholic). Sugar gets converted to alcohol, so riper grapes produce more alcoholic wine."
 
+  GUIDANCE = { "French Gamay" => "French Gamay from one of Beaujolais' crus should taste a lot like Pinot Noir, lean with tart red fruit. The aromatics will be a bit more muted and the tannins will be a bit grittier." }
+
   def get_super_tasting(grape, country)
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
     super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(grape: grape, country: country)))
@@ -40,12 +42,20 @@ class Tasting < ActiveRecord::Base
 
     conclusion_score = is_reasonable_conclusion
     observation_score = is_reasonable_observation
-    feedback_hash = get_feedback_hash
+    feedback_hash = get_observation_feedback
 
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash }
+    conclusion_feedback = get_conclusion_feedback(conclusion_score)
+
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash, conclusion_feedback: conclusion_feedback }
   end
 
-  def get_feedback_hash
+  def get_conclusion_feedback(reasonability)
+    if reasonability == "Alright" || reasonability == "Errr, not the best"
+      GUIDANCE[get_super_tasting_for_guessed_wine.wine.name]
+    end
+  end
+
+  def get_observation_feedback
     feedback_hash = {}
     incorrect_categories.each do |category|
       case category
@@ -108,8 +118,7 @@ class Tasting < ActiveRecord::Base
     euclidian_dist = Math.sqrt(sum)
   end
 
-  # shows distance from user's observations to user's selected wine
-  def score_observations_against_guessed_wine
+  def get_super_tasting_for_guessed_wine
     if self.wine.color == "red"
       guessed_grape = format_category(self.red_grape)
     else
@@ -117,7 +126,13 @@ class Tasting < ActiveRecord::Base
     end
     guessed_country = format_category(self.country)
     super_tasting = get_super_tasting(guessed_grape, guessed_country)
-    return 6.0 if !super_tasting
+  end
+
+  # shows distance from user's observations to user's selected wine
+  def score_observations_against_guessed_wine
+    super_tasting = get_super_tasting_for_guessed_wine
+
+    return 7.0 if !super_tasting
 
     get_euclidian_dist(super_tasting)
   end
@@ -140,8 +155,10 @@ class Tasting < ActiveRecord::Base
       return "Solid"
     elsif response <= 3.5
       return "Alright"
-    else
+    elsif response <= 6.0
       return "Errr, not the best"
+    else
+      return "N/A"
     end
   end
 
