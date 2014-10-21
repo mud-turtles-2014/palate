@@ -8,14 +8,17 @@ class Tasting < ActiveRecord::Base
   enum white_fruits: { apple_pear: 1, stone: 2, citrus: 3, tropical: 4}
   enum fruit_condition: { tart: 1, under_ripe: 2, ripe: 3, over_ripe: 4, jammy: 5 }
   enum climate: { cool: 1, warm: 2}
-  enum country: { france: 1, italy: 2, us: 3, australia: 4, argentina: 5, germany: 6, new_zealand: 7 }
+  enum country: { france: 1, italy: 2, united_states: 3, australia: 4, argentina: 5, germany: 6, new_zealand: 7 }
   enum red_grape: { gamay: 1, cabernet_sauvignon: 2, merlot: 3, malbec: 4, syrah_shiraz: 5, pinot_noir: 6, sangiovese: 7, nebbiolo: 8, zinfandel: 9 }
   enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6, riesling: 7 }
 
-  def score_report
-    # super user tastings
+  def get_super_tasting(grape, country)
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
-    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name)))
+    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(grape: grape, country: country)))
+  end
+
+  def score_report
+    super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
 
     attributes = current_tasting_attributes
     user_results = {}
@@ -50,17 +53,56 @@ class Tasting < ActiveRecord::Base
     # return {score: score, correct: formatted_correct, incorrect: formatted_incorrect, user_guess: user_guess, correct_wine: correct_wine}
   end
 
-  def make_user_results
-    super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
-    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(name: self.wine.name))) #current_wine))
+  # use euclidian distance to find accuracy of observations
+  # comparing against super_user tastings
 
-    current_tasting_attributes.each do |attribute|
-      if self.send(attribute) == super_tasting.send(attribute)
-        UserResult.create(tasting: self, is_correct: true, category: attribute.to_s)
-      else
-        UserResult.create(tasting: self, is_correct: false, category: attribute.to_s)
-      end
+  # TODO
+  # add ability to track problem categories
+  # and strength categories
+  def score_observations
+    super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
+
+    get_euclidian_dist(super_tasting)
+  end
+
+  def get_euclidian_dist(tasting)
+    sum = 0
+
+    attributes_stored_by_int.each do |attribute|
+      sum += (tasting[attribute] - self[attribute])**2
     end
+
+    euclidian_dist = Math.sqrt(sum)
+  end
+
+  def is_reasonable_observation
+    reasonability_factor = 2.5
+    score_observations < reasonability_factor
+  end
+
+  # shows distance from user's observations to user's selected wine
+  def score_observations_against_guessed_wine
+    if self.wine.color == "red"
+      guessed_grape = format_category(self.red_grape)
+    else
+      guessed_grape = format_category(self.white_grape)
+    end
+    guessed_country = format_category(self.country)
+
+    super_tasting = get_super_tasting(guessed_grape, guessed_country)
+
+    get_euclidian_dist(super_tasting)
+  end
+
+  def is_reasonable_conclusion
+    reasonability_factor = 2.5
+    score_observations_against_guessed_wine < reasonability_factor
+  end
+
+  def attributes_stored_by_int
+    attributes = [:minerality, :oak, :dry, :acid, :alcohol, :fruit_condition]
+    attributes << :tannin if self.wine.color == "red"
+    attributes
   end
 
   def formatted_categories(categories)
