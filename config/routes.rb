@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/events/:id/my_results' => 'events#user_scores'
 
   get '/tasting_tutorial' => 'tutorials#tasting_tutorial'
+  get '/tasting/:id/feedback' => 'tastings#show_feedback'
   # You can have the root of your site routed with "root"
   root 'welcome#index'
 
