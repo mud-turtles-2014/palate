@@ -118,6 +118,18 @@ class Tasting < ActiveRecord::Base
     euclidian_dist = Math.sqrt(sum)
   end
 
+  def get_problem_categories(tasting)
+    problem_categories = []
+
+    attributes_stored_by_int.each do |attribute|
+      if tasting[attribute] - self[attribute] > abs val of 1
+        problem_categories << attribute
+      end
+    end
+
+    return problem_categories
+  end
+
   def get_super_tasting_for_guessed_wine
     if self.wine.color == "red"
       guessed_grape = format_category(self.red_grape)
