@@ -1,22 +1,22 @@
 nav.top-bar {
-    background: #86A02D;
+  background: #86A02D;
 }
 
 nav.top-bar h1 {
-    background: #86A02D;
+  background: #86A02D;
 }
 
 nav.top-bar h1 a{
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .top-bar-section li a:not(.button) {
-    font-size: 1em;
-    background: #86A02D !important;
+  font-size: 1em;
+  background: #86A02D !important;
 }
 
 .top-bar-section li a:hover {
-    background: #4d591a !important;
+  background: #4d 591a !important;
 }
 
 #wrapper {
