@@ -1,4 +1,8 @@
 <h2>My Results</h2>
+
+<div id="chart_div">
+</div>
+
 <% @score_report.each do |report| %>
   <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
@@ -28,10 +32,6 @@
 <% end %>
 
 <!--<%= @graph_data %>-->
-
-<div id="chart_div">
-
-</div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
@@ -45,8 +45,13 @@
         ]);
 
         var options = {
-          title: 'This Event', titleTextStyle: {fontSize: 20},
-          vAxis: {title: 'Categories',  titleTextStyle: {fontSize:20}}
+          // title: 'This Event', titleTextStyle: {fontSize: 20},
+          backgroundColor: "transparent",
+          legend: {position: 'none'},
+          hAxis: {maxValue: 20},
+          vAxis: {baseline: 0},
+          chartArea:{left:21,top:20,width:"100%",height:"70%"},
+          orientation: 'horizontal'
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
