@@ -2,7 +2,12 @@
 <% @score_report.each do |report| %>
   <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
-    <% report[:user_results]["Country"] = "the #{report[:user_results]["Country"]}" if report[:user_results]["Country"] == "United States" %>
+    <% if report[:user_results]["Country"] == "United States" %>
+      <% report[:user_results]["Country"] = "the #{report[:user_results]["Country"]}" %>
+    <% end %>
+    <% if report[:correct_answers]["Country"] == "United States" %>
+      <% report[:correct_answers]["Country"] = "the #{report[:correct_answers]["Country"]}" %>
+    <% end %>
     <li>You guessed: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
     <li>The wine was: <%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
     <% report[:user_results].each do |attr, val| %>
@@ -18,7 +23,6 @@
     <li>Your observations were: <%= report[:observation_score] %></li>
     <li>Your wine choice based on your observations was: <%= report[:conclusion_score] %></li>
   </ul>
-
 
   <!-- add jquery slider here to view more in depth feedback -->
 <% end %>
