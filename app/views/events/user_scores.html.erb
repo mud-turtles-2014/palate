@@ -2,7 +2,7 @@
 <% @score_report.each do |report| %>
   <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
-    <%= report[:user_results]["Country"] = "the #{report[:user_results]["Country"]}" if report[:user_results]["Country"] == "United States" %>
+    <% report[:user_results]["Country"] = "the #{report[:user_results]["Country"]}" if report[:user_results]["Country"] == "United States" %>
     <li>You guessed: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
     <li>The wine was: <%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
     <% report[:user_results].each do |attr, val| %>
