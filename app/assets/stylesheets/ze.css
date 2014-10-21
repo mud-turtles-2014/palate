@@ -1,31 +1,43 @@
 nav.top-bar {
-    background: #86A02D;
+  background: #86A02D;
 }
 
 nav.top-bar h1 {
-    background: #86A02D;
+  background: #86A02D;
 }
 
 nav.top-bar h1 a{
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .top-bar-section li a:not(.button) {
-    font-size: 1em;
-    background: #86A02D !important;
+  font-size: 1em;
+  background: #86A02D !important;
 }
 
 .top-bar-section li a:hover {
-    background: #4d591a !important;
+  background: #4d 591a !important;
 }
 
-#wrapper {
-    background-image: url('/images/winery-003.jpg');
-    background-repeat: no-repeat;
-    width: 100% !important;
-    z-index: 0;
-    height: 100%;
+#splash {
+  background-image: url('/images/winery-003.jpg');
+  background-repeat: no-repeat;
+  width: 100% !important;
+  z-index: 0;
+  height: auto;
+  text-align: center;
+ /*       text-justify: inter-word;*/
 }
+
+#splash h1 {
+  color: white;
+  margin: 10% 0 3% 0;
+  }
+
+#splash h3 {
+  color: white;
+  margin-bottom: 5%
+  }
 
 ul {
   list-style-type: none;
@@ -39,13 +51,12 @@ ul {
   padding-bottom: 5%;
   margin-left: auto;
   margin-right: auto;
-  /* TODO: change bg-color when finished testing */
   background-color: #EDF5DF;
 }
 
 .container#home {
   background-color: rgba(65,57,69,0.6);
-  height: 95%;
+  height: auto;
 }
 
 input.button, a.button {
@@ -107,18 +118,34 @@ input.button#taste:hover {
   padding-bottom: 1%;
 }
 
-/*#snippet1{
+div.marketing {
+  background-color: #EDF5DF;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  float:left;
+}
 
-}*/
+.snippet1 {
+  display: inline-block;
+  float: left;
+  width: 50%;
+  padding: 5%;
+  height: 15%;
+}
+
+.snippet2 {
+  display: inline-block;
+  float: right;
+  width: 50%;
+  padding: 5%;
+  height: 15%;
+}
 
 .glass-icon {
   text-align:center;
   display:block;
 }
-
-/*#snippet2{
-
-}*/
 
 .bottle-icon {
   text-align:center;
@@ -133,4 +160,23 @@ input.button#taste:hover {
 
 .container#home h4{
   color: white !important;
+}
+
+.clear {
+  clear: both;
+}
+
+.footer {
+
+  height: auto;
+  text-align: right;
+  width:100%;
+  height:auto;
+  padding:2%;
+  bottom:0;
+  left:0;
+}
+
+.footer a {
+  color: black;
 }
