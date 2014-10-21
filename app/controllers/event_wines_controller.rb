@@ -2,14 +2,7 @@ class EventWinesController < ApplicationController
   before_action :get_event_wine
 
 	def edit
-    # TODO: refactor
-    if @event_wine.is_attending == nil
-      event = @event_wine.event
-      all_wines = Wine.all
-      event_wine_list = event.winelist
-      unassigned = all_wines - event_wine_list
-      @my_wine = unassigned.sample
-		else
+    if @event_wine.is_attending != nil
 			redirect_to my_events_path
 		end
   end

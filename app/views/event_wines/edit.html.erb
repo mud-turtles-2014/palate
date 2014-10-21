@@ -1,18 +1,21 @@
 <!-- TODO: controls for user privacy -->
-<h3>Welcome, <%= @event_wine.wine_bringer.name %>!</h3>
+<h3>Welcome</h3>
 
-<p>You have been invited to a blind wine tasting by <%= User.find_by(id: @event_wine.event.user_id).name %>.</p> <!-- TODO: refactor this -->
+<p>You have been invited to a blind wine tasting by <%= User.find_by(id: @event_wine.event.user_id).name %>!</p> <!-- TODO: refactor this -->
 
-<p>Your mission, should you choose to accept it, is to bring a <%= @my_wine.name %>. <%= @my_wine.description %></p>
+<p>You've been asked to bring a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %></p>
+
+<p>The tasting will occur at <%= @event_wine.event.time.strftime("%l:%M %p") %>, on <%= @event_wine.event.date.strftime("%m/%d/%y")%>.</p>
+
+<p>Location: <br>
+<%= @event_wine.event.location %>
 
 <%= form_for :event_wine do |f| %>
  <%= f.hidden_field :is_attending, value: true %>
- <%= f.hidden_field :wine_id, value: @my_wine.id %>
 <%= f.submit "Accept Mission", :class => "button" %>
 <% end %>
 
 <%= form_for :event_wine do |f| %>
  <%= f.hidden_field :is_attending, value: false %>
- <%= f.hidden_field :wine_id, value: nil %>
 <%= f.submit "Decline Mission", :class => "button" %>
 <% end %>
