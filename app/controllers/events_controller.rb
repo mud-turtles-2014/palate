@@ -100,15 +100,15 @@ class EventsController < ApplicationController
     email_array.each do |email|
       existing_user = User.find_by(email: email)
 
-      if existing_user != nil
-        event_wine = EventWine.create(wine: nil,
+      if existing_user
+        event_wine = EventWine.create(wine: @event.assign_unique_wine,
                         event: @event,
                         wine_bringer: existing_user)
       else
         new_user = User.create(name: "Guest",
                               email: email,
                               password: "merlot1")
-        event_wine = EventWine.create(wine: nil,
+        event_wine = EventWine.create(wine: @event.assign_unique_wine,
                         event: @event,
                         wine_bringer: new_user)
       end

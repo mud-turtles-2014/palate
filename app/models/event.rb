@@ -21,4 +21,11 @@ class Event < ActiveRecord::Base
   def winelist
     attending_invitations.map {|invite| invite.wine}
   end
+
+  def assign_unique_wine
+    all_wines = Wine.all
+    event_wine_list = self.winelist
+    unassigned = all_wines - event_wine_list
+    unassigned.sample
+  end
 end
