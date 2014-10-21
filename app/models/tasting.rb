@@ -5,7 +5,7 @@ class Tasting < ActiveRecord::Base
   has_one :event, through: :event_wine
 
   enum red_fruits: { red: 1, blue: 2, black: 3}
-  enum white_fruits: { apple_pear: 1, stone: 2, citrus: 3, tropical: 4}
+  enum white_fruits: { citrus: 1, apple_pear: 2, stone: 3, tropical: 4}
   enum fruit_condition: { tart: 1, under_ripe: 2, ripe: 3, over_ripe: 4, jammy: 5 }
   enum climate: { cool: 1, warm: 2}
   enum country: { france: 1, italy: 2, united_states: 3, australia: 4, argentina: 5, germany: 6, new_zealand: 7 }
