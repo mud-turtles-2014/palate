@@ -14,5 +14,8 @@
         <font color="green"><li>Answer: <%= report[:correct_answers][attr] %></li></font>
       <% end %>
     <% end %>
+    <li>Your observations were: <%= report[:observation_score] %></li>
+    <li>Your wine choice based on your observations was: <%= report[:conclusion_score] %></li>
   </ul>
+  <!-- add jquery slider here to view more in depth feedback -->
 <% end %>

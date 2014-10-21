@@ -10,7 +10,7 @@
 
 <% if @event.attending_users.include?(User.find(session[:user_id])) %>
 
-	<p>You are bringing a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %></p>
+	<p>You are bringing <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %></p>
 
   <%= button_to "Edit Event", edit_event_path(@event), :method => :get, :class =>"button [radius round]" %>
 <% end %>
