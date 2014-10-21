@@ -19,13 +19,25 @@ nav.top-bar h1 a{
   background: #4d 591a !important;
 }
 
-#wrapper {
-    background-image: url('/images/winery-003.jpg');
-    background-repeat: no-repeat;
-    width: 100% !important;
-    z-index: 0;
-    height: 100%;
+#splash {
+  background-image: url('/images/winery-003.jpg');
+  background-repeat: no-repeat;
+  width: 100% !important;
+  z-index: 0;
+  height: auto;
+  text-align: center;
+ /*       text-justify: inter-word;*/
 }
+
+#splash h1 {
+  color: white;
+  margin: 10% 0 3% 0;
+  }
+
+#splash h3 {
+  color: white;
+  margin-bottom: 5%
+  }
 
 ul {
   list-style-type: none;
