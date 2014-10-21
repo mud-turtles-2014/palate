@@ -20,7 +20,7 @@
   <!-- add jquery slider here to view more in depth feedback -->
 <% end %>
 
-<%= @graph_data %>
+<!--<%= @graph_data %>-->
 
 <div id="chart_div">
 
@@ -33,7 +33,7 @@
         var data = google.visualization.arrayToDataTable([
           ['Aspect', 'My Score', 'Max Score'],
            <% @graph_data.each do |attr, val| %>
-           [ '<%= attr  %>', <%= val %>, <%= @graph_data.invert.size %>],
+           [ '<%= attr  %>', <%= val %>, <%= @graph_data.invert.length %>],
            <% end %>
           // ['Steven', '6']
         ]);
