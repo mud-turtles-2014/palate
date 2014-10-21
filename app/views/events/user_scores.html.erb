@@ -19,3 +19,32 @@
   </ul>
   <!-- add jquery slider here to view more in depth feedback -->
 <% end %>
+
+<%= @graph_data %>
+
+<div id="chart_div">
+
+</div>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Aspect', 'My Score', 'Max Score'],
+           <% @graph_data.each do |attr, val| %>
+           [ '<%= attr  %>', <%= val %>, <%= @graph_data.invert.size %>],
+           <% end %>
+          // ['Steven', '6']
+        ]);
+
+        var options = {
+          title: 'This Event',
+          vAxis: {title: 'Categories',  titleTextStyle: {color: 'red'}}
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
