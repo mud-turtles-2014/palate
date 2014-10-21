@@ -12,6 +12,15 @@ class Tasting < ActiveRecord::Base
   enum red_grape: { gamay: 1, cabernet_sauvignon: 2, merlot: 3, malbec: 4, syrah_shiraz: 5, pinot_noir: 6, sangiovese: 7, nebbiolo: 8, zinfandel: 9 }
   enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6, riesling: 7 }
 
+  FRUITS_FEEDBACK = "Each grape varietal has its own characteristic fruit profile. It's not easy to choose the fruit category that most defines a wine. Only more tasting experience can solidify that link."
+  MINERALITY_FEEDBACK = "Minerality can fall into inorganic (stone, crushed rock or organic (earth, clay) categories."
+  OAK_FEEDBACK = "Oak imparts characteristic vanilla and baking spice notes to wine. It also makes wines slightly more textural."
+  DRY_FEEDBACK = "Dryness simply refers to the lack of sugar in a wine. Is there any lingering sweetness on your tongue? If so, chances are the wine isn't dry."
+  ACID_FEEDBACK = "How much saliva is pooling in your mouth after you sip? The more saliva pooling means a higher acid wine. Sounds strange, but it works."
+  TANNIN_FEEDBACK = "Tannins are compounds found in grape skins that cause the sensation of friction in your mouth. If you feel a lot of grip on your tongue, those are tannins."
+  ALCOHOL_FEEDBACK = "Alcohol can be hard to detect accurately. Exhale after you taste. The hotter your throat feels, the higher the alcohol probably is."
+  FRUIT_CONDITION_FEEDBACK = "This is somewhat linked to acid and alcohol. Does the wine tast tart (highly acidic) or is the wine ripe and jammy (highly alcoholic). Sugar gets converted to alcohol, so riper grapes produce more alcoholic wine."
+
   def get_super_tasting(grape, country)
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
     super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(grape: grape, country: country)))
@@ -28,32 +37,53 @@ class Tasting < ActiveRecord::Base
       correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
     end
     wine_bringer = self.event_wine.wine_bringer.name_or_email
+
     conclusion_score = is_reasonable_conclusion
     observation_score = is_reasonable_observation
+    feedback_hash = get_feedback_hash
 
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score }
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash }
+  end
 
-    # raw_score = 0
-    # correct_categories = current_tasting_attributes
-    # incorrect_categories = []
+  def get_feedback_hash
+    feedback_hash = {}
+    incorrect_categories.each do |category|
+      case category
+      when "Minerality"
+        feedback_hash[category] = MINERALITY_FEEDBACK
+      when "Oak"
+        feedback_hash[category] = OAK_FEEDBACK
+      when "Dry"
+        feedback_hash[category] = DRY_FEEDBACK
+      when "Acid"
+        feedback_hash[category] = ACID_FEEDBACK
+      when "Alcohol"
+        feedback_hash[category] = ALCOHOL_FEEDBACK
+      when "Minerality"
+        feedback_hash[category] = MINERALITY_FEEDBACK
+      when "Fruit Condition"
+        feedback_hash[category] = FRUIT_CONDITION_FEEDBACK
+      when "Fruits"
+        feedback_hash[category] = FRUITS_FEEDBACK
+      end
+    end
+    return feedback_hash
+  end
 
-    # current_tasting_attributes.each do |attribute|
-    #   if self.send(attribute) == super_tasting.send(attribute)
-    #     raw_score += 1
-    #   else
-    #     incorrect_categories.push(correct_categories.delete(attribute))
-    #   end
-    # end
+  # can use to return correct categories too
+  def incorrect_categories
+    super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
+    correct_categories = attributes_stored_by_int
+    incorrect_categories = []
 
-    # score = "#{raw_score} / #{current_tasting_attributes.length}"
-    # formatted_correct = formatted_categories(correct_categories)
-    # formatted_incorrect = formatted_categories(incorrect_categories)
-    # user_guess = wine_color == "white" ? self.white_grape : self.red_grape
-    # user_guess = format_category(user_guess)
-    # correct_wine = wine_color == "white" ? super_tasting.white_grape : super_tasting.red_grape
-    # correct_wine = format_category(correct_wine)
+    attributes_stored_by_int.each do |attribute|
+      if self[attribute] != super_tasting[attribute]
+        incorrect_categories.push(correct_categories.delete(attribute))
+      end
+    end
+    formatted_incorrect = formatted_categories(incorrect_categories)
 
-    # return {score: score, correct: formatted_correct, incorrect: formatted_incorrect, user_guess: user_guess, correct_wine: correct_wine}
+    return formatted_incorrect
   end
 
   # use euclidian distance to find accuracy of observations
