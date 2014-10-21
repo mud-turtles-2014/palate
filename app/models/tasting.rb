@@ -28,6 +28,7 @@ class Tasting < ActiveRecord::Base
       correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
     end
     wine_bringer = self.event_wine.wine_bringer.name_or_email
+
     conclusion_score = is_reasonable_conclusion
     observation_score = is_reasonable_observation
 
@@ -72,6 +73,9 @@ class Tasting < ActiveRecord::Base
     sum = 0
 
     attributes_stored_by_int.each do |attribute|
+      puts "*"*1000
+      puts self.wine.name
+      puts attribute
       sum += (tasting[attribute] - self[attribute])**2
     end
 
