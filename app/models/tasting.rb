@@ -5,7 +5,7 @@ class Tasting < ActiveRecord::Base
   has_one :event, through: :event_wine
 
   enum red_fruits: { red: 1, blue: 2, black: 3}
-  enum white_fruits: { apple_pear: 1, stone: 2, citrus: 3, tropical: 4}
+  enum white_fruits: { citrus: 1, apple_pear: 2, stone: 3, tropical: 4}
   enum fruit_condition: { tart: 1, under_ripe: 2, ripe: 3, over_ripe: 4, jammy: 5 }
   enum climate: { cool: 1, warm: 2}
   enum country: { france: 1, italy: 2, united_states: 3, australia: 4, argentina: 5, germany: 6, new_zealand: 7 }
@@ -40,12 +40,36 @@ class Tasting < ActiveRecord::Base
 
     conclusion_score = is_reasonable_conclusion
     observation_score = is_reasonable_observation
-    feedback_hash = get_feedback_hash
+    feedback_hash = get_observation_feedback
 
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash }
+    conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
+
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories }
   end
 
-  def get_feedback_hash
+  def get_problem_categories(tasting, reasonability)
+    return nil if !tasting
+    return nil unless reasonability == "Alright" || reasonability == "Errr, not the best"
+    problem_categories = []
+
+    attributes_stored_by_int
+
+    attributes_stored_by_int.each do |attribute|
+      if (tasting[attribute] - self[attribute]).abs > 1
+        problem_categories << { category: format_category(attribute), correct_response: convert_num_to_category(tasting.send(attribute)).downcase }
+      end
+    end
+
+    return problem_categories
+  end
+
+  def get_conclusion_feedback(reasonability)
+    if reasonability == "Alright" || reasonability == "Errr, not the best"
+      GUIDANCE[get_super_tasting_for_guessed_wine.wine.name]
+    end
+  end
+
+  def get_observation_feedback
     feedback_hash = {}
     incorrect_categories.each do |category|
       case category
@@ -108,8 +132,7 @@ class Tasting < ActiveRecord::Base
     euclidian_dist = Math.sqrt(sum)
   end
 
-  # shows distance from user's observations to user's selected wine
-  def score_observations_against_guessed_wine
+  def get_super_tasting_for_guessed_wine
     if self.wine.color == "red"
       guessed_grape = format_category(self.red_grape)
     else
@@ -117,7 +140,13 @@ class Tasting < ActiveRecord::Base
     end
     guessed_country = format_category(self.country)
     super_tasting = get_super_tasting(guessed_grape, guessed_country)
-    return 6.0 if !super_tasting
+  end
+
+  # shows distance from user's observations to user's selected wine
+  def score_observations_against_guessed_wine
+    super_tasting = get_super_tasting_for_guessed_wine
+
+    return 7.0 if !super_tasting
 
     get_euclidian_dist(super_tasting)
   end
@@ -140,8 +169,10 @@ class Tasting < ActiveRecord::Base
       return "Solid"
     elsif response <= 3.5
       return "Alright"
-    else
+    elsif response <= 6.0
       return "Errr, not the best"
+    else
+      return "N/A"
     end
   end
 
@@ -167,16 +198,16 @@ class Tasting < ActiveRecord::Base
   end
 
   def convert_num_to_category(category)
-    category = category.to_s.to_i
-    if category == 1
+    category = category.to_s
+    if category == "1"
       return "Low"
-    elsif category == 2
+    elsif category == "2"
       return "Med-Minus"
-    elsif category == 3
+    elsif category == "3"
       return "Med"
-    elsif category == 4
+    elsif category == "4"
       return "Med-Plus"
-    elsif category == 5
+    elsif category == "5"
       return "Hi"
     end
   end
