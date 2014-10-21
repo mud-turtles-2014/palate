@@ -56,7 +56,7 @@ ul {
 
 .container#home {
   background-color: rgba(65,57,69,0.6);
-  height: 95%;
+  height: auto;
 }
 
 input.button, a.button {
