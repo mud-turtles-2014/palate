@@ -20,7 +20,7 @@ Wine.create!([
   {name: "French Chardonnay", color: "white", country: "France", grape: "Chardonnay", description: "Bring a focused Chardonnay from Chablis, the northernmost region in Burgundy. Alternatively, grab an impressive bottling from a lesser region like Chitry, Alice and Olivier de Moor make a good one."},
   {name: "French Sauvignon Blanc", country: "France", grape: "Sauvignon Blanc", color: "white", description: "Bring a mineral-driven Sauvignon Blanc from Sancerre or Pouilly-Fume in Western France's Loire Valley."},
   {name: "French Chenin Blanc", color: "white", country: "France", grape: "Chenin Blanc", description: "Chenin Blanc is often made in an oxidative style. Additional exposure to oxygen imparts distinct bitter nut and cheese rind characteristics to the wine. Bring a Vouvray Sec from the Loire Valley."},
-  {name: "French Viognier", color: "white", description: "TKTKTK"},
+  {name: "French Viognier", country: "French", grape: "Viognier", color: "white", description: "TKTKTK"},
   {name: "Italian Pinot Grigio", country: "Italy", grape: "Pinot Grigio", color: "white", description: "Sometimes Pinot Grigio can be classy. Pick up a bottle from Friuli in the northwestern corner of Italy. Look for producers like Venica & Venica or Livo Felluga."},
   {name: "US Chardonnay", country: "United States", grape: "Chardonnay", color: "white", description: "TKTKTKT"},
   {name: "German Riesling", country: "Germany", grape: "Riesling", color: "white", description: "Germany has a unique classification system to describe a wine's ripeness. Grab a Spatlese bottling, a 'late harvest' wine, that has a more opulent fruit profile and generally some residual sugar."},
@@ -33,6 +33,8 @@ Event.create!([
 User.create!([
   {name: "pascaline", email: "boss@ladysomm.com", password: "test", password_confirmation: "test"}
 ])
+
+# THESE WINE IDS ARE
 EventWine.create!([
   # super user brings all the wines, beware of future validations
   # that may limit 1 wine per attendee
