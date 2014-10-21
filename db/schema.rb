@@ -55,14 +55,6 @@ ActiveRecord::Schema.define(version: 20141020232122) do
     t.integer  "event_wine_id"
   end
 
-  create_table "user_results", force: true do |t|
-    t.integer  "tasting_id"
-    t.string   "category"
-    t.boolean  "is_correct"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "name",            null: false
     t.string   "email",           null: false
