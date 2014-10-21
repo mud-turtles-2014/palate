@@ -21,8 +21,6 @@ class Tasting < ActiveRecord::Base
   ALCOHOL_FEEDBACK = "Alcohol can be hard to detect accurately. Exhale after you taste. The hotter your throat feels, the higher the alcohol probably is."
   FRUIT_CONDITION_FEEDBACK = "This is somewhat linked to acid and alcohol. Does the wine tast tart (highly acidic) or is the wine ripe and jammy (highly alcoholic). Sugar gets converted to alcohol, so riper grapes produce more alcoholic wine."
 
-  GUIDANCE = { "French Gamay" => "French Gamay from one of Beaujolais' crus should taste a lot like Pinot Noir, lean with tart red fruit. The aromatics will be a bit more muted and the tannins will be a bit grittier." }
-
   def get_super_tasting(grape, country)
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
     super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(grape: grape, country: country)))
@@ -44,11 +42,9 @@ class Tasting < ActiveRecord::Base
     observation_score = is_reasonable_observation
     feedback_hash = get_observation_feedback
 
-    conclusion_feedback = get_conclusion_feedback(conclusion_score)
+    conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
 
-    conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine)
-
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash, conclusion_feedback: conclusion_feedback, conclusion_problem_categories: conclusion_problem_categories }
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories }
   end
 
   def get_conclusion_feedback(reasonability)
@@ -120,9 +116,9 @@ class Tasting < ActiveRecord::Base
     euclidian_dist = Math.sqrt(sum)
   end
 
-  def get_problem_categories(tasting)
-    return [] if !tasting
-
+  def get_problem_categories(tasting, reasonability)
+    return nil if !tasting
+    return nil unless reasonability == "Alright" || reasonability == "Errr, not the best"
     problem_categories = []
 
     attributes_stored_by_int.each do |attribute|
