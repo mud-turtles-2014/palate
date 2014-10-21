@@ -63,9 +63,9 @@ class EventsController < ApplicationController
     else
       @event = Event.find(params[:id])
       @user_tastings = Tasting.where(event_wine: EventWine.where(event: @event), user: current_user)
-      @user_scores = {}
-      @user_tastings.each_with_index do |tasting,tasting_index|
-        @user_scores[tasting_index + 1] = tasting.score_report
+      @score_report = []
+      @user_tastings.each do |tasting|
+        @score_report << tasting.score_report
       end
     end
   end
@@ -83,6 +83,7 @@ class EventsController < ApplicationController
     untasted_wines = all_wines - tasted_wines
     @wine = untasted_wines[0]
     @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
+    @wine_bringer = @event_wine.wine_bringer.name_or_email if @event_wine
     @tasting = Tasting.new
     redirect_to "/events/#{@event.id}/my_results" unless @wine
   end

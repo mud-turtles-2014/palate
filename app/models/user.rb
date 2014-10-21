@@ -23,4 +23,12 @@ class User < ActiveRecord::Base
     reservations.map {|reservation| Event.find(reservation.event_id)} if reservations
   end
 
+  def name_or_email
+    if self.name != "Guest"
+      return self.name
+    else
+      return self.email
+    end
+  end
+
 end
