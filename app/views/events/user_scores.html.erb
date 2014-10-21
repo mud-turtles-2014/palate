@@ -22,6 +22,7 @@
     <% end %>
     <li>Your observations were: <%= report[:observation_score] %></li>
     <li>Your wine choice based on your observations was: <%= report[:conclusion_score] %></li>
+    <%= report[:conclusion_feedback] if report[:conclusion_feedback] %>
   </ul>
 
   <!-- add jquery slider here to view more in depth feedback -->
