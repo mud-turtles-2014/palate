@@ -8,8 +8,10 @@
     <% if report[:correct_answers]["Country"] == "United States" %>
       <% report[:correct_answers]["Country"] = "the #{report[:correct_answers]["Country"]}" %>
     <% end %>
-    <li>You guessed: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
-    <li>The wine was: <%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
+    <h4>You guessed:</h4>
+    <li><%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
+    <h4>The wine was:</h4>
+    <li><%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
     <% report[:user_results].each do |attr, val| %>
       <h4><%= attr %></h4>
       <% if report[:user_results][attr] == report[:correct_answers][attr] %>
@@ -17,7 +19,7 @@
       <% else %>
         <font color="#8B0000"><li>Incorrect: <%= val %></li></font>
         <font color="green"><li>Answer: <%= report[:correct_answers][attr] %></li></font>
-        <li><%= report[:feedback_hash][attr] %></li>
+         <li><b>How to detect <%= attr.downcase %>: </b><%= report[:feedback_hash][attr] %></li>
       <% end %>
     <% end %>
     <h4>Your observations were:</h4>
