@@ -20,13 +20,14 @@
         <li><%= report[:feedback_hash][attr] %></li>
       <% end %>
     <% end %>
-    <li>Your observations were: <%= report[:observation_score] %></li>
-    <li>Your wine choice based on your observations was: <%= report[:conclusion_score] %></li>
+    <h4>Your observations were:</h4>
+    <li><%= report[:observation_score] %></li>
+    <h4>Your wine choice based on your observations was: </h4>
+    <li><%= report[:conclusion_score] %></li>
     <% if report[:conclusion_problem_categories] %>
-      <h4>How to make better conclusions based on your observations:</h4>
-      <p>Your problem categories for mapping your observations to a conclusion were: </p>
-      <% report[:conclusion_problem_categories].each do |category| %>
-        <li><%= category.capitalize %></li>
+      <h4>Your problem categories for mapping your observations to your conclusion were: </h4>
+      <% report[:conclusion_problem_categories].each do |problem_categories| %>
+        <li><%= problem_categories[:category] %> -- <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %> is typically <%= problem_categories[:correct_response] %></li>
       <% end %>
     <% end %>
   </ul>
