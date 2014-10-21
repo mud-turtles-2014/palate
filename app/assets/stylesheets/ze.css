@@ -179,3 +179,20 @@ div.marketing {
 .footer a {
   color: black;
 }
+
+.card {
+  background: #F6FCEB;
+  border: 1px solid #e3ebd6;
+  border-bottom: 2px solid #e3ebd6;
+  border-right: 2px solid #e3ebd6;
+  border-radius: 5px;
+  padding: 25% 12%;
+  margin-bottom: 2%;
+  overflow: hidden;
+  text-align: center;
+  font-size: 2em;
+}
+
+.card label {
+  font-size: 1em;
+}
