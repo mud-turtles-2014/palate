@@ -28,7 +28,10 @@ class Tasting < ActiveRecord::Base
       correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
     end
     wine_bringer = self.event_wine.wine_bringer.name_or_email
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer }
+    conclusion_score = is_reasonable_conclusion
+    observation_score = is_reasonable_observation
+
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score }
 
     # raw_score = 0
     # correct_categories = current_tasting_attributes
@@ -75,11 +78,6 @@ class Tasting < ActiveRecord::Base
     euclidian_dist = Math.sqrt(sum)
   end
 
-  def is_reasonable_observation
-    reasonability_factor = 2.5
-    score_observations < reasonability_factor
-  end
-
   # shows distance from user's observations to user's selected wine
   def score_observations_against_guessed_wine
     if self.wine.color == "red"
@@ -88,15 +86,33 @@ class Tasting < ActiveRecord::Base
       guessed_grape = format_category(self.white_grape)
     end
     guessed_country = format_category(self.country)
-
     super_tasting = get_super_tasting(guessed_grape, guessed_country)
+    return 6.0 if !super_tasting
 
     get_euclidian_dist(super_tasting)
   end
 
   def is_reasonable_conclusion
-    reasonability_factor = 2.5
-    score_observations_against_guessed_wine < reasonability_factor
+    is_reasonable(score_observations_against_guessed_wine)
+  end
+
+  def is_reasonable_observation
+    is_reasonable(score_observations)
+  end
+
+  def is_reasonable(response)
+    puts response
+    if response <= 0.5
+      return "Master Somm Level"
+    elsif response <= 1.5
+      return "Junior Somm Level"
+    elsif response <= 2.5
+      return "Solid"
+    elsif response <= 3.5
+      return "Alright"
+    else
+      return "Errr, not the best"
+    end
   end
 
   def attributes_stored_by_int
