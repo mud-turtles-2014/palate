@@ -19,7 +19,9 @@
       <% else %>
         <font color="#8B0000"><li>Incorrect: <%= val %></li></font>
         <font color="green"><li>Answer: <%= report[:correct_answers][attr] %></li></font>
-         <li><b>How to detect <%= attr.downcase %>: </b><%= report[:feedback_hash][attr] %></li>
+        <% if report[:feedback_hash][attr] %>
+          <li><b>How to detect <%= attr.downcase %>: </b><%= report[:feedback_hash][attr] %></li>
+        <% end %>
       <% end %>
     <% end %>
     <h4>Your observations were:</h4>
