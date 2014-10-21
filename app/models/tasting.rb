@@ -47,6 +47,22 @@ class Tasting < ActiveRecord::Base
     return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories }
   end
 
+  def get_problem_categories(tasting, reasonability)
+    return nil if !tasting
+    return nil unless reasonability == "Alright" || reasonability == "Errr, not the best"
+    problem_categories = []
+
+    attributes_stored_by_int
+
+    attributes_stored_by_int.each do |attribute|
+      if (tasting[attribute] - self[attribute]).abs > 1
+        problem_categories << { category: format_category(attribute), correct_response: self[attribute] }
+      end
+    end
+
+    return problem_categories
+  end
+
   def get_conclusion_feedback(reasonability)
     if reasonability == "Alright" || reasonability == "Errr, not the best"
       GUIDANCE[get_super_tasting_for_guessed_wine.wine.name]
@@ -114,20 +130,6 @@ class Tasting < ActiveRecord::Base
     end
 
     euclidian_dist = Math.sqrt(sum)
-  end
-
-  def get_problem_categories(tasting, reasonability)
-    return nil if !tasting
-    return nil unless reasonability == "Alright" || reasonability == "Errr, not the best"
-    problem_categories = []
-
-    attributes_stored_by_int.each do |attribute|
-      if (tasting[attribute] - self[attribute]).abs > 1
-        problem_categories << attribute
-      end
-    end
-
-    return problem_categories
   end
 
   def get_super_tasting_for_guessed_wine
