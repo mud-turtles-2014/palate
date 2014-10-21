@@ -46,7 +46,9 @@ class Tasting < ActiveRecord::Base
 
     conclusion_feedback = get_conclusion_feedback(conclusion_score)
 
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash, conclusion_feedback: conclusion_feedback }
+    conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine)
+
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash, conclusion_feedback: conclusion_feedback, conclusion_problem_categories: conclusion_problem_categories }
   end
 
   def get_conclusion_feedback(reasonability)
@@ -119,10 +121,12 @@ class Tasting < ActiveRecord::Base
   end
 
   def get_problem_categories(tasting)
+    return [] if !tasting
+
     problem_categories = []
 
     attributes_stored_by_int.each do |attribute|
-      if tasting[attribute] - self[attribute] > abs val of 1
+      if (tasting[attribute] - self[attribute]).abs > 1
         problem_categories << attribute
       end
     end
