@@ -1,24 +1,22 @@
-<!-- <div class="sticky"> -->
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">Wine Tasting App</a></h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-    </ul>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">Wine Tasting App</a></h1>
+    </li>
+    <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+  </ul>
 
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li><a href="/tasting_tutorial">How to Taste</a></li>
-        <% if !session[:user_id] %>
-          <li><a href="/login">Login/Signup</a></li>
-        <% else %>
-          <li><a href="/my_events">My Events</a></li>
-          <li><a href='/users/<%="#{session[:user_id]}"%>/edit'>My Account</a></li>
-          <li><a href="/logout">Log Out</a></li>
-        <% end %>
-      </ul>
-    </section>
-  </nav>
-<!-- <div> -->
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><a href="/tasting_tutorial">How to Taste</a></li>
+      <% if !session[:user_id] %>
+        <li><a href="/login">Login/Signup</a></li>
+      <% else %>
+        <li><a href="/my_events">My Events</a></li>
+        <li><a href='/users/<%="#{session[:user_id]}"%>/edit'>My Account</a></li>
+        <li><a href="/logout">Log Out</a></li>
+      <% end %>
+    </ul>
+  </section>
+</nav>  
