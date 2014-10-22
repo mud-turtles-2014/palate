@@ -32,6 +32,7 @@ class Tasting < ActiveRecord::Base
     attributes = current_tasting_attributes
     user_results = {}
     correct_answers = {}
+
     attributes.each do |attribute|
       user_results[format_category(attribute)] = format_category(self.send(attribute))
       correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
