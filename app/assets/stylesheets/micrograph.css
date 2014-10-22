@@ -1,4 +1,4 @@
-.micrograph, .sad-face, .correct {
+.micrograph, .sad-face, .correct, .observation {
   height: 35px;
   width: 35px;
   margin: auto;
@@ -33,4 +33,5 @@
 .results td {
   text-align: center;
   line-height: 35px;
+  width: 33%;
 }
