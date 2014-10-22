@@ -14,9 +14,13 @@
     </p>
 
     <p>
-    To accept or decline, just go to this URL: 
+    To accept or decline, just go to  
 
-    <%= link_to 'this url', edit_event_wine_url(@event_wine, {d: @event_wine.wine_bringer.remember_digest}) %>
+    <%= link_to 'this url', edit_event_wine_url(@event_wine, {d: @event_wine.wine_bringer.remember_digest}) %>.
+    </p>
+
+    <p>
+    On the day of the event, you can <%= link_to 'go here to start tasting', quiz_url(@event_wine.event, {d: @event_wine.wine_bringer.remember_digest}) %>.
     </p>
 
     <p>
