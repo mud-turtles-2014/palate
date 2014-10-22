@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022000711) do
+ActiveRecord::Schema.define(version: 20141022024753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,14 +54,7 @@ ActiveRecord::Schema.define(version: 20141022000711) do
     t.datetime "updated_at"
     t.integer  "event_wine_id"
     t.text     "tasting_notes"
-  end
-
-  create_table "user_results", force: true do |t|
-    t.integer  "tasting_id"
-    t.string   "category"
-    t.boolean  "is_correct"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "is_blind",        default: true
   end
 
   create_table "users", force: true do |t|
