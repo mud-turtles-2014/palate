@@ -57,6 +57,26 @@ class EventsController < ApplicationController
     end
   end
 
+  def make_graph_data result_hash
+     result_hash[:user_results].each do |k, v|
+      user_answer = v
+      correct_answer = result_hash[:correct_answers][k]
+      if user_answer == correct_answer
+        attribute_score = @graph_data[k]
+        attribute_score += 1
+        @graph_data[k] = attribute_score
+      end
+    end
+  end
+
+  # def make_super_graph super_hash
+  #   correct_answers.each do |k, v|
+  #     super_score = @super_graph[k]
+  #     super_score += 1
+  #     @super_graph[k] = super_score
+  #   end
+  # end
+
   def user_scores
     if !current_user
       redirect_to '/login'
@@ -64,8 +84,11 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
       @user_tastings = Tasting.where(event_wine: EventWine.where(event: @event), user: current_user)
       @score_report = []
+      @graph_data = Hash.new(0)
+      # @super_graph = Hash.new(0)
       @user_tastings.each do |tasting|
         @score_report << tasting.score_report
+        make_graph_data tasting.score_report
       end
     end
   end
