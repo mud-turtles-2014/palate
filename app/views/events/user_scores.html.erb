@@ -17,7 +17,7 @@
         <% if report[:correct_answers][attr][:num_response] == 0 && report[:user_results][attr][:num_response] == 0 %>
           <div class="sad-face"><img src="/images/sad-face.png"></div></td>
         <% else %>
-          <div class="micrograph">
+          <div class="micrograph"><div class="circle">
             <!-- multiply num response value by percentage (ie 1 => 20%, 2 => 40%) -->
             <% user_height = report[:user_results][attr][:num_response] * 20 %>
             <% somm_height = report[:correct_answers][attr][:num_response] * 20 %>
@@ -26,7 +26,7 @@
             <div class="user-response" style="height: <%= user_height %>%; margin-top: <%= user_margin %>%;">
             </div>
             <div class="somm-response" style="height:<%= somm_height %>%; margin-top: <%= somm_margin %>%;">
-            </div>
+            </div></div>
           </div></td>
         <% end %>
       <% end %>
