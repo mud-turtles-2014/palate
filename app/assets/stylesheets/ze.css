@@ -186,13 +186,13 @@ div.marketing {
   border-bottom: 2px solid #e3ebd6;
   border-right: 2px solid #e3ebd6;
   border-radius: 5px;
-  padding: 25% 12%;
+  padding: 25% 20%;
   margin-bottom: 2%;
   overflow: hidden;
-  text-align: center;
-  font-size: 2em;
+  /*text-align: center;*/
+/*  font-size: 2em;*/
 }
 
-.card label {
-  font-size: 1em;
+.card label h2 {
+  font-size: 2em;
 }
