@@ -9,19 +9,15 @@
   </tr>
   <% report[:user_results].each do |attr, val| %>
     <tr>
-      <td></td>
-      <td><%= attr %></td>
-      <td></td>
-    </tr>
-    <tr>
       <td><%= report[:user_results][attr][:text_response] %></td>
+        <td><%= attr %><br>
       <% if report[:user_results][attr][:text_response] == report[:correct_answers][attr][:text_response] %>
-        <td>&#x2713;</td>
+        <div class="correct"><p>&#x2713;</p></div></td>
       <% else %>
         <% if report[:correct_answers][attr][:num_response] == 0 && report[:user_results][attr][:num_response] == 0 %>
-          <td><div class="sad-face"><img src="/images/sad-face.png"></div></td>
+          <div class="sad-face"><img src="/images/sad-face.png"></div></td>
         <% else %>
-          <td><div class="micrograph">
+          <div class="micrograph">
             <!-- multiply num response value by percentage (ie 1 => 20%, 2 => 40%) -->
             <% user_height = report[:user_results][attr][:num_response] * 20 %>
             <% somm_height = report[:correct_answers][attr][:num_response] * 20 %>
@@ -37,6 +33,23 @@
       <td><%= report[:correct_answers][attr][:text_response] %></td>
     </tr>
   <% end %>
+</table>
+<table class="results">
+  <tr>
+    <td colspan="2">Quick Stats</td>
+  </tr>
+  <tr>
+    <td>Guess</td>
+    <td>placeholder</td>
+  </tr>
+  <tr>
+    <td>Observations</td>
+    <td>placeholder</td>
+  </tr>
+  <tr>
+    <td>Conclusion</td>
+    <td>placeholder</td>
+  </tr>
 </table>
 <% end %>
 
