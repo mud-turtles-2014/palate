@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141022000711) do
   create_table "tastings", force: true do |t|
     t.integer  "red_fruits"
     t.integer  "white_fruits"
+    t.integer  "fruit_condition"
     t.integer  "minerality"
     t.integer  "oak"
     t.integer  "dry"
@@ -51,7 +52,6 @@ ActiveRecord::Schema.define(version: 20141022000711) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "fruit_condition"
     t.integer  "event_wine_id"
     t.text     "tasting_notes"
   end

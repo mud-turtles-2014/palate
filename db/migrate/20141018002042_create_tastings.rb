@@ -3,6 +3,7 @@ class CreateTastings < ActiveRecord::Migration
     create_table :tastings do |t|
       t.integer :red_fruits
       t.integer :white_fruits
+      t.integer :fruit_condition
       t.integer :minerality
       t.integer :oak
       t.integer :dry
