@@ -3,14 +3,14 @@
 <h3><%= report[:wine_bringer] %>'s Wine :</h3>
 <table class="results">
   <tr>
-    <td>You</td>
+    <td><p>You<p></td>
     <td></td>
-    <td>The Master Somm</td>
+    <td><p>The Master Somm</p></td>
   </tr>
   <% report[:user_results].each do |attr, val| %>
     <tr>
-      <td><%= report[:user_results][attr][:text_response] %></td>
-        <td><%= attr %><br>
+      <td><p><%= report[:user_results][attr][:text_response] %></p></td>
+        <td><p><%= attr %></p><br>
       <% if report[:user_results][attr][:text_response] == report[:correct_answers][attr][:text_response] %>
         <div class="correct"><p>&#x2713;</p></div></td>
       <% else %>
@@ -30,37 +30,48 @@
           </div></td>
         <% end %>
       <% end %>
-      <td><%= report[:correct_answers][attr][:text_response] %></td>
+      <td><p><%= report[:correct_answers][attr][:text_response] %></p></td>
     </tr>
   <% end %>
     <tr class="observation_score">
-      <td>Observations</td>
-      <td colspan="2"><%= report[:observation_score] %></td>
+      <td><p>Observations</p></td>
+      <td colspan="2"><p><%= report[:observation_score] %></p></td>
     </tr>
     <tr class="observation_feedback">
-      <td colspan="3">More description</td>
+      <td colspan="3">
+        <% report[:observation_feedback].each do |attr, feedback| %>
+          <p><%= attr %>: <%= feedback %></p>
+        <% end %>
+      </td>
     </tr>
   </table>
 
   <table class="results">
     <% report[:user_conclusions].each do |attr, val| %>
     <tr>
-      <td><%= report[:user_conclusions][attr] %></td>
-        <td><%= attr %><br>
+      <td><p><%= report[:user_conclusions][attr] %></p></td>
+        <td><p><%= attr %></p><br>
       <% if report[:user_conclusions][attr] == report[:correct_conclusions][attr] %>
         <div class="correct"><p>&#x2713;</p></div></td>
       <% else %>
         <div class="sad-face"><img src="/images/sad-face.png"></div></td>
       <% end %>
-      <td><%= report[:correct_conclusions][attr] %></td>
+      <td><p><%= report[:correct_conclusions][attr] %></p></td>
     </tr>
     <% end %>
     <tr class="conclusion_score">
-      <td>Conclusion</td>
-      <td colspan="2"><%= report[:conclusion_score] %></td>
+      <td><p>Conclusion</p></td>
+      <td colspan="2"><p><%= report[:conclusion_score] %></p></td>
     </tr>
     <tr class="conclusion_feedback">
-      <td colspan="3">More description</td>
+      <!-- <td colspan="3"><p> report[:conclusion_feedback] %></p></td> -->
+      <td colspan="3">
+      <% if report[:conclusion_feedback] %>
+        <% report[:conclusion_feedback].each do |attr, correct_val| %>
+          <p><%= attr[:category] %>: <%= report[:user_conclusions]["Grape"] %> from <%= report[:user_conclusions]["Country"] %> typically has <%= attr[:correct_response] %> <%= attr[:category].downcase %>.</p>
+        <% end %>
+      <% end %>
+      </td>
     </tr>
     <tr></tr>
   </table>

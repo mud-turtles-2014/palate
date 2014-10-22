@@ -50,9 +50,11 @@ class Tasting < ActiveRecord::Base
     wine_bringer = self.event_wine.wine_bringer.name_or_email
     conclusion_score = is_reasonable_conclusion
     observation_score = is_reasonable_observation
+    observation_feedback = get_observation_feedback
+    conclusion_feedback = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
 
     # take conclusions out of user_results and correct_answers
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions}
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
   end
 
   def conclusion_attr_array
