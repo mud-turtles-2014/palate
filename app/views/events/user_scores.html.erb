@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <td><%= report[:user_results][attr][:text_response] %></td>
-      <% if report[:user_results][attr][:num_response] == report[:correct_answers][attr][:num_response] %>
+      <% if report[:user_results][attr][:text_response] == report[:correct_answers][attr][:text_response] %>
         <td>&#x2713;</td>
       <% else %>
         <td><div class="micrograph">

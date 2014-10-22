@@ -35,12 +35,22 @@ class Tasting < ActiveRecord::Base
 
     # user_result = { attr: {text_response: num, string_response: }}
     attributes.each do |attribute|
-      user_results[format_category(attribute)] = { text_response: format_category(self.send(attribute)), num_response: self[attribute] }
-      correct_answers[format_category(attribute)] = { text_response: format_category(super_tasting.send(attribute)), num_response: super_tasting[attribute] }
+
+      user_results[format_category(attribute)] = make_result_hash(attribute, self)
+
+      correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
     end
     wine_bringer = self.event_wine.wine_bringer.name_or_email
 
     return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer}
+  end
+
+  def make_result_hash(attribute, tasting)
+    if attribute == :red_fruits || attribute == :white_fruits || attribute == :climate || attribute == :country || attribute == :white_grape || attribute == :red_grape
+      { text_response: format_category(tasting.send(attribute)), num_response: 0 }
+    else
+      { text_response: format_category(tasting.send(attribute)), num_response: tasting[attribute] }
+    end
   end
 
   # def score_report
