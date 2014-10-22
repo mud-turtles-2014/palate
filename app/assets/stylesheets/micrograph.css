@@ -19,3 +19,11 @@
   position: relative;
   margin-bottom: 0;
 }
+
+.results {
+  width: 100%;
+}
+
+.results td {
+  text-align: center;
+}
