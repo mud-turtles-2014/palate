@@ -96,6 +96,10 @@ class EventsController < ApplicationController
   def show_quiz
     # TO DO: refactor into model methods
     # change each enumerator to a map
+
+    set_user_from_email_invite
+    redirect_to '/' unless current_user
+
     @event = Event.find(params[:id])
     all_wines = @event.winelist
     tasted_wines_tastings = Tasting.joins(:event_wine).where('event_wines.event_id = ?', @event.id).where(user: current_user).to_a

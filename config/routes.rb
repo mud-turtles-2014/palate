@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   get '/my_events' => 'events#user_events'
 
-  get '/events/:id/quiz' => 'events#show_quiz'
+  get '/events/:id/quiz' => 'events#show_quiz', as: :quiz
 
   # get '/event_wines/:id/show' => 'event_wines#show'
   # get '/event_wines/:id/edit' => 'event_wines#edit'

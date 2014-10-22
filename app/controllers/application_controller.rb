@@ -6,4 +6,14 @@ class ApplicationController < ActionController::Base
   def current_user
     User.find_by_id(session[:user_id])
   end
+
+  def set_user_from_email_invite
+  	if params[:d]
+  		user = User.find_by(remember_digest: params[:d])
+  		if user
+  			session[:user_id] = user.id
+  		end
+  	end
+  end
+
 end
