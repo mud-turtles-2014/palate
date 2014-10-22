@@ -38,6 +38,8 @@ gem 'time_zone_ext'
 
 gem 'seed_dump'
 
+gem 'pry'
+
 gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'foundation-rails'
