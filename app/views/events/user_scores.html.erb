@@ -14,7 +14,21 @@
     </tr>
     <tr>
       <td><%= report[:user_results][attr] %></td>
-      <td></td>
+      <% if report[:user_results][attr] == report[:correct_answers][attr] %>
+        <td>&#x2713;</td>
+      <% else %>
+        <td><div class="micrograph">
+          <!-- multiply num response value by percentage (ie 1 => 20%, 2 => 40%) -->
+          <% user_height = 3 * 20 %>
+          <% somm_height = 5 * 20 %>
+          <% user_margin = 100 - user_height %>
+          <% somm_margin = 100 - somm_height %>
+          <div class="user-response" style="height: <%= user_height %>%; margin-top: <%= user_margin %>%;">
+          </div>
+          <div class="somm-response" style="height:<%= somm_height %>%; margin-top: <%= somm_margin %>%;">
+          </div>
+        </div></td>
+      <% end %>
       <td><%= report[:correct_answers][attr] %></td>
     </tr>
   <% end %>
