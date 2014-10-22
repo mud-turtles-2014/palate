@@ -16,8 +16,10 @@
 
     <%= render "layouts/topbar" %>
 
-    <%= yield %>
-    
+    <div class="quiz-container">
+      <%= yield %>
+    </div>
+
     <%= javascript_include_tag "application" %>
   </body>
 </html>
