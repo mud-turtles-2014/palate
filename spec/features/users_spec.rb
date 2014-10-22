@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-feature 'User sign up/login' do
+feature 'User sign up' do
+
   scenario "adds a new user" do
     visit root_path
     expect{
