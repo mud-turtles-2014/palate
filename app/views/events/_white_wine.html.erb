@@ -1,82 +1,15 @@
-  <label for="white_fruits">Fruits</label><br>
-  <select name="white_fruits">
-    <option value="apple_pear">Apple/Pear</option>
-    <option value="stone">Stone Fruit</option>
-    <option value="citrus">Citrus</option>
-    <option value="tropical">Tropical</option>
-  </select><br>
+<div class="card">
+   <label for="white_fruits"><h2>Fruits</h2></label><br>
+  <input type="radio" name="white_fruits" value="apple_pear" id="apple_pear"><label for="apple_pear">Apple/Pear</label><br>
+  <input type="radio" name="white_fruits" value="stone" id="stone"><label for="stone">Stone</label><br>
+  <input type="radio" name="white_fruits" value="citrus" id="citrus"><label for="citrus">Citrus</label><br>
+  <input type="radio" name="white_fruits" value="tropical" id="tropical"><label for="tropical">Tropical</label>
+</div>
 
-  <label for="fruit_condition">Fruit Condition</label><br>
-  <select name="fruit_condition">
-    <option value="tart">tart</option>
-    <option value="ripe">ripe</option>
-    <option value="over_ripe">over-ripe</option>
-    <option value="jammy">jammy</option>
-  </select><br>
+<%= render "both_wines" %>
 
-  <label for="minerality">Minerality</label><br>
-  <select name="minerality">
-    <option value="1">low</option>
-    <option value="2">med-minus</option>
-    <option value="3">med</option>
-    <option value="4">med-plus</option>
-    <option value="5">hi</option>
-  </select><br>
-
-  <label for="oak">Oak</label><br>
-  <select name="oak">
-    <option value="1">low</option>
-    <option value="2">med-minus</option>
-    <option value="3">med</option>
-    <option value="4">med-plus</option>
-    <option value="5">hi</option>
-  </select><br>
-
-  <label for="dry">Dryness</label><br>
-  <select name="dry">
-    <option value="1">low</option>
-    <option value="2">med-minus</option>
-    <option value="3">med</option>
-    <option value="4">med-plus</option>
-    <option value="5">hi</option>
-  </select><br>
-
-  <label for="acid">Acidity</label><br>
-  <select name="acid">
-    <option value="1">low</option>
-    <option value="2">med-minus</option>
-    <option value="3">med</option>
-    <option value="4">med-plus</option>
-    <option value="5">hi</option>
-  </select><br>
-
-  <label for="alcohol">Alcohol</label><br>
-  <select name="alcohol">
-    <option value="1">low</option>
-    <option value="2">med-minus</option>
-    <option value="3">med</option>
-    <option value="4">med-plus</option>
-    <option value="5">hi</option>
-  </select><br>
-
-  <label for="climate">Climate</label><br>
-  <select name="climate">
-    <option value="cool">Cool</option>
-    <option value="warm">Warm</option>
-  </select><br>
-
-  <label for="country">Country of Origin</label><br>
-  <select name="country">
-    <option value="france">France</option>
-    <option value="italy">Italy</option>
-    <option value="us">US</option>
-    <option value="australia">Australia</option>
-    <option value="argentina">Argentina</option>
-    <option value="germany">Germany</option>
-    <option value="new_zealand">New Zealand</option>
-  </select><br>
-
-  <label for="white_grape">Grape</label><br>
+<div class="card">
+  <label for="white_grape"><h2>Grape</h2></label><br>
   <select name="white_grape">
     <option value="chardonnay">Chardonnay</option>
     <option value="sauvignon_blanc">Sauvignon Blanc</option>
@@ -84,3 +17,4 @@
     <option value="chenin_blanc">Chenin Blanc</option>
     <option value="viognier">Viognier</option>
   </select><br><br>
+</div>
