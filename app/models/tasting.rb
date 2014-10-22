@@ -224,7 +224,7 @@ class Tasting < ActiveRecord::Base
 
   def parse_tasting_attributes
     all_attributes = Tasting.last.attributes.map {|attribute, val| attribute}
-    wine_attributes = all_attributes.reject {|attribute| /(_id|_at|\bid|tasting_notes)/.match(attribute)}
+    wine_attributes = all_attributes.reject {|attribute| /(_id|_at|\bid|tasting_notes|is_blind)/.match(attribute)}
     wine_attributes.map! {|attribute| attribute.to_sym}
   end
 
