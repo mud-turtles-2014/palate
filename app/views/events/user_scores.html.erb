@@ -1,6 +1,27 @@
 <h2>My Results</h2>
-<div id="chart_div">
-</div>
+<table style="width:100%">
+  <tr>
+    <td>You</td>
+    <td></td>
+    <td>The Master Somm</td>
+  </tr>
+  <% report = @score_report[0] %>
+  <% report[:user_results].each do |attr, val| %>
+    <tr>
+      <td></td>
+      <td><%= attr %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><%= report[:user_results][attr] %></td>
+      <td></td>
+      <td><%= report[:correct_answers][attr] %></td>
+    </tr>
+  <% end %>
+</table>
+<% @score_report.each do |report| %>
+<% end %>
+
 <% @score_report.each do |report| %>
   <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
@@ -43,36 +64,6 @@
       <% end %>
     <% end %>
   </ul>
-
   <!-- add jquery slider here to view more in depth feedback -->
 <% end %>
 
-<!--<%= @graph_data %>-->
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-    <script type="text/javascript">
-      google.load("visualization", "1", {packages:["corechart"]});
-      google.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Aspect', 'My Score', { role: 'annotation' }],
-           <% @graph_data.each do |attr, val| %>
-           [ '<%= attr  %>', <%= val %>, '<%= attr  %>'],
-           <% end %>
-        ]);
-
-        var options = {
-          // title: 'This Event', titleTextStyle: {fontSize: 20},
-          backgroundColor: "transparent",
-          legend: {position: 'none'},
-          colors:['#9685A0'],
-          vAxis: {maxValue: 20},
-          hAxis: {baseline: 0, baselineColor: '#9685A0'},
-          chartArea:{left:10,top:20,width:"80%",height:"80%"},
-          orientation: 'vertical'
-        };
-
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-
-        chart.draw(data, options);
-      }
-    </script>
