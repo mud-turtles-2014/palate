@@ -1,4 +1,4 @@
-wine-tasting ![travis-ci-status](https://travis-ci.org/mud-turtles-2014/wine-tasting.svg?branch=master)
+Palate ![travis-ci-status](https://travis-ci.org/mud-turtles-2014/palate.svg?branch=master)
 ==============
 
 ##The Problem
@@ -10,7 +10,7 @@ Wine tastings foster the growth of genuine social connection and critical analys
 Palate is built with a Rails backend. To set up:
 
 ```
-git clone https://github.com/mud-turtles-2014/wine-tasting.git
+git clone https://github.com/mud-turtles-2014/palate.git
 ```
 
 Run bundle:
@@ -31,4 +31,4 @@ rails s
 * [Steph Zhang](https://github.com/stephtzhang)
 * [Jessica Armstrong](https://github.com/jarmstrng)
 
-The three of us are currently attending [DevBootcamp](http://devbootcamp.com) in NYC. Wine Tasting is our final project. We hope you find it useful and fun. Happy tasting!
+The three of us are currently attending [DevBootcamp](http://devbootcamp.com) in NYC. Palate is our final project. We hope you find it useful and fun. Happy tasting!
