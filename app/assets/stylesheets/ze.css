@@ -197,15 +197,53 @@ div.marketing {
   border-right: 2px solid #e3ebd6;
   border-radius: 5px;
   padding: 25% 20%;
-  margin: 3%;
+  margin: 3% 3% 3% 0;
   overflow: hidden;
   font-size: 1em;
 }
 
-.card label {
-  font-size: 1em;
+.card form {
+  display: block;
+  background-color: #EDF5DF;
 }
 
-.card label h2{
+.card section {
+  display: table;
+  width: 100%;
+  min-height: 10em;
+  background-color: #EDF5DF;
+}
+
+.card label {
+  font-size: 1em;
+  display: table-cell;
+  margin: 0;
+  padding: 1em;
+  text-align: center;
+  vertical-align: middle;
+  user-select:none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  background-color: #e3ebd6;
+}
+
+input[type="radio"] + label:hover {
+  background: #EDF5DF;
+}
+
+input[type="radio"]:checked + label {
+  background: #4d591a;
+  color: white;
+}
+
+.card label h2 {
   font-size: 1.5em;
 }
