@@ -42,6 +42,11 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'foundation-rails'
 
+group :test do
+  gem 'capybara'
+  gem 'shoulda-matchers'
+end
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
