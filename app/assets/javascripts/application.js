@@ -19,4 +19,30 @@
 //   $( "#datepicker" ).datepicker();
 // });
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+
+  $(".conclusion_feedback").hide();
+  $(".observation_feedback").hide();
+
+  $(".observation_score").click(function() {
+    $(this).next().toggle()
+  });
+
+  $(".conclusion_score").click(function() {
+    $(this).next().toggle()
+  });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
