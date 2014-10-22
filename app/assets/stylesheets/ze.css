@@ -249,3 +249,14 @@ input[type="radio"]:checked + label {
 .card label h2 {
   font-size: 1.5em;
 }
+
+.card a {
+  font-size: 3em;
+  color: #4d591a;
+  padding-left: 50%;
+}
+
+.card a:hover {
+  color: #86a02d;
+}
+
