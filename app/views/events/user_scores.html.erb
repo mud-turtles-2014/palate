@@ -1,10 +1,21 @@
 <h2>My Results</h2>
+
+<div id="chart_div">
+</div>
+
 <% @score_report.each do |report| %>
   <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
-    <% report[:user_results]["Country"] = "the #{report[:user_results]["Country"]}" if report[:user_results]["Country"] == "United States" %>
-    <li>You guessed: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
-    <li>The wine was: <%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
+    <% if report[:user_results]["Country"] == "United States" %>
+      <% report[:user_results]["Country"] = "the #{report[:user_results]["Country"]}" %>
+    <% end %>
+    <% if report[:correct_answers]["Country"] == "United States" %>
+      <% report[:correct_answers]["Country"] = "the #{report[:correct_answers]["Country"]}" %>
+    <% end %>
+    <h4>You guessed:</h4>
+    <li><%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
+    <h4>The wine was:</h4>
+    <li><%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
     <% report[:user_results].each do |attr, val| %>
       <h4><%= attr %></h4>
       <% if report[:user_results][attr] == report[:correct_answers][attr] %>
@@ -12,10 +23,52 @@
       <% else %>
         <font color="#8B0000"><li>Incorrect: <%= val %></li></font>
         <font color="green"><li>Answer: <%= report[:correct_answers][attr] %></li></font>
+        <% if report[:feedback_hash][attr] %>
+          <li><b>How to detect <%= attr.downcase %>: </b><%= report[:feedback_hash][attr] %></li>
+        <% end %>
       <% end %>
     <% end %>
-    <li>Your observations were: <%= report[:observation_score] %></li>
-    <li>Your wine choice based on your observations was: <%= report[:conclusion_score] %></li>
+    <h4>Your observations were:</h4>
+    <li><%= report[:observation_score] %></li>
+    <h4>Your wine choice based on your observations was: </h4>
+    <li><%= report[:conclusion_score] %></li>
+    <% if report[:conclusion_problem_categories] %>
+      <h4>Your problem categories for mapping your observations to your conclusion were: </h4>
+      <% report[:conclusion_problem_categories].each do |problem_categories| %>
+        <li><%= problem_categories[:category] %>: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %> typically has <%= problem_categories[:correct_response] %> <%= problem_categories[:category].downcase %></li>
+      <% end %>
+    <% end %>
   </ul>
+
   <!-- add jquery slider here to view more in depth feedback -->
 <% end %>
+
+<!--<%= @graph_data %>-->
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Aspect', 'My Score', { role: 'annotation' }],
+           <% @graph_data.each do |attr, val| %>
+           [ '<%= attr  %>', <%= val %>, '<%= attr  %>'],
+           <% end %>
+        ]);
+
+        var options = {
+          // title: 'This Event', titleTextStyle: {fontSize: 20},
+          backgroundColor: "transparent",
+          legend: {position: 'none'},
+          colors:['#9685A0'],
+          vAxis: {maxValue: 20},
+          hAxis: {baseline: 0, baselineColor: '#9685A0'},
+          chartArea:{left:10,top:20,width:"80%",height:"80%"},
+          orientation: 'vertical'
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
