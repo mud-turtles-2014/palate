@@ -1,4 +1,5 @@
 nav.top-bar {
+  margin-top: -4px;
   background: #86A02D;
   position: fixed;
   width: 100%;
@@ -189,9 +190,8 @@ div.marketing {
   border-right: 2px solid #e3ebd6;
   border-radius: 5px;
   padding: 25% 20%;
-  margin-bottom: 2%;
+  margin: 3%;
   overflow: hidden;
-  /*text-align: center;*/
   font-size: 1em;
 }
 
