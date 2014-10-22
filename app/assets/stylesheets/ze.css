@@ -180,3 +180,7 @@ div.marketing {
 .footer a {
   color: black;
 }
+
+#chart_div{
+  margin-left: 2%;
+}
