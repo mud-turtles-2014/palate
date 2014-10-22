@@ -2,6 +2,9 @@ class EventWinesController < ApplicationController
   before_action :get_event_wine
 
 	def edit
+    set_user_from_email_invite
+    redirect_to '/' unless current_user
+    
     if @event_wine.is_attending != nil
 			redirect_to my_events_path
 		end

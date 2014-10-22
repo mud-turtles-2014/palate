@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :password,  length: { minimum: 3 },
                         confirmation: true,
                         presence: true
+  
+  before_create :create_remember_digest
 
   def upcoming_events
     reservations = self.event_wines.where(event: Event.where(['date >= ?', Time.now]))
@@ -29,6 +31,19 @@ class User < ActiveRecord::Base
     else
       return self.email
     end
+  end
+
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def create_remember_digest
+    self.remember_digest = Digest::SHA1.hexdigest(User.new_token)
+  end
+
+  def self.find_from_remember_digest token
+    find_by(remember_digest: Digest::SHA1.hexdigest(token))
+
   end
 
 end

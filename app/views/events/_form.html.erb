@@ -1,6 +1,6 @@
 <%= form_for @event do |f|%>
 
-  <%= text_area_tag :emails, "Invite guests by entering emails separated by commas!" %>
+  <%= text_area_tag :emails, "", {:placeholder => "Invite guests by entering emails separated by commas!"} %>
 
   <fieldset>
     <%= f.text_field :name, placeholder: "Event Name" %>

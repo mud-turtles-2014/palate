@@ -14,7 +14,9 @@
     </p>
 
     <p>
-    To accept or decline, just go to this URL: <%= @url %>
+    To accept or decline, just go to this URL: 
+
+    <%= link_to 'this url', edit_event_wine_url(@event_wine, {d: @event_wine.wine_bringer.remember_digest}) %>
     </p>
 
     <p>
