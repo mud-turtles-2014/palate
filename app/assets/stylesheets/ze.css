@@ -232,6 +232,9 @@ input[type="radio"] {
 
 input[type="radio"] + label {
   background-color: #e3ebd6;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #F6FCEB;
 }
 
 input[type="radio"] + label:hover {
