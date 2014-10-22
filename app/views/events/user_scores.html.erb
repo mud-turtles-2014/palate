@@ -28,6 +28,10 @@
         <% end %>
       <% end %>
     <% end %>
+    <% if report[:tasting_notes] %>
+      <h4>Tasting Notes: </h4>
+      <li><%= report[:tasting_notes] %></li>
+    <% end %>
     <h4>Your observations were:</h4>
     <li><%= report[:observation_score] %></li>
     <h4>Your wine choice based on your observations was: </h4>
