@@ -1,11 +1,12 @@
 <h2>My Results</h2>
+<% @score_report.each do |report| %>
+<h3><%= report[:wine_bringer] %>'s Wine :</h3>
 <table style="width:100%">
   <tr>
     <td>You</td>
     <td></td>
     <td>The Master Somm</td>
   </tr>
-  <% report = @score_report[0] %>
   <% report[:user_results].each do |attr, val| %>
     <tr>
       <td></td>
@@ -13,14 +14,14 @@
       <td></td>
     </tr>
     <tr>
-      <td><%= report[:user_results][attr] %></td>
-      <% if report[:user_results][attr] == report[:correct_answers][attr] %>
+      <td><%= report[:user_results][attr][:text_response] %></td>
+      <% if report[:user_results][attr][:num_response] == report[:correct_answers][attr][:num_response] %>
         <td>&#x2713;</td>
       <% else %>
         <td><div class="micrograph">
           <!-- multiply num response value by percentage (ie 1 => 20%, 2 => 40%) -->
-          <% user_height = 3 * 20 %>
-          <% somm_height = 5 * 20 %>
+          <% user_height = report[:user_results][attr][:num_response] * 20 %>
+          <% somm_height = report[:correct_answers][attr][:num_response] * 20 %>
           <% user_margin = 100 - user_height %>
           <% somm_margin = 100 - somm_height %>
           <div class="user-response" style="height: <%= user_height %>%; margin-top: <%= user_margin %>%;">
@@ -29,55 +30,9 @@
           </div>
         </div></td>
       <% end %>
-      <td><%= report[:correct_answers][attr] %></td>
+      <td><%= report[:correct_answers][attr][:text_response] %></td>
     </tr>
   <% end %>
 </table>
-<% @score_report.each do |report| %>
-<% end %>
-
-<% @score_report.each do |report| %>
-  <h3><%= report[:wine_bringer] %>'s Wine :</h3>
-  <ul>
-    <% if report[:user_results]["Country"] == "United States" %>
-      <% report[:user_results]["Country"] = "the #{report[:user_results]["Country"]}" %>
-    <% end %>
-    <% if report[:correct_answers]["Country"] == "United States" %>
-      <% report[:correct_answers]["Country"] = "the #{report[:correct_answers]["Country"]}" %>
-    <% end %>
-    <h4>You guessed:</h4>
-    <li><%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
-    <h4>The wine was:</h4>
-    <li><%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
-      <h4>Observations:</h4>
-    <% report[:user_results].each do |attr, val| %>
-      <h4><%= "Conclusions:" if attr == "Climate" %></h4>
-      <h5><%= attr %></h5>
-      <% if report[:user_results][attr] == report[:correct_answers][attr] %>
-        <font color="green"><li>Correct: <%= val %></li></font>
-      <% else %>
-        <font color="#8B0000"><li>Incorrect: <%= val %></li></font>
-        <font color="green"><li>Answer: <%= report[:correct_answers][attr] %></li></font>
-        <% if report[:feedback_hash][attr] %>
-          <li><b>How to detect <%= attr.downcase %>: </b><%= report[:feedback_hash][attr] %></li>
-        <% end %>
-      <% end %>
-    <% end %>
-    <% if report[:tasting_notes] %>
-      <h4>Tasting Notes: </h4>
-      <li><%= report[:tasting_notes] %></li>
-    <% end %>
-    <h4>Your observations were:</h4>
-    <li><%= report[:observation_score] %></li>
-    <h4>Your wine choice based on your observations was: </h4>
-    <li><%= report[:conclusion_score] %></li>
-    <% if report[:conclusion_problem_categories] %>
-      <h4>Your problem categories for mapping your observations to your conclusion were: </h4>
-      <% report[:conclusion_problem_categories].each do |problem_categories| %>
-        <li><%= problem_categories[:category] %>: <%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %> typically has <%= problem_categories[:correct_response] %> <%= problem_categories[:category].downcase %></li>
-      <% end %>
-    <% end %>
-  </ul>
-  <!-- add jquery slider here to view more in depth feedback -->
 <% end %>
 
