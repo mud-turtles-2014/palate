@@ -42,10 +42,11 @@ class Tasting < ActiveRecord::Base
     conclusion_score = is_reasonable_conclusion
     observation_score = is_reasonable_observation
     feedback_hash = get_observation_feedback
-
     conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
+    # TODO make tasting_notes hash with super user tasting notes as well?
+    tasting_notes = self.tasting_notes
 
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories }
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories, tasting_notes: tasting_notes }
   end
 
   def get_problem_categories(tasting, reasonability)
