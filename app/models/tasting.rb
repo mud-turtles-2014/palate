@@ -33,21 +33,38 @@ class Tasting < ActiveRecord::Base
     user_results = {}
     correct_answers = {}
 
+    # user_result = { attr: {text_response: num, string_response: }}
     attributes.each do |attribute|
-      user_results[format_category(attribute)] = format_category(self.send(attribute))
-      correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
+      user_results[format_category(attribute)] = { text_response: format_category(self.send(attribute)), num_response: self[attribute] }
+      correct_answers[format_category(attribute)] = { text_response: format_category(super_tasting.send(attribute)), num_response: super_tasting[attribute] }
     end
     wine_bringer = self.event_wine.wine_bringer.name_or_email
 
-    conclusion_score = is_reasonable_conclusion
-    observation_score = is_reasonable_observation
-    feedback_hash = get_observation_feedback
-    conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
-    # TODO make tasting_notes hash with super user tasting notes as well?
-    tasting_notes = self.tasting_notes
-
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories, tasting_notes: tasting_notes }
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer}
   end
+
+  # def score_report
+  #   super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
+
+  #   attributes = current_tasting_attributes
+  #   user_results = {}
+  #   correct_answers = {}
+
+  #   attributes.each do |attribute|
+  #     user_results[format_category(attribute)] = format_category(self.send(attribute))
+  #     correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
+  #   end
+  #   wine_bringer = self.event_wine.wine_bringer.name_or_email
+
+  #   conclusion_score = is_reasonable_conclusion
+  #   observation_score = is_reasonable_observation
+  #   feedback_hash = get_observation_feedback
+  #   conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
+  #   # TODO make tasting_notes hash with super user tasting notes as well?
+  #   tasting_notes = self.tasting_notes
+
+  #   return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories, tasting_notes: tasting_notes }
+  # end
 
   def get_problem_categories(tasting, reasonability)
     return nil if !tasting
