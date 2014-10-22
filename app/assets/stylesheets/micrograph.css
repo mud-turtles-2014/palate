@@ -1,0 +1,20 @@
+.micrograph {
+  height: 40px;
+  width: 40px;
+}
+
+.user-response {
+  background-color: green;
+  width: 45%;
+  float: left;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.somm-response {
+  background-color: blue;
+  width: 45%;
+  float: left;
+  position: relative;
+  margin-bottom: 0;
+}
