@@ -38,9 +38,9 @@
       google.setOnLoadCallback(drawChart);
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
-          ['Aspect', 'My Score'],
+          ['Aspect', 'My Score', { role: 'annotation' }],
            <% @graph_data.each do |attr, val| %>
-           [ '<%= attr  %>', <%= val %>],
+           [ '<%= attr  %>', <%= val %>, '<%= attr  %>'],
            <% end %>
         ]);
 
@@ -49,10 +49,10 @@
           backgroundColor: "transparent",
           legend: {position: 'none'},
           colors:['#9685A0'],
-          hAxis: {maxValue: 20},
-          vAxis: {baseline: 0, baselineColor: '#9685A0'},
-          chartArea:{left:21,top:20,width:"100%",height:"70%"},
-          orientation: 'horizontal'
+          vAxis: {maxValue: 20},
+          hAxis: {baseline: 0, baselineColor: '#9685A0'},
+          chartArea:{left:10,top:20,width:"80%",height:"80%"},
+          orientation: 'vertical'
         };
 
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
