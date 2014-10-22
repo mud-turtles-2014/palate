@@ -7,7 +7,7 @@ Our goal in creating this app was to make wine more accessible to your average w
 Wine tastings foster the growth of genuine social connection and critical analysis skills, but depend on a leader to know each wine's characteristics.  This app removes that burden, giving each taster the opportunity to build on their own abilities within a group setting.
 
 ## Installation
-Wine Tasting is built with a Rails backend. To set up:
+Palate is built with a Rails backend. To set up:
 
 ```
 git clone https://github.com/mud-turtles-2014/wine-tasting.git
