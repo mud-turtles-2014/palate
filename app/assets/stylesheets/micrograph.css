@@ -1,11 +1,12 @@
 .micrograph {
-  height: 40px;
-  width: 40px;
+  height: 35px;
+  width: 35px;
+  margin: auto;
 }
 
 .user-response {
   background-color: green;
-  width: 45%;
+  width: 40%;
   float: left;
   position: relative;
   margin-bottom: 0;
@@ -13,7 +14,7 @@
 
 .somm-response {
   background-color: blue;
-  width: 45%;
+  width: 40%;
   float: left;
   position: relative;
   margin-bottom: 0;
