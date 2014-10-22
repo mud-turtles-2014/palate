@@ -35,7 +35,6 @@ class Tasting < ActiveRecord::Base
 
     # user_result = { attr: {text_response: num, string_response: }}
     attributes.each do |attribute|
-
       user_results[format_category(attribute)] = make_result_hash(attribute, self)
 
       correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)

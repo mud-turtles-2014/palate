@@ -1,7 +1,13 @@
-.micrograph {
+.micrograph, .sad-face {
   height: 35px;
   width: 35px;
   margin: auto;
+}
+
+.sad-face img {
+  height: 20px;
+  width: 20px;
+  margin-top: 25%;
 }
 
 .user-response {
