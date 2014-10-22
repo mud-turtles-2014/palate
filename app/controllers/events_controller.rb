@@ -35,7 +35,9 @@ class EventsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @event.user_id
+    if !current_user
+       redirect_to '/'
+    elsif current_user.id != @event.user_id
       flash[:edit_error] = "You are not allowed to edit this event."
       redirect_to event_path
     end
