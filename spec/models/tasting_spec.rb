@@ -18,7 +18,7 @@ describe Tasting do
   describe "#convert_num_to_category" do
     # let(:category) {tasting.acid}
 
-    it "returns 'Med-Minus' for the category" do
+    it "returns the correct level for the category" do
       expect(tasting.convert_num_to_category(tasting.acid)).to eq "Med-Minus"
     end
   end
