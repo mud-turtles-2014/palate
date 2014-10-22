@@ -11,6 +11,6 @@ class TastingsController < ApplicationController
 
   private
   def tasting_params
-    params.permit([:event_wine_id, :red_fruits, :white_fruits, :fruit_condition, :minerality, :oak, :dry, :acid, :tannin, :alcohol, :climate, :country, :red_grape, :white_grape])
+    params.permit([:event_wine_id, :red_fruits, :white_fruits, :fruit_condition, :minerality, :oak, :dry, :acid, :tannin, :alcohol, :climate, :country, :red_grape, :white_grape, :tasting_notes])
   end
 end
