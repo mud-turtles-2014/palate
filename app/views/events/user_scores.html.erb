@@ -33,24 +33,36 @@
       <td><%= report[:correct_answers][attr][:text_response] %></td>
     </tr>
   <% end %>
-  </table>
-  <table class="results">
-    <tr>
-      <td colspan="2">Quick Stats</td>
-    </tr>
-    <tr>
-      <td>Guess</td>
-      <!-- refactor to is_correct key in score_report hash -->
-      <td><%= report[:user_results]["Grape"] == report[:correct_answers]["Grape"] && report[:user_results]["Country"] == report[:correct_answers]["Country"] ? "Correct" : "Incorrect" %></td>
-    </tr>
-    <tr>
+    <tr class="observation_score">
       <td>Observations</td>
-      <td><%= report[:observation_score] %></td>
+      <td colspan="2"><%= report[:observation_score] %></td>
     </tr>
+    <tr class="observation_feedback">
+      <td colspan="3">More description</td>
+    </tr>
+  </table>
+
+  <table class="results">
+    <% report[:user_conclusions].each do |attr, val| %>
     <tr>
-      <td>Conclusion</td>
-      <td><%= report[:conclusion_score] %></td>
+      <td><%= report[:user_conclusions][attr] %></td>
+        <td><%= attr %><br>
+      <% if report[:user_conclusions][attr] == report[:correct_conclusions][attr] %>
+        <div class="correct"><p>&#x2713;</p></div></td>
+      <% else %>
+        <div class="sad-face"><img src="/images/sad-face.png"></div></td>
+      <% end %>
+      <td><%= report[:correct_conclusions][attr] %></td>
     </tr>
+    <% end %>
+    <tr class="conclusion_score">
+      <td>Conclusion</td>
+      <td colspan="2"><%= report[:conclusion_score] %></td>
+    </tr>
+    <tr class="conclusion_feedback">
+      <td colspan="3">More description</td>
+    </tr>
+    <tr></tr>
   </table>
 <% end %>
 
