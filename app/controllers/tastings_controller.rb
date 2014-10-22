@@ -6,6 +6,9 @@ class TastingsController < ApplicationController
     event = event_wine.event
     tasting = current_user.tastings.create(tasting_params)
 
+    if tasting.wine == event.event_wines.find_by(wine_bringer: current_user).wine
+      tasting.update(is_blind: false)
+    end
     redirect_to "/events/#{event.id}/quiz"
   end
 
