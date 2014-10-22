@@ -1,8 +1,6 @@
 <h2>My Results</h2>
-
 <div id="chart_div">
 </div>
-
 <% @score_report.each do |report| %>
   <h3><%= report[:wine_bringer] %>'s Wine :</h3>
   <ul>
@@ -16,8 +14,10 @@
     <li><%= report[:user_results]["Grape"] %> from <%= report[:user_results]["Country"] %></li>
     <h4>The wine was:</h4>
     <li><%= report[:correct_answers]["Grape"] %> from <%= report[:correct_answers]["Country"] %></li>
+      <h4>Observations:</h4>
     <% report[:user_results].each do |attr, val| %>
-      <h4><%= attr %></h4>
+      <h4><%= "Conclusions:" if attr == "Climate" %></h4>
+      <h5><%= attr %></h5>
       <% if report[:user_results][attr] == report[:correct_answers][attr] %>
         <font color="green"><li>Correct: <%= val %></li></font>
       <% else %>
