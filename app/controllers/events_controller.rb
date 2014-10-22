@@ -114,8 +114,11 @@ class EventsController < ApplicationController
     @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
     @wine_bringer = @event_wine.wine_bringer.name_or_email if @event_wine
     @tasting = Tasting.new
-    redirect_to "/events/#{@event.id}/my_results" unless @wine
-    render :layout => "quiz"
+    if @wine
+      render :layout => "quiz"
+    else
+      redirect_to "/events/#{@event.id}/my_results"
+    end
   end
 
   def destroy

@@ -224,7 +224,6 @@ div.marketing {
   user-select:none;
   -moz-user-select: none;
   -webkit-user-select: none;
-
 }
 
 input[type="radio"] {
@@ -233,6 +232,9 @@ input[type="radio"] {
 
 input[type="radio"] + label {
   background-color: #e3ebd6;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #F6FCEB;
 }
 
 input[type="radio"] + label:hover {
@@ -247,3 +249,14 @@ input[type="radio"]:checked + label {
 .card label h2 {
   font-size: 1.5em;
 }
+
+.card a {
+  font-size: 3em;
+  color: #4d591a;
+  padding-left: 50%;
+}
+
+.card a:hover {
+  color: #86a02d;
+}
+
