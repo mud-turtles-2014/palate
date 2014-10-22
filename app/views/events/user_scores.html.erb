@@ -33,23 +33,24 @@
       <td><%= report[:correct_answers][attr][:text_response] %></td>
     </tr>
   <% end %>
-</table>
-<table class="results">
-  <tr>
-    <td colspan="2">Quick Stats</td>
-  </tr>
-  <tr>
-    <td>Guess</td>
-    <td>placeholder</td>
-  </tr>
-  <tr>
-    <td>Observations</td>
-    <td>placeholder</td>
-  </tr>
-  <tr>
-    <td>Conclusion</td>
-    <td>placeholder</td>
-  </tr>
-</table>
+  </table>
+  <table class="results">
+    <tr>
+      <td colspan="2">Quick Stats</td>
+    </tr>
+    <tr>
+      <td>Guess</td>
+      <!-- refactor to is_correct key in score_report hash -->
+      <td><%= report[:user_results]["Grape"] == report[:correct_answers]["Grape"] && report[:user_results]["Country"] == report[:correct_answers]["Country"] ? "Correct" : "Incorrect" %></td>
+    </tr>
+    <tr>
+      <td>Observations</td>
+      <td><%= report[:observation_score] %></td>
+    </tr>
+    <tr>
+      <td>Conclusion</td>
+      <td><%= report[:conclusion_score] %></td>
+    </tr>
+  </table>
 <% end %>
 
