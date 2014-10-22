@@ -8,7 +8,10 @@ You're Invited
 Your mission, should you choose to accept it, is to bring a <%= @event_wine.wine.name %>. <%= @event_wine.wine.description %>
 
 
-To accept or decline, just go to this URL: <%= @url %>
+To accept or decline, just go to this URL: 
+<%= edit_event_wine_url(@event_wine, {d: @event_wine.wine_bringer.remember_digest} %>
 
+On the day of the event, you can go here to start tasting: 
+<%= quiz_url(@event_wine.event, {d: @event_wine.wine_bringer.remember_digest}) %>.
 
 Happy sipping!
