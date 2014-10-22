@@ -10,7 +10,7 @@ class Tasting < ActiveRecord::Base
   enum climate: { cool: 1, warm: 2}
   enum country: { france: 1, italy: 2, united_states: 3, australia: 4, argentina: 5, germany: 6, new_zealand: 7 }
   enum red_grape: { gamay: 1, cabernet_sauvignon: 2, merlot: 3, malbec: 4, syrah_shiraz: 5, pinot_noir: 6, sangiovese: 7, nebbiolo: 8, zinfandel: 9 }
-  enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6, riesling: 7 }
+  enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6 }
 
   FRUITS_FEEDBACK = "Each grape varietal has its own characteristic fruit profile. It's not easy to choose the fruit category that most defines a wine. Only more tasting experience can solidify that link."
   MINERALITY_FEEDBACK = "Minerality can fall into inorganic (stone, crushed rock or organic (earth, clay) categories."
