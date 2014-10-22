@@ -1,0 +1,41 @@
+.micrograph, .sad-face, .correct, .observation {
+  height: 35px;
+  width: 35px;
+  margin: auto;
+}
+
+.correct p {
+  font-size: 1.75em;
+}
+
+.sad-face img {
+  height: 20px;
+  width: 20px;
+  margin-top: 25%;
+}
+
+.user-response {
+  background-color: green;
+  width: 50%;
+  float: left;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.somm-response {
+  background-color: blue;
+  width: 50%;
+  float: left;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.results {
+  width: 100%;
+}
+
+.results td {
+  text-align: center;
+  line-height: 20px;
+  width: 33%;
+}

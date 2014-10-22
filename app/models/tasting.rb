@@ -33,20 +33,40 @@ class Tasting < ActiveRecord::Base
     user_results = {}
     correct_answers = {}
 
-    attributes.each do |attribute|
-      user_results[format_category(attribute)] = format_category(self.send(attribute))
-      correct_answers[format_category(attribute)] = format_category(super_tasting.send(attribute))
-    end
-    wine_bringer = self.event_wine.wine_bringer.name_or_email
+    user_conclusions = {}
+    correct_conclusions = {}
 
+    attributes.each do |attribute|
+      if !conclusion_attr_array.include?(attribute)
+        user_results[format_category(attribute)] = make_result_hash(attribute, self)
+
+        correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
+      else
+        user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
+        correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
+      end
+    end
+
+    wine_bringer = self.event_wine.wine_bringer.name_or_email
     conclusion_score = is_reasonable_conclusion
     observation_score = is_reasonable_observation
-    feedback_hash = get_observation_feedback
-    conclusion_problem_categories = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
-    # TODO make tasting_notes hash with super user tasting notes as well?
-    tasting_notes = self.tasting_notes
+    observation_feedback = get_observation_feedback
+    conclusion_feedback = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
 
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, feedback_hash: feedback_hash,conclusion_problem_categories: conclusion_problem_categories, tasting_notes: tasting_notes }
+    # take conclusions out of user_results and correct_answers
+    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
+  end
+
+  def conclusion_attr_array
+    [:white_grape, :red_grape, :country, :climate]
+  end
+
+  def make_result_hash(attribute, tasting)
+    if attribute == :red_fruits || attribute == :white_fruits || attribute == :climate || attribute == :country || attribute == :white_grape || attribute == :red_grape
+      { text_response: format_category(tasting.send(attribute)), num_response: 0 }
+    else
+      { text_response: format_category(tasting.send(attribute)), num_response: tasting[attribute] }
+    end
   end
 
   def get_problem_categories(tasting, reasonability)
@@ -174,7 +194,7 @@ class Tasting < ActiveRecord::Base
     elsif response <= 6.0
       return "Errr, not the best"
     else
-      return "N/A"
+      return "Not enough information"
     end
   end
 
@@ -224,7 +244,7 @@ class Tasting < ActiveRecord::Base
 
   def parse_tasting_attributes
     all_attributes = Tasting.last.attributes.map {|attribute, val| attribute}
-    wine_attributes = all_attributes.reject {|attribute| /(_id|_at|\bid|tasting_notes)/.match(attribute)}
+    wine_attributes = all_attributes.reject {|attribute| /(_id|_at|\bid|tasting_notes|is_blind)/.match(attribute)}
     wine_attributes.map! {|attribute| attribute.to_sym}
   end
 
