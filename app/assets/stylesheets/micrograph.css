@@ -12,7 +12,7 @@
 
 .user-response {
   background-color: green;
-  width: 40%;
+  width: 50%;
   float: left;
   position: relative;
   margin-bottom: 0;
@@ -20,7 +20,7 @@
 
 .somm-response {
   background-color: blue;
-  width: 40%;
+  width: 50%;
   float: left;
   position: relative;
   margin-bottom: 0;
@@ -32,4 +32,5 @@
 
 .results td {
   text-align: center;
+  line-height: 35px;
 }
