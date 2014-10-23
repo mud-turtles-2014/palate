@@ -1,5 +1,5 @@
 <h1><%= @wine_bringer %>'s Wine</h1>
-  <%= form_for @tasting do |f| %>
+  <%= form_for @tasting, :html => {:onclick => "return validateForm();"} do |f| %>
   <h3>Observations</h3>
     <% if @wine.color == 'red' %>
       <%= render 'red_wine' %>
@@ -12,5 +12,7 @@
     </div>
 
     <%= hidden_field_tag :event_wine_id, @event_wine.id %>
+
+  <div id="error-msg"><p>Answer all categories to move on.<p></div>
   <%= f.submit "Continue", :class => "button" %>
   <% end %>
