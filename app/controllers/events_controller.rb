@@ -85,7 +85,7 @@ class EventsController < ApplicationController
     elsif
       @event = Event.find(params[:id])
       current_user.tastings.where(event_wine: EventWine.where(event:@event)) == nil
-      redirect_to my_events_path
+      redirect_to event_path(@event)
     else
       @event = Event.find(params[:id])
       @user_tastings = Tasting.where(event_wine: EventWine.where(event: @event), user: current_user)
