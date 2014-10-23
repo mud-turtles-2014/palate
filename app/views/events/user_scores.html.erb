@@ -1,5 +1,6 @@
-<h2><%= @event.name %></h2>
-<h3>My Results</h3>
+<h2>My Results</h2>
+<h3 id="result-event"><%= link_to @event.name, @event %></h3>
+<h5><%= @event.date.strftime("%m/%d/%y")%></h5>
 <% @score_report.each do |report| %>
 <h3><%= report[:wine_bringer].capitalize %>'s Wine :</h3>
 <table class="results">
