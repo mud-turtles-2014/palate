@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url = 'http://pacific-retreat-6443.herokuapp.com'
+    @url = 'http://thepalate.herokuapp.com'
     mail(to: @user.email, subject: 'Welcome to the Wine App!')
   end
 
@@ -11,7 +11,7 @@ class UserMailer < ActionMailer::Base
   	@email = email
   	@event_wine = event_wine
     @inviter = event_wine.event.creator.name
-  	@url  = 'http://pacific-retreat-6443.herokuapp.com/event_wines/' + @event_wine.id.to_s + '/edit'
+  	@url  = 'http://thepalate.herokuapp.com/event_wines/' + @event_wine.id.to_s + '/edit'
   	mail(to: @email, subject: 'Join ' + @inviter + ' for a wine tasting!')
   end
 end
