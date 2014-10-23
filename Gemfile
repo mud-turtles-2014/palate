@@ -44,6 +44,8 @@ gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'foundation-rails'
 
+gem 'rails_12factor', group: :production
+
 group :test do
   gem 'capybara'
   gem 'shoulda-matchers'
