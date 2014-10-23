@@ -147,12 +147,12 @@ div.marketing {
 .glass-icon {
   text-align:center;
   display:block;
+  padding-bottom: 7px;
 }
 
 .bottle-icon {
   text-align:center;
   display:block;
-  padding-bottom: 1%;
 }
 
 .container h4{
@@ -166,20 +166,6 @@ div.marketing {
 
 .clear {
   clear: both;
-}
-
-.footer {
-  height: auto;
-  text-align: right;
-  width:100%;
-  height:auto;
-  padding:2%;
-  bottom:0;
-  left:0;
-}
-
-.footer a {
-  color: black;
 }
 
 .quiz-container {
