@@ -24,6 +24,7 @@ $(function(){
 
   $(".conclusion_feedback").hide();
   $(".observation_feedback").hide();
+  $("#error-msg").hide();
 
   $(".observation_score").click(function() {
     $(this).next().toggle()
@@ -33,10 +34,23 @@ $(function(){
     $(this).next().toggle()
   });
 
-});
+})
 
+function validateForm() {
+  var whiteArray = ["white_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country", "white_grape"];
+  var redArray = ["red_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country", "red_grape", "tannin"];
 
+  if($("input[name='white_fruits']").length > 0) {
+    var minNum = whiteArray.length;
+  } else {
+    var minNum = redArray.length;
+  }
 
+  if($('input[type=radio]:checked').size() < minNum) {
+    $("#error-msg").show();
+  }
+  return ($('input[type=radio]:checked').size() > minNum);
+}
 
 
 
