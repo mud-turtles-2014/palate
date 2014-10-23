@@ -12,5 +12,7 @@
     </div>
 
     <%= hidden_field_tag :event_wine_id, @event_wine.id %>
+
+  <div id="error-msg"><p>Answer all categories to move on.<p></div>
   <%= f.submit "Continue", :class => "button" %>
   <% end %>

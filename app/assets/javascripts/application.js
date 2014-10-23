@@ -24,6 +24,7 @@ $(function(){
 
   $(".conclusion_feedback").hide();
   $(".observation_feedback").hide();
+  $("#error-msg").hide();
 
   $(".observation_score").click(function() {
     $(this).next().toggle()
@@ -45,8 +46,8 @@ function validateForm() {
     var minNum = redArray.length;
   }
 
-  if($('input[type=radio]:checked').size() > minNum) {
-    // append error msg
+  if($('input[type=radio]:checked').size() < minNum) {
+    $("#error-msg").show();
   }
   return ($('input[type=radio]:checked').size() > minNum);
 }
