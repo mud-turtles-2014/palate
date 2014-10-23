@@ -92,6 +92,7 @@ class EventsController < ApplicationController
         @score_report << tasting.score_report
         make_graph_data tasting.score_report
       end
+      render :layout => "quiz"
     end
   end
 
@@ -117,7 +118,7 @@ class EventsController < ApplicationController
     if @wine
       render :layout => "quiz"
     else
-      redirect_to "/events/#{@event.id}/my_results"
+      redirect_to "/events/#{@event.id}/my_results", :layout => "quiz"
     end
   end
 
