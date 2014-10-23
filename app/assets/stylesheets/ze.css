@@ -260,3 +260,11 @@ input[type="radio"]:checked + label {
   color: #86a02d;
 }
 
+#result-event a{
+  text-decoration: none;
+  color: black;
+}
+
+#result-event a:hover{
+  color: #86a02d;
+}
