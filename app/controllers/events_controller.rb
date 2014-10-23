@@ -118,7 +118,7 @@ class EventsController < ApplicationController
     if @wine
       render :layout => "quiz"
     else
-      redirect_to "/events/#{@event.id}/my_results", :layout => "quiz"
+      redirect_to "/events/#{@event.id}/my_results"
     end
   end
 
