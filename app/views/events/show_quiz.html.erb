@@ -1,6 +1,6 @@
 <h1><%= @wine_bringer %>'s Wine</h1>
 
-<%= form_for @tasting, :html => {:onclick => "return validateForm();"} do |f| %>
+<%= form_for(@tasting, :html => {:onsubmit => "return validateForm();"}) do |f| %>
 
   <h3>Observations</h3>
   <% if @wine.color == 'red' %>
@@ -13,7 +13,7 @@
   <div class="card">
     <h3>Tasting Notes</h3><br>
     <textarea name="tasting_notes" rows="6" cols="50" placeholder="Enter descriptors (ie: sour cherry, wet river rock, oregano)"></textarea>
-  
+
     <%= hidden_field_tag :event_wine_id, @event_wine.id %>
 
     <div id="error-msg"><p>Answer all categories to move on.<p></div>
