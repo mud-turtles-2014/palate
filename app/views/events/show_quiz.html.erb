@@ -1,5 +1,5 @@
 <h1><%= @wine_bringer %>'s Wine</h1>
-  <%= form_for @tasting do |f| %>
+  <%= form_for @tasting, :html => {:onsubmit => "return validateForm();"} do |f| %>
   <h3>Observations</h3>
     <% if @wine.color == 'red' %>
       <%= render 'red_wine' %>
