@@ -101,24 +101,26 @@ class EventsController < ApplicationController
     # change each enumerator to a map
 
     set_user_from_email_invite
-    redirect_to '/' unless current_user
-
-    @event = Event.find(params[:id])
-    all_wines = @event.winelist
-    tasted_wines_tastings = Tasting.joins(:event_wine).where('event_wines.event_id = ?', @event.id).where(user: current_user).to_a
-    tasted_wines = []
-    tasted_wines_tastings.each do |tasting|
-      tasted_wines << tasting.event_wine.wine
-    end
-    untasted_wines = all_wines - tasted_wines
-    @wine = untasted_wines[0]
-    @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
-    @wine_bringer = @event_wine.wine_bringer.name_or_email if @event_wine
-    @tasting = Tasting.new
-    if @wine
-      render :layout => "quiz"
+    if current_user
+      redirect_to '/'
     else
-      redirect_to "/events/#{@event.id}/my_results"
+      @event = Event.find(params[:id])
+      all_wines = @event.winelist
+      tasted_wines_tastings = Tasting.joins(:event_wine).where('event_wines.event_id = ?', @event.id).where(user: current_user).to_a
+      tasted_wines = []
+      tasted_wines_tastings.each do |tasting|
+        tasted_wines << tasting.event_wine.wine
+      end
+      untasted_wines = all_wines - tasted_wines
+      @wine = untasted_wines[0]
+      @event_wine = EventWine.where(event: @event).where(wine: @wine)[0]
+      @wine_bringer = @event_wine.wine_bringer.name_or_email if @event_wine
+      @tasting = Tasting.new
+      if @wine
+        render :layout => "quiz"
+      else
+        redirect_to "/events/#{@event.id}/my_results"
+      end
     end
   end
 
