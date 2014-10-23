@@ -84,11 +84,11 @@ Tasting.create!([
   {user: User.first, event_wine_id: 15, white_fruits: 'apple_pear', fruit_condition: 1, minerality: 5, oak: 1, dry: 1, acid: 4, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'sauvignon_blanc', tasting_notes: "granny smith apples, lime zest" },
   {user: User.first, event_wine_id: 16, white_fruits: 'apple_pear', fruit_condition: 4, minerality: 4, oak: 1, dry: 2, acid: 5, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'chenin_blanc', tasting_notes: "parmesan rind, toasted walnut skin, bruised yellow apple" },
   {user: User.first, event_wine_id: 17, white_fruits: 'stone', fruit_condition: 3, minerality: 3, oak: 2, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'france', white_grape: 'viognier', tasting_notes: "slightly overripe papaya, stewed peaches, honeysuckle" },
-  {user: User.first, event_wine_id: 18, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 3, oak: 1, dry: 1, acid: 4, alcohol: 3, climate: 'cool', country: 'italy', white_grape: 'pinot_grigio' },
-  {user: User.first, event_wine_id: 19, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 2, oak: 4, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'united_states', white_grape: 'chardonnay' },
-  {user: User.first, event_wine_id: 20, white_fruits: 'stone', fruit_condition: 3, minerality: 5, oak: 1, dry: 3, acid: 5, alcohol: 2, climate: 'cool', country: 'germany', white_grape: 'riesling' },
-  {user: User.first, event_wine_id: 21, white_fruits: 'tropical', fruit_condition: 3, minerality: 2, oak: 1, dry: 1, acid: 4, alcohol: 4, climate: 'warm', country: 'new_zealand', white_grape: 'sauvignon_blanc' },
-  {user: User.first, event_wine_id: 22, white_fruits: 'stone', fruit_condition: 3, minerality: 3, oak: 1, dry: 1, acid: 4, alcohol: 4, climate: 'warm', country: 'australia', white_grape: 'riesling' }
+  {user: User.first, event_wine_id: 18, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 3, oak: 1, dry: 1, acid: 4, alcohol: 3, climate: 'cool', country: 'italy', white_grape: 'pinot_grigio', tasting_notes: "spent beer yeast, red apple, slight bitterness" },
+  {user: User.first, event_wine_id: 19, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 2, oak: 4, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'united_states', white_grape: 'chardonnay', tasting_notes: "butter, vanilla, baked apple" },
+  {user: User.first, event_wine_id: 20, white_fruits: 'stone', fruit_condition: 3, minerality: 5, oak: 1, dry: 3, acid: 5, alcohol: 2, climate: 'cool', country: 'germany', white_grape: 'riesling', tasting_notes: "slate, racy acidity, apricot, small white flowers" },
+  {user: User.first, event_wine_id: 21, white_fruits: 'tropical', fruit_condition: 3, minerality: 2, oak: 1, dry: 1, acid: 4, alcohol: 4, climate: 'warm', country: 'new_zealand', white_grape: 'sauvignon_blanc', tasting_notes: "pineapple, green melon" },
+  {user: User.first, event_wine_id: 22, white_fruits: 'stone', fruit_condition: 3, minerality: 3, oak: 1, dry: 1, acid: 4, alcohol: 4, climate: 'warm', country: 'australia', white_grape: 'riesling', tasting_notes: "spalding basketball, white peach" }
   ])
 
 # seed data for testing and development
