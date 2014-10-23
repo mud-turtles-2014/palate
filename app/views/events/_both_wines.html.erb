@@ -1,4 +1,4 @@
-<div class="card-separator" id="get-fruit_condition"></div>
+<!-- <div class="card-separator" id="get-fruit_condition"></div> -->
 <div class="card">
   <label for="fruit_condition"><h2>Fruit Condition</h2></label><br>
   <input type="radio" name="fruit_condition" value="tart" id="fc-tart"><label 
@@ -9,10 +9,10 @@
   for="fc-over_ripe">Over-ripe</label><br>
   <input type="radio" name="fruit_condition" value="jammy" id="fc-jammy"><label 
   for="fc-jammy">Jammy</label>
-  <a href="#get-minerality">&#x25BE;</a>
+  <!-- <a href="#get-minerality">&#x25BE;</a> -->
 </div>
 
-<div class="card-separator" id="get-minerality"></div>
+<!-- <div class="card-separator" id="get-minerality"></div> -->
 <div class="card">
   <label for="minerality"><h2>Minerality</h2></label><br>
   <input type="radio" name="minerality" value="1" id="mn-low"><label for="mn-low">low</label><br>
@@ -20,10 +20,10 @@
   <input type="radio" name="minerality" value="3" id="mn-med"><label for="mn-med">med</label><br>
   <input type="radio" name="minerality" value="4" id="mn-med-plus"><label for="mn-med-plus">med-plus</label><br>
   <input type="radio" name="minerality" value="5" id="mn-hi"><label for="mn-hi">high</label>
-  <a href="#get-oak">&#x25BE;</a>
+  <!-- <a href="#get-oak">&#x25BE;</a> -->
 </div>
 
-<div class="card-separator" id="get-oak"></div>
+<!-- <div class="card-separator" id="get-oak"></div> -->
 <div class="card">
   <label for="oak"><h2>Oak</h2></label><br>
   <input type="radio" name="oak" value="1" id="oak-low"><label for="oak-low">low</label><br>
@@ -31,10 +31,10 @@
   <input type="radio" name="oak" value="3" id="oak-med"><label for="oak-med">med</label><br>
   <input type="radio" name="oak" value="4" id="oak-med-plus"><label for="oak-med-plus">med-plus</label><br>
   <input type="radio" name="oak" value="5" id="oak-hi"><label for="oak-hi">high</label>
-  <a href="#get-dry">&#x25BE;</a>
+  <!-- <a href="#get-dry">&#x25BE;</a> -->
 </div>
 
-<div class="card-separator" id="get-dry"></div>
+<!-- <div class="card-separator" id="get-dry"></div> -->
 <div class="card">
   <label for="dry"><h2>Dryness</h2></label><br>
   <input type="radio" name="dry" value="1" id="dry-low"><label for="dry-low">low</label><br>
@@ -42,10 +42,10 @@
   <input type="radio" name="dry" value="3" id="dry-med"><label for="dry-med">med</label><br>
   <input type="radio" name="dry" value="4" id="dry-med-plus"><label for="dry-med-plus">med-plus</label><br>
   <input type="radio" name="dry" value="5" id="dry-hi"><label for="dry-hi">high</label>
-  <a href="#get-acid">&#x25BE;</a>
+  <!-- <a href="#get-acid">&#x25BE;</a> -->
 </div>
 
-<div class="card-separator" id="get-acid"></div>
+<!-- <div class="card-separator" id="get-acid"></div> -->
 <div class="card">
   <label for="acid"><h2>Acidity</h2></label><br>
   <input type="radio" name="acid" value="1" id="acid-low"><label for="acid-low">low</label><br>
@@ -54,9 +54,9 @@
   <input type="radio" name="acid" value="4" id="acid-med-plus"><label for="acid-med-plus">med-plus</label><br>
   <input type="radio" name="acid" value="5" id="acid-hi"><label for="acid-hi">high</label>
   <% if @wine.color == "red" %>
-    <a href="#get-tannin">&#x25BE;</a>
+    <!-- <a href="#get-tannin">&#x25BE;</a> -->
   <% else %>
-    <a href="#get-alcohol">&#x25BE;</a>
+    <!-- <a href="#get-alcohol">&#x25BE;</a> -->
   <% end %>
   
 </div>
@@ -65,7 +65,7 @@
   <%= render "tannin" %>
 <% end %>
 
-<div class="card-separator" id="get-alcohol"></div>
+<!-- <div class="card-separator" id="get-alcohol"></div> -->
 <div class="card">
   <label for="alcohol"><h2>Alcohol</h2></label><br>
   <input type="radio" name="alcohol" value="1" id="alc-low"><label for="alc-low">low</label><br>
@@ -73,19 +73,19 @@
   <input type="radio" name="alcohol" value="3" id="alc-med"><label for="alc-med">med</label><br>
   <input type="radio" name="alcohol" value="4" id="alc-med-plus"><label for="alc-med-plus">med-plus</label><br>
   <input type="radio" name="alcohol" value="5" id="alc-hi"><label for="alc-hi">high</label>
-  <a href="#get-climate">&#x25BE;</a>
+  <!-- <a href="#get-climate">&#x25BE;</a> -->
 </div>
 
-<div class="card-separator" id="get-climate"></div>
+<!-- <div class="card-separator" id="get-climate"></div> -->
 <h3>Conclusions</h3>
 <div class="card">
   <label for="climate"><h2>Climate</h2></label><br>
   <input type="radio" name="climate" value="cool" id="climate-cool"><label for="climate-cool">Cool</label><br>
   <input type="radio" name="climate" value="warm" id="climate-warm"><label for="climate-warm">Warm</label>
-  <a href="#get-country">&#x25BE;</a>
+  <!-- <a href="#get-country">&#x25BE;</a> -->
 </div>
 
-<div class="card-separator" id="get-country"></div>
+<!-- <div class="card-separator" id="get-country"></div> -->
 <div class="card">
   <label for="country"><h2>Country of Origin</h2></label><br>
   <input type="radio" name="country" value="france" id="france"><label for="france">France</label><br>
@@ -95,5 +95,5 @@
   <input type="radio" name="country" value="argentina" id="argentina"><label for="argentina">Argentina</label><br>
   <input type="radio" name="country" value="germany" id="germany"><label for="germany">Germany</label><br>
   <input type="radio" name="country" value="new_zealand" id="new_zealand"><label for="new_zealand">N. Zealand</label><br>
-  <a href="#get-grape">&#x25BE;</a>
+  <!-- <a href="#get-grape">&#x25BE;</a> -->
 </div>
