@@ -31,7 +31,9 @@
 }
 
 .results {
-  width: 100%;
+  width: 93.5%;
+  margin-left: 0;
+  margin-bottom: 25px;
 }
 
 .results td {
