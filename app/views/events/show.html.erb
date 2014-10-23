@@ -19,6 +19,6 @@
 <% if Time.now > @event.date %>
 	<%= button_to "Start Tasting!", "/events/#{@event.id}/quiz", :method => :get, :class =>"button [radius round]", :id => "taste" %>
 <% end  %>
-<% if Time.now > @event.time && @user_tastings != nil  %>
+<% if Time.now > @event.time %>
 	<%= link_to "See Results", "/events/#{@event.id}/my_results", :method => :get, :class =>"button [radius round]" %>
 <% end %>
