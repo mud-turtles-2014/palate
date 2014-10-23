@@ -1,7 +1,7 @@
-<h2>My Results</h2>
-
+<h2><%= @event.name %></h2>
+<h3>My Results</h3>
 <% @score_report.each do |report| %>
-<h3><%= report[:wine_bringer] %>'s Wine :</h3>
+<h3><%= report[:wine_bringer].capitalize %>'s Wine :</h3>
 <table class="results">
   <tr>
     <td><p>You<p></td>
