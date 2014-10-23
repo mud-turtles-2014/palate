@@ -33,23 +33,23 @@ $(function(){
     $(this).next().toggle()
   });
 
-  if($('#first_name').val() != "" && $('#second_name').val() != "") {
-       $('#submit').removeAttr('disabled');
-    } else {
-       $('#submit').attr('disabled', true);
-    }
+})
 
-  function validateForm() {
-    var x = document.forms["myForm"]["email"].value;
-    var atpos = x.indexOf("@");
-    var dotpos = x.lastIndexOf(".");
-    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
-        alert("Not a valid e-mail address");
-        return false;
-    }
+function validateForm() {
+  var whiteArray = ["white_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country", "white_grape"];
+  var redArray = ["red_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country", "red_grape", "tannin"];
+
+  if($("input[name='white_fruits']").length > 0) {
+    var minNum = whiteArray.length;
+  } else {
+    var minNum = redArray.length;
+  }
+
+  if($('input[type=radio]:checked').size() > minNum) {
+    // append error msg
+  }
+  return ($('input[type=radio]:checked').size() > minNum);
 }
-
-
 
 
 
