@@ -37,8 +37,8 @@ $(function(){
 })
 
 function validateForm() {
-  var whiteArray = ["white_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country", "white_grape"];
-  var redArray = ["red_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country", "red_grape", "tannin"];
+  var whiteArray = ["white_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country"];
+  var redArray = ["red_fruits", "fruit_condition", "minerality", "oak", "dry", "acid", "alcohol", "climate", "country", "tannin"];
 
   if($("input[name='white_fruits']").length > 0) {
     var minNum = whiteArray.length;
@@ -46,10 +46,11 @@ function validateForm() {
     var minNum = redArray.length;
   }
 
-  if($('input[type=radio]:checked').size() =< minNum) {
+
+  if($('input[type=radio]:checked').size() < minNum) {
     $("#error-msg").show();
   }
-  return ($('input[type=radio]:checked').size() > minNum);
+  return ($('input[type=radio]:checked').size() >= minNum);
 }
 
 
