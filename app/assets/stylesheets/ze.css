@@ -147,12 +147,12 @@ div.marketing {
 .glass-icon {
   text-align:center;
   display:block;
+  padding-bottom: 7px;
 }
 
 .bottle-icon {
   text-align:center;
   display:block;
-  padding-bottom: 1%;
 }
 
 .container h4{
