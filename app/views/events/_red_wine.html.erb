@@ -1,14 +1,19 @@
 <div class="card">
-  <label for="red_fruits"><h2>Fruits</h2></label><br>
-  <input type="radio" name="red_fruits" value="red" id="red"><label for="red">Red</label><br>
-  <input type="radio" name="red_fruits" value="blue" id="blue"><label for="blue">Blue</label><br>
-  <input type="radio" name="red_fruits" value="black" id="black"><label for="black">Black</label><br>
-  <a href="#red_grape">v</a>
+  <label 
+  for="red_fruits"><h2>Fruits</h2></label><br>
+  <input type="radio" name="red_fruits" value="red" id="red"><label 
+  for="red">Red</label><br>
+  <input type="radio" name="red_fruits" value="blue" id="blue"><label 
+  for="blue">Blue</label><br>
+  <input type="radio" name="red_fruits" value="black" id="black"><label 
+  for="black">Black</label><br>
+  <a href="#fruit_condition">&#x25BE;</a>
 </div>
 
 <%= render "both_wines" %>
 
-<div class="card" id="red_grape">
+<div class="card-separator" id="grape"></div>
+<div class="card">
   <label for="red_grape"><h2>Grape</h2></label><br>
   <select name="red_grape">
     <option value="gamay">Gamay</option>
@@ -21,4 +26,5 @@
     <option value="nebbiolo">Nebbiolo</option>
     <option value="zinfandel">Zinfandel</option>
   </select><br><br>
+  <a href="#notes">&#x25BE;</a>
 </div>
