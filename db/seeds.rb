@@ -80,12 +80,10 @@ Tasting.create!([
   {user: User.first, event_wine_id: 12, red_fruits: 'red', fruit_condition: 2, minerality: 4, oak: 4, dry: 1, acid: 3, tannin: 3, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'pinot_noir', tasting_notes: "raspberry, mint, vanilla" },
   {user: User.first, event_wine_id: 13, red_fruits: 'black', fruit_condition: 3, minerality: 4, oak: 4, dry: 1, acid: 4, tannin: 4, alcohol: 3, climate: 'cool', country: 'france', red_grape: 'syrah_shiraz', tasting_notes: "cured meat, herbes de provence, black cherry" },
   # white wines
-  {user: User.first, event_wine_id: 14, white_fruits: 'apple_pear', fruit_condition: 1, minerality: 5, oak: 1, dry: 1, acid: 5, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'chardonnay' },
-  {user: User.first, event_wine_id: 15, white_fruits: 'apple_pear', fruit_condition: 1, minerality: 5, oak: 1, dry: 1, acid: 4, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'sauvignon_blanc' },
-  {user: User.first, event_wine_id: 16, white_fruits: 'apple_pear', fruit_condition: 4, minerality: 4, oak: 1, dry: 2, acid: 5, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'chenin_blanc' },
-  {user: User.first, event_wine_id: 17, white_fruits: 'stone', fruit_condition: 3, minerality: 3, oak: 2, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'france', white_grape: 'viognier' },
-  # change below back to
-  # white_grape: 'pinot_grigio'
+  {user: User.first, event_wine_id: 14, white_fruits: 'apple_pear', fruit_condition: 1, minerality: 5, oak: 1, dry: 1, acid: 5, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'chardonnay', tasting_notes: "unripe quince, unripe bosc pear, limestone, saline" },
+  {user: User.first, event_wine_id: 15, white_fruits: 'apple_pear', fruit_condition: 1, minerality: 5, oak: 1, dry: 1, acid: 4, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'sauvignon_blanc', tasting_notes: "granny smith apples, lime zest" },
+  {user: User.first, event_wine_id: 16, white_fruits: 'apple_pear', fruit_condition: 4, minerality: 4, oak: 1, dry: 2, acid: 5, alcohol: 3, climate: 'cool', country: 'france', white_grape: 'chenin_blanc', tasting_notes: "parmesan rind, toasted walnut skin, bruised yellow apple" },
+  {user: User.first, event_wine_id: 17, white_fruits: 'stone', fruit_condition: 3, minerality: 3, oak: 2, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'france', white_grape: 'viognier', tasting_notes: "slightly overripe papaya, stewed peaches, honeysuckle" },
   {user: User.first, event_wine_id: 18, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 3, oak: 1, dry: 1, acid: 4, alcohol: 3, climate: 'cool', country: 'italy', white_grape: 'pinot_grigio' },
   {user: User.first, event_wine_id: 19, white_fruits: 'apple_pear', fruit_condition: 3, minerality: 2, oak: 4, dry: 2, acid: 3, alcohol: 4, climate: 'warm', country: 'united_states', white_grape: 'chardonnay' },
   {user: User.first, event_wine_id: 20, white_fruits: 'stone', fruit_condition: 3, minerality: 5, oak: 1, dry: 3, acid: 5, alcohol: 2, climate: 'cool', country: 'germany', white_grape: 'riesling' },
