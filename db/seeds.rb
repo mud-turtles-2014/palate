@@ -4,13 +4,13 @@
 Wine.create!([
   # reds
   {name: "French Gamay", country: "France", grape: "Gamay", color: "red", description: "Gamay gets a bad rap, but Cru Beaujolais - from one of the 10 designated cru areas in the region - shows why the grape gets called the poor man's Pinot."},
-  {name: "US Pinot Noir", country: "United States", grape: "Pinot Noir", color: "red", description: "TKTKTK"},
-  {name: "Australian Shiraz", country: "Australia", grape: "Syrah/Shiraz",color: "red", description: "TKTKTK"},
+  {name: "US Pinot Noir", country: "United States", grape: "Pinot Noir", color: "red", description: "Expect a denser Pinot Noir from California than you would find in Burgundy. The climate is warmer, producing riper fruit, and wines labelled Pinot Noir often have a percentage of Syrah or other more full-bodied grape blended in."},
+  {name: "Australian Shiraz", country: "Australia", grape: "Syrah/Shiraz",color: "red", description: "Some think that the name Shiraz indicates that the grape originated in the Middle East. No one is quite sure how Shiraz came to be Australia's name for the noble French grape."},
   {name: "Argentinian Malbec", country: "Argentina", grape: "Malbec", color: "red", description: "Originally from western France, Malbec has become synonymous with Argentina, specifically the high-altitude region Mendoza."},
-  {name: "US Cabernet Sauvignon", country: "United States", grape: "Cabernet Sauvignon", color: "red", description: "TKTKTK"},
-  {name: "US Merlot", country: "United States", grape: "Merlot", color: "red", description: "TKTKTK"},
+  {name: "US Cabernet Sauvignon", country: "United States", grape: "Cabernet Sauvignon", color: "red", description: "What US Cabernet Sauvignon lacks in minerality, it makes up for with fruit. Well-made California Cabernet Sauvignon shows impressive amounts of fruit in its old age."},
+  {name: "US Merlot", country: "United States", grape: "Merlot", color: "red", description: "Merlot comes from the same family as Cabernet Sauvignon and the Bordeaux varietals. It will show just the slightest greeness, as is typical of grapes from this family."},
   {name: "US Zinfandel", color: "red", description: "Genetically linked to native Italian and Croatian grapes, Zinfandel has become synonymous with California. The uneven ripening of the grape often produces wines with both tart red and cooked blue fruit characteristics."},
-  {name: "French Cabernet Sauvignon", country: "France", grape: "Cabernet Sauvignon",color: "red", description: "TKTKTK"},
+  {name: "French Cabernet Sauvignon", country: "France", grape: "Cabernet Sauvignon",color: "red", description: "Cabernet Sauvignon dominates blends in the Left Bank of Bordeaux, the region famous for the Haut-Medoc and its first growths."},
   {name: "Italian Sangiovese", country: "Italy", grape: "Sangiovese",color: "red", description: "Sangiovese is often depicted as a powerhouse grape, but traditional Chianti producers like Castello di Volpaia refrain from blending naturally light-bodied, red-fruited Sangiovese with fleshier grapes."},
   {name: "Italian Nebbiolo", country: "Italy", grape: "Nebbiolo", color: "red", description: "Nebbiolo is called the king of Italian grapes for reason. The grape reaches its apex in the regions Barolo and Barbaresco, but Langhe Nebbiolo from a good producer like Produttori del Barbaresco will work for a budget-friendly tasting."},
   {name: "French Merlot", country: "France", grape: "Merlot", color: "red", description: "TKTKTK"},
@@ -20,11 +20,11 @@ Wine.create!([
   {name: "French Chardonnay", color: "white", country: "France", grape: "Chardonnay", description: "Bring a focused Chardonnay from Chablis, the northernmost region in Burgundy. Alternatively, grab an impressive bottling from a lesser region like Chitry. Alice and Olivier de Moor make a good one."},
   {name: "French Sauvignon Blanc", country: "France", grape: "Sauvignon Blanc", color: "white", description: "Bring a mineral-driven Sauvignon Blanc from Sancerre or Pouilly-Fume in Western France's Loire Valley."},
   {name: "French Chenin Blanc", color: "white", country: "France", grape: "Chenin Blanc", description: "Chenin Blanc is often made in an oxidative style. Additional exposure to oxygen imparts distinct bitter nut and cheese rind characteristics to the wine. Bring a Vouvray Sec from the Loire Valley."},
-  {name: "French Viognier", country: "French", grape: "Viognier", color: "white", description: "TKTKTK"},
-  {name: "Italian Pinot Grigio", country: "Italy", grape: "Pinot Grigio", color: "white", description: "Sometimes Pinot Grigio can be classy. Pick up a bottle from Friuli in the northwestern corner of Italy. Look for producers like Venica & Venica or Livo Felluga."},
-  {name: "US Chardonnay", country: "United States", grape: "Chardonnay", color: "white", description: "TKTKTKT"},
+  {name: "French Viognier", country: "French", grape: "Viognier", color: "white", description: "Viognier is known for its waxy texture and rich melon profile. Condrieu in the Northern Rhone is king when it comes to the grape, but good bottlings from the Collines Rhodaniennes demonstrate Viognier well too."},
+  {name: "Italian Pinot Grigio", country: "Italy", grape: "Pinot Grigio", color: "white", description: "Sometimes Pinot Grigio can be classy. Pick up a bottle from Friuli in the northwestern corner of Italy. Look for producers like Venica & Venica or Livio Felluga."},
+  {name: "US Chardonnay", country: "United States", grape: "Chardonnay", color: "white", description: "Oaked California Chardonnay plays a good foil to its lean, mineral-driven relatives in France."},
   {name: "German Riesling", country: "Germany", grape: "Riesling", color: "white", description: "Germany has a unique classification system to describe a wine's ripeness. Grab a Spatlese bottling, a 'late harvest' wine, that has a more opulent fruit profile and generally some residual sugar."},
-  {name: "New Zealand Sauvignon Blanc", country: "New Zealand", grape: "Sauvignon Blanc", color: "white", description: "TKTKTKT"},
+  {name: "New Zealand Sauvignon Blanc", country: "New Zealand", grape: "Sauvignon Blanc", color: "white", description: "New Zealand launched screw caps into prominence with their reasonably priced Sauvignon Blanc from Marlborough on the South Island."},
   {name: "Australian Riesling", country: "Australia", grape: "Riesling", color: "white", description: "Unlike their German counterparts, Australian Rieslings from the Clare and Eden Valleys tend to be vinified dry -- meaning the fruit's sugar is completely fermented. You can still expect the grape's typical stone fruit and cut garden hose notes."}
 ])
 Event.create!([
