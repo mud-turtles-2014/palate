@@ -46,7 +46,7 @@ function validateForm() {
     var minNum = redArray.length;
   }
 
-  if($('input[type=radio]:checked').size() < minNum) {
+  if($('input[type=radio]:checked').size() =< minNum) {
     $("#error-msg").show();
   }
   return ($('input[type=radio]:checked').size() > minNum);
