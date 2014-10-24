@@ -120,11 +120,24 @@ Tasting.create!([
 
 # demo event
 Event.create!([
-  {name: "Woo App Testing", location: "48 Wall St, NY, NY", date: "2014-10-20 16:45:00", time: "2014-10-20 16:45:00", user_id: 2}
+  {name: "DBC Graduation", location: "48 Wall St, NY, NY", date: "2014-10-24 11:00:00", time: "2014-10-24 11:00:00", user_id: 4} # jess' event
+])
+EventWine.create!([
+  {is_attending: true, event_id: 3, wine_id: 16, user_id: 4}, # 16 wine_id for chenin_blanc
 ])
 
+# demo event, event id #4
+Event.create!([
+  {name: "DBC Graduation II", location: "48 Wall St, NY, NY", date: "2014-10-24 11:00:00", time: "2014-10-24 11:00:00", user_id: 4} # jess' event
+])
 EventWine.create!([
-  {is_attending: true, event_id: 3, wine_id: 14, user_id: 2}, # 14 wine_id for chablis
-  {is_attending: true, event_id: 3, wine_id: 21, user_id: 3} # 21 wine_id for nz sauv blanc
+  {is_attending: true, event_id: 4, wine_id: 16, user_id: 4}, # 16 wine_id for chenin_blanc
+])
 
+# demo event, event id #5
+Event.create!([
+  {name: "DBC Graduation III", location: "48 Wall St, NY, NY", date: "2014-10-24 11:00:00", time: "2014-10-24 11:00:00", user_id: 4} # jess' event
+])
+EventWine.create!([
+  {is_attending: true, event_id: 5, wine_id: 16, user_id: 4}, # 16 wine_id for chenin_blanc
 ])
