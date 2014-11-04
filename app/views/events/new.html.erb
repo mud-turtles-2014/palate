@@ -4,6 +4,10 @@
       <p><%= msg %></p>
     <%end%>
   <%end%>
+
+  <% if flash[:new_event_error] %>
+  	<p><%= flash[:new_event_error] %></p>
+  <% end %>
 </div>
 
 <%= render "form" %>
