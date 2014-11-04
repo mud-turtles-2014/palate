@@ -101,7 +101,7 @@ class EventsController < ApplicationController
     # change each enumerator to a map
 
     set_user_from_email_invite
-    if current_user
+    if !current_user
       redirect_to '/'
     else
       @event = Event.find(params[:id])
