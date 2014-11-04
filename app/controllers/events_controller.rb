@@ -8,16 +8,24 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.new(event_params)
 
-    if @event.new_record? && params[:emails].blank?
-      flash[:new_event_error] = "Please include email addresses for guests!"
-      render :new
+    if blank_email_field?
+      render :new and return
     else
       if @event.save
         creator_wine = Wine.all.sample
         EventWine.create!(event: @event, wine_bringer: current_user, wine: creator_wine, is_attending: true)
-
-        invite_users
-        redirect_to event_path(@event)
+        parse_emails
+        if @email_array.include? current_user.email
+          flash[:new_event_error] = "You don't need to invite yourself to your event!"
+          render :new and return
+        else
+          if blank_email_field?
+            render :new
+          else
+            invite_users
+            redirect_to event_path(@event)
+          end
+        end
       else
         flash[:event_error] = @event.errors.full_messages
         render :new
@@ -131,10 +139,19 @@ class EventsController < ApplicationController
 
   private
 
+  def blank_email_field?
+    if @event.new_record? && params[:emails].blank?
+      flash[:new_event_error] = "Please include email addresses for guests!"
+    end
+  end
+
   # TODO: refactor into smaller methods
+  def parse_emails
+    @email_array = params[:emails].split(',')
+  end
+
   def invite_users
-    email_array = params[:emails].split(',')
-    email_array.each do |email|
+    parse_emails.each do |email|
       existing_user = User.find_by(email: email)
 
       if existing_user
