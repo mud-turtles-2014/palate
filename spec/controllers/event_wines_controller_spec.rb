@@ -9,6 +9,13 @@ describe EventWinesController do
   let(:new_event_wine) {EventWine.create()}
 
   context 'GET #edit' do
+  	it "assigns the requested event wine to @event_wine" do
+      stub_current_user(user)
+      new_event_wine
+      get :edit, id: new_event_wine
+      expect(assigns(:event_wine)).to eq new_event_wine
+    end
+
     it "renders the :edit template" do
       stub_current_user(user)
       new_event_wine
