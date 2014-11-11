@@ -29,4 +29,9 @@ describe EventWinesController do
       expect(response).to render_template :edit
     end
   end
+
+  describe 'PATCH #update' do
+  	it "changes @event_wine's attributes " do
+  	end
+  end
 end
