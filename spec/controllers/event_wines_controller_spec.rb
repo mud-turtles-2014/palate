@@ -9,6 +9,12 @@ describe EventWinesController do
   let(:new_event_wine) {EventWine.create()}
 
   context 'GET #edit' do
+  	it "redirects with no valid user" do
+    	new_event_wine
+      get :edit, id: new_event_wine
+      expect(response).to redirect_to root_path
+    end
+
   	it "assigns the requested event wine to @event_wine" do
       stub_current_user(user)
       new_event_wine
