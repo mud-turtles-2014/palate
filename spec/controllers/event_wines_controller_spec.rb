@@ -6,11 +6,12 @@ describe EventWinesController do
   end
 
   let(:user) {User.create(name: "jane doe", email: "jane@example.com", password: "test", password_confirmation: "test")}
+  let(:new_event_wine) {EventWine.create()}
 
   context 'GET #edit' do
     it "renders the :edit template" do
       stub_current_user(user)
-      new_event_wine = EventWine.create()
+      new_event_wine
       get :edit, id: new_event_wine
       expect(response).to render_template :edit
     end
