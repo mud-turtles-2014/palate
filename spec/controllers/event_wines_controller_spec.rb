@@ -36,6 +36,10 @@ describe EventWinesController do
 		end
 
   	it "changes @event_wine's attributes " do
+  		stub_current_user(user)
+  		patch :update, id: @event_wine, event_wine: {is_attending: true}
+  		@event_wine.reload
+  		expect(@event_wine.is_attending).to be true
   	end
   end
 end
