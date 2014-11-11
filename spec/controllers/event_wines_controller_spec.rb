@@ -31,6 +31,10 @@ describe EventWinesController do
   end
 
   describe 'PATCH #update' do
+  	before :each do
+	    @event_wine = EventWine.create()
+		end
+
   	it "changes @event_wine's attributes " do
   	end
   end
