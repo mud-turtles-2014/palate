@@ -31,4 +31,4 @@ rails s
 * [Steph Zhang](https://github.com/stephtzhang)
 * [Jessica Armstrong](https://github.com/jarmstrng)
 
-The three of us are currently attending [DevBootcamp](http://devbootcamp.com) in NYC. Palate is our final project. We hope you find it useful and fun. Happy tasting!
+The three of us just graduated from [DevBootcamp](http://devbootcamp.com) in NYC. Palate is our final project. We hope you find it useful and fun. Happy tasting!
