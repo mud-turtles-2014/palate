@@ -41,5 +41,21 @@ describe EventWinesController do
   		@event_wine.reload
   		expect(@event_wine.is_attending).to be true
   	end
+
+  	context "user is attending event" do
+	  	it "redirects to show event_wine" do
+	  		stub_current_user(user)
+	  		patch :update, id: @event_wine, event_wine: {is_attending: true}
+	  		expect(response).to redirect_to @event_wine
+	  	end
+	  end
+
+	  context "user is not attending event" do
+	  	it "redirects to homepage" do
+	  		stub_current_user(user)
+	  		patch :update, id: @event_wine, event_wine: {is_attending: false}
+	  		expect(response).to redirect_to root_path
+	  	end
+  	end
   end
 end
