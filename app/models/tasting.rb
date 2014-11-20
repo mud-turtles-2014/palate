@@ -4,22 +4,64 @@ class Tasting < ActiveRecord::Base
   has_one :wine, through: :event_wine
   has_one :event, through: :event_wine
 
-  enum red_fruits: { red: 1, blue: 2, black: 3}
-  enum white_fruits: { citrus: 1, apple_pear: 2, stone: 3, tropical: 4}
-  enum fruit_condition: { tart: 1, under_ripe: 2, ripe: 3, over_ripe: 4, jammy: 5 }
-  enum climate: { cool: 1, warm: 2}
-  enum country: { france: 1, italy: 2, united_states: 3, australia: 4, argentina: 5, germany: 6, new_zealand: 7 }
-  enum red_grape: { gamay: 1, cabernet_sauvignon: 2, merlot: 3, malbec: 4, syrah_shiraz: 5, pinot_noir: 6, sangiovese: 7, nebbiolo: 8, zinfandel: 9 }
-  enum white_grape: { chardonnay: 1, sauvignon_blanc: 2, riesling: 3, chenin_blanc: 4, viognier: 5, pinot_grigio: 6 }
+  enum red_fruits:      { red: 1, 
+                          blue: 2, 
+                          black: 3}
+  enum white_fruits:    { citrus: 1, 
+                          apple_pear: 2, 
+                          stone: 3, 
+                          tropical: 4}
+  enum fruit_condition: { tart: 1, 
+                          under_ripe: 2, 
+                          ripe: 3, 
+                          over_ripe: 4, 
+                          jammy: 5 }
+  enum climate:         { cool: 1, 
+                          warm: 2}
+  enum country:         { france: 1, 
+                          italy: 2, 
+                          united_states: 3, 
+                          australia: 4, 
+                          argentina: 5, 
+                          germany: 6, 
+                          new_zealand: 7 }
+  enum red_grape:       { gamay: 1, 
+                          cabernet_sauvignon: 2, 
+                          merlot: 3, 
+                          malbec: 4, 
+                          syrah_shiraz: 5, 
+                          pinot_noir: 6, 
+                          sangiovese: 7, 
+                          nebbiolo: 8, 
+                          zinfandel: 9 }
+  enum white_grape:     { chardonnay: 1, 
+                          sauvignon_blanc: 2, 
+                          riesling: 3, 
+                          chenin_blanc: 4, 
+                          viognier: 5, 
+                          pinot_grigio: 6 }
 
-  FRUITS_FEEDBACK = "Each grape varietal has its own characteristic fruit profile. It's not easy to choose the fruit category that most defines a wine. Only more tasting experience can solidify that link."
-  MINERALITY_FEEDBACK = "Minerality can fall into inorganic (stone, crushed rock or organic (earth, clay) categories."
-  OAK_FEEDBACK = "Oak imparts characteristic vanilla and baking spice notes to wine. It also makes wines slightly more textural."
-  DRY_FEEDBACK = "Dryness simply refers to the lack of sugar in a wine. Is there any lingering sweetness on your tongue? If so, chances are the wine isn't dry."
-  ACID_FEEDBACK = "How much saliva is pooling in your mouth after you sip? The more saliva pooling means a higher acid wine. Sounds strange, but it works."
-  TANNIN_FEEDBACK = "Tannins are compounds found in grape skins that cause the sensation of friction in your mouth. If you feel a lot of grip on your tongue, those are tannins."
-  ALCOHOL_FEEDBACK = "Alcohol can be hard to detect accurately. Exhale after you taste. The hotter your throat feels, the higher the alcohol probably is."
-  FRUIT_CONDITION_FEEDBACK = "This is somewhat linked to acid and alcohol. Does the wine tast tart (highly acidic) or is the wine ripe and jammy (highly alcoholic). Sugar gets converted to alcohol, so riper grapes produce more alcoholic wine."
+  FRUITS_FEEDBACK = "Each grape varietal has its own characteristic fruit profile. It's"\
+                    "also easy to choose the fruit category that most defines a wine."\
+                    "Only more tasting experience can solidify that link."
+  MINERALITY_FEEDBACK = "Minerality can fall into inorganic (stone, crushed rock or organic"\
+                        "(earth, clay) categories."
+  OAK_FEEDBACK = "Oak imparts characteristic vanilla and baking spice notes to wine. It"\
+                 "also makes wines slightly more textural."
+  DRY_FEEDBACK = "Dryness simply refers to the lack of sugar in a wine. Is there any"\
+                 "lingering sweetness on your tongue? If so, chances are the wine"\
+                 "isn't dry."
+  ACID_FEEDBACK = "How much saliva is pooling in your mouth after you sip? The more saliva"\
+                  "pooling means a higher acid wine. Sounds strange, but it works."
+  TANNIN_FEEDBACK = "Tannins are compounds found in grape skins that cause the sensation"\
+                    "of friction in your mouth. If you feel a lot of grip on your tongue,"\
+                    "those are tannins."
+  ALCOHOL_FEEDBACK = "Alcohol can be hard to detect accurately. Exhale after you taste."\
+                     "The hotter your throat feels, the higher the alcohol probably is."
+  FRUIT_CONDITION_FEEDBACK = "This is somewhat linked to acid and alcohol. Does the wine"\
+                             "tast tart (highly acidic) or is the wine ripe and jammy (highly"\
+                             "alcoholic). Sugar gets converted to alcohol, so riper grapes"\
+                             "produce more alcoholic wine."
 
   def get_super_tasting(grape, country)
     super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
