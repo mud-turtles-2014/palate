@@ -109,19 +109,9 @@ class Tasting < ActiveRecord::Base
     # sqrt conclusion_distance here for is_reasonable_conclusion result
 
     report[:user_results] = user_results
-    report[:correct_ansddwers] = correct_answers
+    report[:correct_answers] = correct_answers
     report[:user_conclusions] = user_conclusions
-    report[:correct_conclusions] = corre
-      else
-        user_conclusions[category] = format_category(self.send(attribute))
-        correct_conclusions[category] = format_category(super_tasting.send(attribute))
-        # call new add_problem_category method and get rid of get_prob_categories method
-        # call update_distance
-      else
-        user_conclusions[category] = format_category(self.send(attribute))
-        correct_conclusions[category] = format_category(super_tasting.send(attribute))
-        # call new add_problem_category method and get rid of get_prob_categories method
-        # call update_distancect_conclusions
+    report[:correct_conclusions] = correct_conclusions
 
     report[:wine_bringer] = self.event_wine.wine_bringer.name_or_email
     report[:conclusion_score] = is_reasonable_conclusion
