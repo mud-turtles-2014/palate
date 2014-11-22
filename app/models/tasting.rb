@@ -72,6 +72,7 @@ class Tasting < ActiveRecord::Base
   end
 
   def score_report
+    report = {}
     super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
 
     attributes = current_tasting_attributes
@@ -82,24 +83,31 @@ class Tasting < ActiveRecord::Base
     correct_conclusions = {}
 
     attributes.each do |attribute|
+      category = format_category(attribute)
       if !conclusion_attr_array.include?(attribute)
-        user_results[format_category(attribute)] = make_result_hash(attribute, self)
+        user_results[category] = make_result_hash(attribute, self)
 
-        correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
+        correct_answers[category] = make_result_hash(attribute, super_tasting)
       else
-        user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
-        correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
+        user_conclusions[category] = format_category(self.send(attribute))
+        correct_conclusions[category] = format_category(super_tasting.send(attribute))
       end
     end
 
-    wine_bringer = self.event_wine.wine_bringer.name_or_email
-    conclusion_score = is_reasonable_conclusion
-    observation_score = is_reasonable_observation
-    observation_feedback = get_observation_feedback
-    conclusion_feedback = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
+    report[:user_results] = user_results
+    report[:correct_answers] = correct_answers
+    report[:user_conclusions] = user_conclusions
+    report[:correct_conclusions] = correct_conclusions
+
+    report[:wine_bringer] = self.event_wine.wine_bringer.name_or_email
+    report[:conclusion_score] = is_reasonable_conclusion
+    report[:observation_score] = is_reasonable_observation
+    report[:observation_feedback] = get_observation_feedback
+    report[:conclusion_feedback] = get_problem_categories(get_super_tasting_for_guessed_wine, report[:conclusion_score])
+
 
     # take conclusions out of user_results and correct_answers
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
+    return report 
   end
 
   def conclusion_attr_array
