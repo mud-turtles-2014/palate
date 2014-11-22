@@ -81,9 +81,12 @@ class Tasting < ActiveRecord::Base
 
     user_conclusions = {}
     correct_conclusions = {}
+    # initialize observation_distance and conclusion_distance to 0 or 0.0 here
 
     attributes.each do |attribute|
       category = format_category(attribute)
+      # increment conclusion_distance here
+      # this is independent of whether the category is correct or not as an observation
       if !conclusion_attr_array.include?(attribute)
         user_results[category] = make_result_hash(attribute, self)
 
@@ -91,13 +94,34 @@ class Tasting < ActiveRecord::Base
       else
         user_conclusions[category] = format_category(self.send(attribute))
         correct_conclusions[category] = format_category(super_tasting.send(attribute))
+        # call new add_problem_category method and get rid of get_prob_categories method
+        # have to check whether category is stored by int
+        # replace attributes_stored_by_int w method that returns bool for each attr passed
+
+        # add observation_feedback strings to array here if category is a problem_category
+        # accd to above
+
+        # increment observation_distance here and get rid of euclidian_distance method
       end
     end
 
+    # sqrt observation_distance here for is_reasonable_observation result
+    # sqrt conclusion_distance here for is_reasonable_conclusion result
+
     report[:user_results] = user_results
-    report[:correct_answers] = correct_answers
+    report[:correct_ansddwers] = correct_answers
     report[:user_conclusions] = user_conclusions
-    report[:correct_conclusions] = correct_conclusions
+    report[:correct_conclusions] = corre
+      else
+        user_conclusions[category] = format_category(self.send(attribute))
+        correct_conclusions[category] = format_category(super_tasting.send(attribute))
+        # call new add_problem_category method and get rid of get_prob_categories method
+        # call update_distance
+      else
+        user_conclusions[category] = format_category(self.send(attribute))
+        correct_conclusions[category] = format_category(super_tasting.send(attribute))
+        # call new add_problem_category method and get rid of get_prob_categories method
+        # call update_distancect_conclusions
 
     report[:wine_bringer] = self.event_wine.wine_bringer.name_or_email
     report[:conclusion_score] = is_reasonable_conclusion
