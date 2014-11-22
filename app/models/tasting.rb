@@ -123,7 +123,9 @@ class Tasting < ActiveRecord::Base
 
     attributes_stored_by_int.each do |attribute|
       if (tasting[attribute] - self[attribute]).abs > 1
-        problem_categories << { category: format_category(attribute), correct_response: convert_num_to_category(tasting.send(attribute)).downcase }
+        category = format_category(attribute)
+        correct_response = convert_num_to_category(tasting.send(attribute)).downcase
+        problem_categories << { category: category, correct_response: correct_response }
       end
     end
 
