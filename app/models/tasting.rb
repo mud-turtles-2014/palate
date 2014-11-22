@@ -64,8 +64,11 @@ class Tasting < ActiveRecord::Base
                              "produce more alcoholic wine."
 
   def get_super_tasting(grape, country)
-    super_tastings = Tasting.where(event_wine: User.first.event_wines.where(event: Event.first))
-    super_tasting = super_tastings.find_by(event_wine: EventWine.find_by(wine: Wine.find_by(grape: grape, country: country)))
+    current_event_wine = User.first.event_wines.where(event: Event.first) 
+    super_tastings = Tasting.where(event_wine: current_event_wine)
+    current_wine = Wine.find_by(grape: grape, country: country)
+    super_event_wine = EventWine.find_by(wine: current_wine) 
+    super_tasting = super_tastings.find_by(event_wine: super_event_wine)
   end
 
   def score_report
