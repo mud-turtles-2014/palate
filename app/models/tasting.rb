@@ -34,19 +34,47 @@ class Tasting < ActiveRecord::Base
     correct_conclusions = {}
 
     attributes.each do |attribute|
+      # if array of conclusions does not include attribute
+      # ~~~use hash instead of arr here
       if !conclusion_attr_array.include?(attribute)
+        # OBSERVATION ATTRS
+        # set user_results["Red Fruits"] to {text_response: user_ans, num_response: user_num}
         user_results[format_category(attribute)] = make_result_hash(attribute, self)
-
+        # set correct_answers["Red Fruits"] to {text_response: super_ans, num_response: super_num}
         correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
       else
+        # CONCLUSION ATTRS
+        # ~~~add micrograph height to user_answer and and correct_answer
+        # ~~~view needs to check if they're equal and then display micrographs
+        # ~~~or check mark if equal
+        # set user_results["Red Fruits"] to user_answer
         user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
+        # set correct_conclusions["Red Fruits"] to correct_answer
         correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
       end
     end
 
     wine_bringer = self.event_wine.wine_bringer.name_or_email
+
     conclusion_score = is_reasonable_conclusion
+
+    # calling is_reasonable_observation
+    # which calls is_reasonable 
+    # on score_observations
+    # which gets the super_tasting
+    # and calls get_euclidian_dist on the super_tasting
+    # which sums the dist bw the super user num and self num
+    # for each attributes_stored_by_int
+    # ~~~replace attributes_stored_by_int
+    # ~~~with a hash like conclusion_attr_array
     observation_score = is_reasonable_observation
+
+    # calls get_observation_feedback
+    # which calls incorrect_categories
+    # which returns an array
+    # that adds feedback constant msgs
+    # to a hash that looks like:
+    # {"Minerality": feedback_constant, ..}
     observation_feedback = get_observation_feedback
     conclusion_feedback = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
 
