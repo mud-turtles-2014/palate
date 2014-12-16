@@ -1,4 +1,6 @@
 module Feedback
+  extend ActiveSupport::Concern
+
   FRUITS_FEEDBACK = "Each grape varietal has its own characteristic fruit profile. It's"\
                     "also easy to choose the fruit category that most defines a wine."\
                     "Only more tasting experience can solidify that link."
