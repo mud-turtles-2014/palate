@@ -225,7 +225,7 @@ class Tasting < ActiveRecord::Base
     end
   end
 
-  def attributes_stored_by_int
+  def numerical_attributes
     attributes = {minerality: 1, oak: 1, dry: 1, acid: 1, alcohol: 1, fruit_condition: 1}
 
     if self.wine.color == "red"
