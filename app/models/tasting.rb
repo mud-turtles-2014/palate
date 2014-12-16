@@ -4,42 +4,16 @@ class Tasting < ActiveRecord::Base
   has_one :wine, through: :event_wine
   has_one :event, through: :event_wine
 
-  enum red_fruits:      { red: 1, 
-                          blue: 2, 
-                          black: 3}
-  enum white_fruits:    { citrus: 1, 
-                          apple_pear: 2, 
-                          stone: 3, 
-                          tropical: 4}
-  enum fruit_condition: { tart: 1, 
-                          under_ripe: 2, 
-                          ripe: 3, 
-                          over_ripe: 4, 
-                          jammy: 5 }
-  enum climate:         { cool: 1, 
-                          warm: 2}
-  enum country:         { france: 1, 
-                          italy: 2, 
-                          united_states: 3, 
-                          australia: 4, 
-                          argentina: 5, 
-                          germany: 6, 
-                          new_zealand: 7 }
-  enum red_grape:       { gamay: 1, 
-                          cabernet_sauvignon: 2, 
-                          merlot: 3, 
-                          malbec: 4, 
-                          syrah_shiraz: 5, 
-                          pinot_noir: 6, 
-                          sangiovese: 7, 
-                          nebbiolo: 8, 
-                          zinfandel: 9 }
-  enum white_grape:     { chardonnay: 1, 
-                          sauvignon_blanc: 2, 
-                          riesling: 3, 
-                          chenin_blanc: 4, 
-                          viognier: 5, 
-                          pinot_grigio: 6 }
+  enum red_fruits:      [:red, :blue, :black]
+  enum white_fruits:    [:citrus, :stone, :tropical]
+  enum fruit_condition: [:tart, :under_ripe, :ripe, :over_ripe, :jammy]
+  enum climate:         [:cool, :warm]
+  enum country:         [:france, :italy, :united_states, :australia, :argentina, \
+                        :germany, :new_zealand]
+  enum red_grape:       [:gamay, :cabernet_sauvignon, :merlot, :malbec, :syrah_shiraz, \
+                        :pinot_noir, :sangiovese, :nebbiolo, :zinfandel]
+  enum white_grape:     [:chardonnay, :sauvignon_blanc, :riesling, :chenin_blanc, \
+                        :viognier, :pinot_grigio]    
 
   FRUITS_FEEDBACK = "Each grape varietal has its own characteristic fruit profile. It's"\
                     "also easy to choose the fruit category that most defines a wine."\
