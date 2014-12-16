@@ -38,7 +38,7 @@ class Tasting < ActiveRecord::Base
     attributes.each do |attribute|
       # if array of conclusions does not include attribute
       # ~~~use hash instead of arr here
-      if !conclusion_attr_array.include?(attribute)
+      if !conclusion_attr_hash[attribute]
         # OBSERVATION ATTRS
         # set user_results["Red Fruits"] to {text_response: user_ans, num_response: user_num}
         user_results[format_category(attribute)] = make_result_hash(attribute, self)
@@ -84,8 +84,8 @@ class Tasting < ActiveRecord::Base
     return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
   end
 
-  def conclusion_attr_array
-    [:white_grape, :red_grape, :country, :climate]
+  def conclusion_attr_hash
+    {white_grape: 1, red_grape: 1, country: 1, climate: 1}
   end
 
   def make_result_hash(attribute, tasting)
