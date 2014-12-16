@@ -1,4 +1,6 @@
 class Tasting < ActiveRecord::Base
+  include Feedback
+
   belongs_to :user
   belongs_to :event_wine
   has_one :wine, through: :event_wine
