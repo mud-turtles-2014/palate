@@ -185,18 +185,20 @@ class Tasting < ActiveRecord::Base
     self.wine.color == "white" ? white_tasting_attributes : red_tasting_attributes
   end
 
-  def parse_tasting_attributes
-    all_attributes = Tasting.last.attributes.map {|attribute, val| attribute}
-    wine_attributes = all_attributes.reject {|attribute| /(_id|_at|\bid|tasting_notes|is_blind)/.match(attribute)}
-    wine_attributes.map! {|attribute| attribute.to_sym}
+  def get_attributes
+    Tasting.last.attributes.map {|attribute, val| attribute}
   end
 
   def red_tasting_attributes
-    parse_tasting_attributes.reject {|attribute| /(white_)/.match(attribute)}
+    attributes = get_attributes
+    attributes.reject! {|attribute| /(_id|_at|\bid|tasting_notes|is_blind|white_)/.match(attribute)}
+    attributes.map! {|attribute| attribute.to_sym}
   end
 
   def white_tasting_attributes
-    parse_tasting_attributes.reject {|attribute| /(red_|tannin)/.match(attribute)}
+    attributes = get_attributes
+    attributes.reject! {|attribute| /(_id|_at|\bid|tasting_notes|is_blind|red_|tannin)/.match(attribute)}
+    attributes.map! {|attribute| attribute.to_sym}
   end
 end
 
