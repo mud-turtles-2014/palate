@@ -36,7 +36,6 @@ class EventsController < ApplicationController
   def show
     @event_wine = EventWine.find_by(wine_bringer: current_user, event: @event)
     @attend
-    # only redirects if no current user or the user is not is_attending: true
     if !current_user || !current_user.event_wines.where(is_attending: true)
       redirect_to '/my_events'
     end
