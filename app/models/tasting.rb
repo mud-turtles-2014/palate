@@ -44,12 +44,9 @@ class Tasting < ActiveRecord::Base
     conclusion_feedback = []
 
     attributes.each do |attribute|
-      # if array of conclusions does not include attribute
       if !conclusion_attr_hash[attribute]
-        # OBSERVATION ATTRS
-        # set user_results["Red Fruits"] to {text_response: user_ans, num_response: user_num}
+        # score observation
         user_results[format_category(attribute)] = make_result_hash(attribute, self)
-        # set correct_answers["Red Fruits"] to {text_response: super_ans, num_response: super_num}
         correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
         
         if numerical_attributes[attribute]
@@ -58,7 +55,7 @@ class Tasting < ActiveRecord::Base
           dist = (correct_num - user_num) ** 2
           observation_dist += dist
 
-          # change to dist > a significant number
+          # TO DO: change 0 to a significant number
           if dist > 0
             observation_feedback[format_category(attribute)] = get_feedback(format_category(attribute))
           end
@@ -66,20 +63,18 @@ class Tasting < ActiveRecord::Base
           conclusion_num = guessed_tasting[attribute]
           dist = (conclusion_num - user_num) ** 2
           conclusion_dist += dist
-          # change 0 to a significant number
+          # TO DO: change 0 to a significant number
           if dist > 0 &&  !format_category(attribute).match("Fruits")
             conclusion_feedback << { category: format_category(attribute), correct_response: convert_num_to_category(guessed_tasting.send(attribute)) }
           end
         end
 
       else
-        # CONCLUSION ATTRS
-        # ~~~add micrograph height to user_answer and and correct_answer
-        # ~~~view needs to check if they're equal and then display micrographs
-        # ~~~or check mark if equal
-        # set user_results["Red Fruits"] to user_answer
+        # score conclusion
+        # TO DO: add micrograph height to user_answer and and correct_answer
+        # TO DO: view needs to check if they're equal and then display micrographs
+        # TO DO: or check mark if equal
         user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
-        # set correct_conclusions["Red Fruits"] to correct_answer
         correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
       end
     end
