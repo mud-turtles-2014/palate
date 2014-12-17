@@ -36,15 +36,24 @@ class Tasting < ActiveRecord::Base
     user_conclusions = {}
     correct_conclusions = {}
 
+    observation_dist = 0
+    conclusion_dist = 0
+
     attributes.each do |attribute|
       # if array of conclusions does not include attribute
-      # ~~~use hash instead of arr here
       if !conclusion_attr_hash[attribute]
         # OBSERVATION ATTRS
         # set user_results["Red Fruits"] to {text_response: user_ans, num_response: user_num}
         user_results[format_category(attribute)] = make_result_hash(attribute, self)
         # set correct_answers["Red Fruits"] to {text_response: super_ans, num_response: super_num}
         correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
+        
+        if numerical_attributes[attribute]
+          user_num = user_results[format_category(attribute)][:num_response]
+          correct_num = correct_answers[format_category(attribute)][:num_response]
+          observation_dist += (correct_num - user_num) ** 2
+        end
+
       else
         # CONCLUSION ATTRS
         # ~~~add micrograph height to user_answer and and correct_answer
