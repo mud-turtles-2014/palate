@@ -27,6 +27,7 @@ class Tasting < ActiveRecord::Base
 
   def score_report
     super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
+    guessed_tasting = get_guessed_tasting
 
     attributes = current_tasting_attributes
     user_results = {}
@@ -78,7 +79,7 @@ class Tasting < ActiveRecord::Base
     # to a hash that looks like:
     # {"Minerality": feedback_constant, ..}
     observation_feedback = get_observation_feedback
-    conclusion_feedback = get_problem_categories(get_super_tasting_for_guessed_wine, conclusion_score)
+    conclusion_feedback = get_problem_categories(get_guessed_tasting, conclusion_score)
 
     # take conclusions out of user_results and correct_answers
     return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
@@ -181,7 +182,7 @@ class Tasting < ActiveRecord::Base
     euclidian_dist = Math.sqrt(sum)
   end
 
-  def get_super_tasting_for_guessed_wine
+  def get_guessed_tasting
     if self.wine.color == "red"
       guessed_grape = format_category(self.red_grape)
     else
