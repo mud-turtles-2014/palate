@@ -151,10 +151,10 @@ class Tasting < ActiveRecord::Base
   # can use to return correct categories too
   def incorrect_categories
     super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
-    correct_categories = attributes_stored_by_int
+    correct_categories = numerical_attributes
     incorrect_categories = []
 
-    attributes_stored_by_int.each do |attribute|
+    numerical_attributes.each do |attribute|
       if self[attribute] != super_tasting[attribute]
         incorrect_categories.push(correct_categories.delete(attribute))
       end
