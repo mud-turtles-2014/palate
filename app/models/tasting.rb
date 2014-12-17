@@ -44,27 +44,28 @@ class Tasting < ActiveRecord::Base
     conclusion_feedback = []
 
     attributes.each do |attribute|
+      formatted_attr = format_category(attribute)
       if conclusion_attr_hash[attribute]
         # score conclusion
         # TO DO: add micrograph height to user_answer and and correct_answer
         # TO DO: view needs to check if they're equal and then display micrographs
         # TO DO: or check mark if equal
-        user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
-        correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
+        user_conclusions[formatted_attr] = format_category(self.send(attribute))
+        correct_conclusions[formatted_attr] = format_category(super_tasting.send(attribute))
       else
         # score observation
-        user_results[format_category(attribute)] = make_result_hash(attribute, self)
-        correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
+        user_results[formatted_attr] = make_result_hash(attribute, self)
+        correct_answers[formatted_attr] = make_result_hash(attribute, super_tasting)
         
         if numerical_attributes[attribute]
-          user_num = user_results[format_category(attribute)][:num_response]
-          correct_num = correct_answers[format_category(attribute)][:num_response]
+          user_num = user_results[formatted_attr][:num_response]
+          correct_num = correct_answers[formatted_attr][:num_response]
           dist = (correct_num - user_num) ** 2
           observation_dist += dist
 
           # TO DO: change 0 to a significant number
           if dist > 0
-            observation_feedback[format_category(attribute)] = get_feedback(format_category(attribute))
+            observation_feedback[formatted_attr] = get_feedback(formatted_attr)
           end
 
           conclusion_num = guessed_tasting[attribute]
