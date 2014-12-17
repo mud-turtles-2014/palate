@@ -43,9 +43,6 @@ class Tasting < ActiveRecord::Base
       formatted_attr = format_category(attribute)
       if conclusion_attr_hash[attribute]
         # score conclusions
-        # TO DO: add micrograph height to user_answer and and correct_answer
-        # TO DO: view needs to check if they're equal and then display micrographs
-        # TO DO: or check mark if equal
         user_conclusions[formatted_attr] = format_category(self.send(attribute))
         correct_conclusions[formatted_attr] = format_category(super_tasting.send(attribute))
       else
