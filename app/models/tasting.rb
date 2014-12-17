@@ -41,6 +41,7 @@ class Tasting < ActiveRecord::Base
     conclusion_dist = 0
 
     observation_feedback = {}
+    conclusion_feedback = []
 
     attributes.each do |attribute|
       # if array of conclusions does not include attribute
@@ -65,6 +66,10 @@ class Tasting < ActiveRecord::Base
           conclusion_num = guessed_tasting[attribute]
           dist = (conclusion_num - user_num) ** 2
           conclusion_dist += dist
+          # change 0 to a significant number
+          if dist > 0 &&  !format_category(attribute).match("Fruits")
+            conclusion_feedback << { category: format_category(attribute), correct_response: convert_num_to_category(guessed_tasting.send(attribute)) }
+          end
         end
 
       else
@@ -83,9 +88,6 @@ class Tasting < ActiveRecord::Base
     conclusion_score = is_reasonable(conclusion_dist)
     observation_score = is_reasonable(observation_dist)
 
-    # NEED TO REFACTOR LINE 87 NEXT
-    # conclusion_feedback = get_problem_categories(guessed_tasting, conclusion_score)
-    conclusion_feedback = {}
     return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
   end
 
