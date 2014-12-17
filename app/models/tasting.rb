@@ -103,28 +103,6 @@ class Tasting < ActiveRecord::Base
     end
   end
 
-  def get_problem_categories(tasting, reasonability)
-    return nil if !tasting
-    return nil unless reasonability == "Alright" || reasonability == "Errr, not the best"
-    problem_categories = []
-
-    attributes_stored_by_int
-
-    attributes_stored_by_int.each do |attribute|
-      if (tasting[attribute] - self[attribute]).abs > 1
-        problem_categories << { category: format_category(attribute), correct_response: convert_num_to_category(tasting.send(attribute)).downcase }
-      end
-    end
-
-    return problem_categories
-  end
-
-  def get_conclusion_feedback(reasonability)
-    if reasonability == "Alright" || reasonability == "Errr, not the best"
-      GUIDANCE[get_super_tasting_for_guessed_wine.wine.name]
-    end
-  end
-
   def get_feedback(category)
     case category
     when "Tannin"
@@ -148,44 +126,6 @@ class Tasting < ActiveRecord::Base
     end
   end
 
-  # can use to return correct categories too
-  def incorrect_categories
-    super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
-    correct_categories = numerical_attributes
-    incorrect_categories = []
-
-    numerical_attributes.each do |attribute|
-      if self[attribute] != super_tasting[attribute]
-        incorrect_categories.push(correct_categories.delete(attribute))
-      end
-    end
-    formatted_incorrect = formatted_categories(incorrect_categories)
-
-    return formatted_incorrect
-  end
-
-  # use euclidian distance to find accuracy of observations
-  # comparing against super_user tastings
-
-  # TODO
-  # add ability to track problem categories
-  # and strength categories
-  def score_observations
-    super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
-
-    get_euclidian_dist(super_tasting)
-  end
-
-  def get_euclidian_dist(tasting)
-    sum = 0
-
-    attributes_stored_by_int.each do |attribute|
-      sum += (tasting[attribute] - self[attribute])**2
-    end
-
-    euclidian_dist = Math.sqrt(sum)
-  end
-
   def get_guessed_tasting
     if self.wine.color == "red"
       guessed_grape = format_category(self.red_grape)
@@ -194,23 +134,6 @@ class Tasting < ActiveRecord::Base
     end
     guessed_country = format_category(self.country)
     super_tasting = get_super_tasting(guessed_grape, guessed_country)
-  end
-
-  # shows distance from user's observations to user's selected wine
-  def score_observations_against_guessed_wine
-    super_tasting = get_super_tasting_for_guessed_wine
-
-    return 7.0 if !super_tasting
-
-    get_euclidian_dist(super_tasting)
-  end
-
-  def is_reasonable_conclusion
-    is_reasonable(score_observations_against_guessed_wine)
-  end
-
-  def is_reasonable_observation
-    is_reasonable(score_observations)
   end
 
   def is_reasonable(raw_dist)
@@ -242,12 +165,6 @@ class Tasting < ActiveRecord::Base
     attributes
   end
 
-  def formatted_categories(categories)
-    categories.map! do |category|
-      format_category(category)
-    end
-  end
-
   def format_category(category)
     return convert_num_to_category(category) if category.to_s.match(/\b\d\b/)
     category.to_s.sub("red_","").sub("white_","").sub("_"," ").split.map(&:capitalize).join(' ')
@@ -269,11 +186,7 @@ class Tasting < ActiveRecord::Base
   end
 
   def current_tasting_attributes
-    wine_color == "white" ? white_tasting_attributes : red_tasting_attributes
-  end
-
-  def wine_color
-    self.wine.color
+    self.wine.color == "white" ? white_tasting_attributes : red_tasting_attributes
   end
 
   def parse_tasting_attributes
