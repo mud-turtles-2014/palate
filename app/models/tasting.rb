@@ -26,6 +26,8 @@ class Tasting < ActiveRecord::Base
   end
 
   def score_report
+    report = {}
+
     super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
     guessed_tasting = get_guessed_tasting
 
@@ -46,14 +48,14 @@ class Tasting < ActiveRecord::Base
     attributes.each do |attribute|
       formatted_attr = format_category(attribute)
       if conclusion_attr_hash[attribute]
-        # score conclusion
+        # score conclusions
         # TO DO: add micrograph height to user_answer and and correct_answer
         # TO DO: view needs to check if they're equal and then display micrographs
         # TO DO: or check mark if equal
         user_conclusions[formatted_attr] = format_category(self.send(attribute))
         correct_conclusions[formatted_attr] = format_category(super_tasting.send(attribute))
       else
-        # score observation
+        # score observations
         user_results[formatted_attr] = make_result_hash(attribute, self)
         correct_answers[formatted_attr] = make_result_hash(attribute, super_tasting)
         
@@ -68,22 +70,30 @@ class Tasting < ActiveRecord::Base
             observation_feedback[formatted_attr] = get_feedback(formatted_attr)
           end
 
+          # score conclusions based on observations
           conclusion_num = guessed_tasting[attribute]
           dist = (conclusion_num - user_num) ** 2
           conclusion_dist += dist
           # TO DO: change 0 to a significant number
           if dist > 0 &&  !formatted_attr.match("Fruits")
-            conclusion_feedback << { category: formatted_attr, correct_response: convert_num_to_category(guessed_tasting.send(attribute)) }
+            correct_response = convert_num_to_category(guessed_tasting.send(attribute))
+            conclusion_feedback << { category: formatted_attr, correct_response: correct_response }
           end
         end
       end
     end
 
-    wine_bringer = self.event_wine.wine_bringer.name_or_email
-    conclusion_score = is_reasonable(conclusion_dist)
-    observation_score = is_reasonable(observation_dist)
+    report[:wine_bringer] = self.event_wine.wine_bringer.name_or_email
+    report[:conclusion_score] = is_reasonable(conclusion_dist)
+    report[:observation_score] = is_reasonable(observation_dist)
+    report[:user_results] = user_results
+    report[:correct_answers] = correct_answers
+    report[:user_conclusions] = user_conclusions
+    report[:correct_conclusions] = correct_conclusions
+    report[:observation_feedback] = observation_feedback
+    report[:conclusion_feedback] = conclusion_feedback
 
-    return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
+    return report
   end
 
   def conclusion_attr_hash
