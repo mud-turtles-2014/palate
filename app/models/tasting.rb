@@ -72,8 +72,8 @@ class Tasting < ActiveRecord::Base
           dist = (conclusion_num - user_num) ** 2
           conclusion_dist += dist
           # TO DO: change 0 to a significant number
-          if dist > 0 &&  !format_category(attribute).match("Fruits")
-            conclusion_feedback << { category: format_category(attribute), correct_response: convert_num_to_category(guessed_tasting.send(attribute)) }
+          if dist > 0 &&  !formatted_attr.match("Fruits")
+            conclusion_feedback << { category: formatted_attr, correct_response: convert_num_to_category(guessed_tasting.send(attribute)) }
           end
         end
       end
