@@ -213,17 +213,17 @@ class Tasting < ActiveRecord::Base
     is_reasonable(score_observations)
   end
 
-  def is_reasonable(response)
-    puts response
-    if response <= 0.5
+  def is_reasonable(raw_dist)
+    euclidean_dist = Math.sqrt(raw_dist)
+    if euclidean_dist <= 0.5
       return "Master Somm Level"
-    elsif response <= 1.5
+    elsif euclidean_dist <= 1.5
       return "Junior Somm Level"
-    elsif response <= 2.5
+    elsif euclidean_dist <= 2.5
       return "Solid"
-    elsif response <= 3.5
+    elsif euclidean_dist <= 3.5
       return "Alright"
-    elsif response <= 6.0
+    elsif euclidean_dist <= 6.0
       return "Errr, not the best"
     else
       return "Not enough information"
