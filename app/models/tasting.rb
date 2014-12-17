@@ -183,11 +183,11 @@ class Tasting < ActiveRecord::Base
   def get_attributes
     Tasting.last.attributes.map {|attribute, val| attribute}
   end
-
+ 
   def red_tasting_attributes
     attributes = get_attributes
     attributes.reject! {|attribute| /(_id|_at|\bid|tasting_notes|is_blind|white_)/.match(attribute)}
-    attributes.map! {|attribute| attribute.to_sym}
+    attributes.map! {|attribute| attribute.to_sym }
   end
 
   def white_tasting_attributes
