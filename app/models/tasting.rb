@@ -44,7 +44,14 @@ class Tasting < ActiveRecord::Base
     conclusion_feedback = []
 
     attributes.each do |attribute|
-      if !conclusion_attr_hash[attribute]
+      if conclusion_attr_hash[attribute]
+        # score conclusion
+        # TO DO: add micrograph height to user_answer and and correct_answer
+        # TO DO: view needs to check if they're equal and then display micrographs
+        # TO DO: or check mark if equal
+        user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
+        correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
+      else
         # score observation
         user_results[format_category(attribute)] = make_result_hash(attribute, self)
         correct_answers[format_category(attribute)] = make_result_hash(attribute, super_tasting)
@@ -68,14 +75,6 @@ class Tasting < ActiveRecord::Base
             conclusion_feedback << { category: format_category(attribute), correct_response: convert_num_to_category(guessed_tasting.send(attribute)) }
           end
         end
-
-      else
-        # score conclusion
-        # TO DO: add micrograph height to user_answer and and correct_answer
-        # TO DO: view needs to check if they're equal and then display micrographs
-        # TO DO: or check mark if equal
-        user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
-        correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
       end
     end
 
