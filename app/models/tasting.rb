@@ -76,12 +76,6 @@ class Tasting < ActiveRecord::Base
         user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
         # set correct_conclusions["Red Fruits"] to correct_answer
         correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
-        
-        if numerical_attributes[attribute]
-          user_num = user_conclusions[format_category(attribute)]
-          correct_num = guessed_tasting[attribute]
-          conclusion_dist += (correct_num - user_num) ** 2
-        end
       end
     end
 
