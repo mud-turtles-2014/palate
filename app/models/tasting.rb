@@ -130,29 +130,27 @@ class Tasting < ActiveRecord::Base
     end
   end
 
-  def get_observation_feedback
-    feedback_hash = {}
-    incorrect_categories.each do |category|
-      case category
-      when "Minerality"
-        feedback_hash[category] = MINERALITY_FEEDBACK
-      when "Oak"
-        feedback_hash[category] = OAK_FEEDBACK
-      when "Dry"
-        feedback_hash[category] = DRY_FEEDBACK
-      when "Acid"
-        feedback_hash[category] = ACID_FEEDBACK
-      when "Alcohol"
-        feedback_hash[category] = ALCOHOL_FEEDBACK
-      when "Minerality"
-        feedback_hash[category] = MINERALITY_FEEDBACK
-      when "Fruit Condition"
-        feedback_hash[category] = FRUIT_CONDITION_FEEDBACK
-      when "Fruits"
-        feedback_hash[category] = FRUITS_FEEDBACK
-      end
+  def get_feedback(category)
+    case category
+    when "Tannin"
+      return TANNIN_FEEDBACK
+    when "Minerality"
+      return MINERALITY_FEEDBACK
+    when "Oak"
+      return OAK_FEEDBACK
+    when "Dry"
+      return DRY_FEEDBACK
+    when "Acid"
+      return ACID_FEEDBACK
+    when "Alcohol"
+      return ALCOHOL_FEEDBACK
+    when "Minerality"
+      return MINERALITY_FEEDBACK
+    when "Fruit Condition"
+      return FRUIT_CONDITION_FEEDBACK
+    when "Fruits"
+      return FRUITS_FEEDBACK
     end
-    return feedback_hash
   end
 
   # can use to return correct categories too
