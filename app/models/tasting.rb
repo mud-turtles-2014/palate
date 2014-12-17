@@ -30,14 +30,17 @@ class Tasting < ActiveRecord::Base
     guessed_tasting = get_guessed_tasting
 
     attributes = current_tasting_attributes
+
     user_results = {}
     correct_answers = {}
 
     user_conclusions = {}
     correct_conclusions = {}
 
-    observation_dist = 0
+    observation_dist = 0 
     conclusion_dist = 0
+
+    observation_feedback = {}
 
     attributes.each do |attribute|
       # if array of conclusions does not include attribute
@@ -51,7 +54,17 @@ class Tasting < ActiveRecord::Base
         if numerical_attributes[attribute]
           user_num = user_results[format_category(attribute)][:num_response]
           correct_num = correct_answers[format_category(attribute)][:num_response]
-          observation_dist += (correct_num - user_num) ** 2
+          dist = (correct_num - user_num) ** 2
+          observation_dist += dist
+
+          # change to dist > a significant number
+          if dist > 0
+            observation_feedback[format_category(attribute)] = get_feedback(format_category(attribute))
+          end
+
+          conclusion_num = guessed_tasting[attribute]
+          dist = (conclusion_num - user_num) ** 2
+          conclusion_dist += dist
         end
 
       else
