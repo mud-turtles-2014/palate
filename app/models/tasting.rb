@@ -27,21 +27,15 @@ class Tasting < ActiveRecord::Base
 
   def score_report
     report = {}
-
     super_tasting = get_super_tasting(self.wine.grape, self.wine.country)
     guessed_tasting = get_guessed_tasting
-
     attributes = current_tasting_attributes
-
     user_results = {}
     correct_answers = {}
-
     user_conclusions = {}
     correct_conclusions = {}
-
     observation_dist = 0 
     conclusion_dist = 0
-
     observation_feedback = {}
     conclusion_feedback = []
 
@@ -57,19 +51,16 @@ class Tasting < ActiveRecord::Base
       else
         # score observations
         user_results[formatted_attr] = make_result_hash(attribute, self)
-        correct_answers[formatted_attr] = make_result_hash(attribute, super_tasting)
-        
+        correct_answers[formatted_attr] = make_result_hash(attribute, super_tasting)     
         if numerical_attributes[attribute]
           user_num = user_results[formatted_attr][:num_response]
           correct_num = correct_answers[formatted_attr][:num_response]
           dist = (correct_num - user_num) ** 2
           observation_dist += dist
-
           # TO DO: change 0 to a significant number
           if dist > 0
             observation_feedback[formatted_attr] = get_feedback(formatted_attr)
           end
-
           # score conclusions based on observations
           conclusion_num = guessed_tasting[attribute]
           dist = (conclusion_num - user_num) ** 2
