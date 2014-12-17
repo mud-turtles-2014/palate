@@ -63,23 +63,18 @@ class Tasting < ActiveRecord::Base
         user_conclusions[format_category(attribute)] = format_category(self.send(attribute))
         # set correct_conclusions["Red Fruits"] to correct_answer
         correct_conclusions[format_category(attribute)] = format_category(super_tasting.send(attribute))
+        
+        if numerical_attributes[attribute]
+          user_num = user_conclusions[format_category(attribute)]
+          correct_num = guessed_tasting[attribute]
+          conclusion_dist += (correct_num - user_num) ** 2
+        end
       end
     end
 
     wine_bringer = self.event_wine.wine_bringer.name_or_email
-
-    conclusion_score = is_reasonable_conclusion
-
-    # calling is_reasonable_observation
-    # which calls is_reasonable 
-    # on score_observations
-    # which gets the super_tasting
-    # and calls get_euclidian_dist on the super_tasting
-    # which sums the dist bw the super user num and self num
-    # for each attributes_stored_by_int
-    # ~~~replace attributes_stored_by_int
-    # ~~~with a hash like conclusion_attr_array
-    observation_score = is_reasonable_observation
+    conclusion_score = is_reasonable(conclusion_dist)
+    observation_score = is_reasonable(observation_dist)
 
     # calls get_observation_feedback
     # which calls incorrect_categories
