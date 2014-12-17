@@ -91,9 +91,6 @@ class EventsController < ApplicationController
   end
 
   def show_quiz
-    # TO DO: refactor into model methods
-    # change each enumerator to a map
-
     set_user_from_email_invite
     if !current_user
       redirect_to '/'
@@ -131,7 +128,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # TODO: refactor into smaller methods
   def parse_emails
     @email_array = params[:emails].split(',')
   end
