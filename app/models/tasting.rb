@@ -92,7 +92,7 @@ class Tasting < ActiveRecord::Base
   end
 
   def make_result_hash(attribute, tasting)
-    if attribute == :red_fruits || attribute == :white_fruits || attribute == :climate || attribute == :country || attribute == :white_grape || attribute == :red_grape
+    if !numerical_attributes[attribute] || attribute.to_s.match("fruits")
       { text_response: format_category(tasting.send(attribute)), num_response: 0 }
     else
       { text_response: format_category(tasting.send(attribute)), num_response: tasting[attribute] }
