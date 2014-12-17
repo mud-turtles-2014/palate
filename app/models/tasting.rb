@@ -83,16 +83,9 @@ class Tasting < ActiveRecord::Base
     conclusion_score = is_reasonable(conclusion_dist)
     observation_score = is_reasonable(observation_dist)
 
-    # calls get_observation_feedback
-    # which calls incorrect_categories
-    # which returns an array
-    # that adds feedback constant msgs
-    # to a hash that looks like:
-    # {"Minerality": feedback_constant, ..}
-    observation_feedback = get_observation_feedback
-    conclusion_feedback = get_problem_categories(get_guessed_tasting, conclusion_score)
-
-    # take conclusions out of user_results and correct_answers
+    # NEED TO REFACTOR LINE 87 NEXT
+    # conclusion_feedback = get_problem_categories(guessed_tasting, conclusion_score)
+    conclusion_feedback = {}
     return { user_results: user_results, correct_answers: correct_answers, wine_bringer: wine_bringer, conclusion_score: conclusion_score, observation_score: observation_score, user_conclusions: user_conclusions, correct_conclusions: correct_conclusions, observation_feedback: observation_feedback, conclusion_feedback: conclusion_feedback}
   end
 
