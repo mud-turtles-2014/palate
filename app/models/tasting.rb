@@ -54,16 +54,14 @@ class Tasting < ActiveRecord::Base
           correct_num = correct_answers[formatted_attr][:num_response]
           dist = (correct_num - user_num) ** 2
           observation_dist += dist
-          # TO DO: change 0 to a significant number
-          if dist > 0
+          if dist > 1
             observation_feedback[formatted_attr] = get_feedback(formatted_attr)
           end
           # score conclusions based on observations
           conclusion_num = guessed_tasting[attribute]
           dist = (conclusion_num - user_num) ** 2
           conclusion_dist += dist
-          # TO DO: change 0 to a significant number
-          if dist > 0 &&  !formatted_attr.match("Fruits")
+          if dist > 1 &&  !formatted_attr.match("Fruits")
             correct_response = convert_num_to_category(guessed_tasting.send(attribute))
             conclusion_feedback << { category: formatted_attr, correct_response: correct_response }
           end
