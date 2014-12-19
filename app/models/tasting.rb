@@ -1,21 +1,19 @@
 class Tasting < ActiveRecord::Base
   include Feedback
+  include TastingEnums
 
   belongs_to :user
   belongs_to :event_wine
   has_one :wine, through: :event_wine
   has_one :event, through: :event_wine
 
-  enum red_fruits:      [:red, :blue, :black]
-  enum white_fruits:    [:citrus, :stone, :tropical]
-  enum fruit_condition: [:tart, :under_ripe, :ripe, :over_ripe, :jammy]
-  enum climate:         [:cool, :warm]
-  enum country:         [:france, :italy, :united_states, :australia, :argentina, \
-                        :germany, :new_zealand]
-  enum red_grape:       [:gamay, :cabernet_sauvignon, :merlot, :malbec, :syrah_shiraz, \
-                        :pinot_noir, :sangiovese, :nebbiolo, :zinfandel]
-  enum white_grape:     [:chardonnay, :sauvignon_blanc, :riesling, :chenin_blanc, \
-                        :viognier, :pinot_grigio]    
+  enum red_fruits:      RED_FRUIT_ENUMS
+  enum white_fruits:    WHITE_FRUIT_ENUMS
+  enum fruit_condition: FRUIT_CONDITION_ENUMS
+  enum climate:         CLIMATE_ENUMS
+  enum country:         COUNTRY_ENUMS
+  enum red_grape:       RED_GRAPE_ENUMS
+  enum white_grape:     WHITE_GRAPE_ENUMS
 
   def get_super_tasting(grape, country)
     current_event_wine = User.first.event_wines.where(event: Event.first) 
