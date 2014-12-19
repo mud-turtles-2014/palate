@@ -5,14 +5,19 @@
 <h3><%= report[:wine_bringer].capitalize %>'s Wine :</h3>
 <table class="results">
   <tr>
-    <td><p>You<p></td>
+    <td><p><b>Your answer</b><p></td>
     <td></td>
-    <td><p>The Master Somm</p></td>
+    <td><p><b>The Master Somm's</b></p></td>
   </tr>
   <% report[:user_results].each do |attr, val| %>
     <tr>
+      <td></td>
+      <td><p><b><%= attr %><b/></p></td>
+      <td></td>
+    </tr>
+    <tr>
       <td><p><%= report[:user_results][attr][:text_response] %></p></td>
-        <td><p><%= attr %></p>
+      <td>
       <% if report[:user_results][attr][:text_response] == report[:correct_answers][attr][:text_response] %>
         <div class="correct"><p>&#x2713;</p></div></td>
       <% else %>
@@ -29,9 +34,10 @@
             </div>
             <div class="somm-response" style="height:<%= somm_height %>%; margin-top: <%= somm_margin %>%;">
             </div></div>
-          </div></td>
+          </div>
         <% end %>
       <% end %>
+      </td>
       <td><p><%= report[:correct_answers][attr][:text_response] %></p></td>
     </tr>
   <% end %>
@@ -51,13 +57,18 @@
   <table class="results">
     <% report[:user_conclusions].each do |attr, val| %>
     <tr>
+      <td></td>
+      <td><p><b><%= attr %><b/></p></td>
+      <td></td>
+    </tr>
+    <tr>
       <td><p><%= report[:user_conclusions][attr] %></p></td>
-        <td><p><%= attr %></p><br>
+      <td>
       <% if report[:user_conclusions][attr] == report[:correct_conclusions][attr] %>
         <div class="correct"><p>&#x2713;</p></div></td>
       <% else %>
-        <div class="sad-face"><img src="/images/sad-face.png"></div></td>
-      <% end %>
+        <div class="sad-face"><img src="/images/sad-face.png"></div>
+      <% end %></td>
       <td><p><%= report[:correct_conclusions][attr] %></p></td>
     </tr>
     <% end %>

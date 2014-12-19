@@ -3,6 +3,7 @@ nav.top-bar {
   background: #86A02D;
   position: fixed;
   width: 100%;
+  z-index: 1;
 }
 
 nav.top-bar h1 {

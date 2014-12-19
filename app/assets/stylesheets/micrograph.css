@@ -20,6 +20,7 @@
   float: left;
   position: relative;
   margin-bottom: 0;
+  z-index: 0;
 }
 
 .somm-response {
@@ -28,6 +29,7 @@
   float: left;
   position: relative;
   margin-bottom: 0;
+  z-index: 0;
 }
 
 .results {

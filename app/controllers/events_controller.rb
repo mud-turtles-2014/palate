@@ -36,7 +36,6 @@ class EventsController < ApplicationController
   def show
     @event_wine = EventWine.find_by(wine_bringer: current_user, event: @event)
     @attend
-    # only redirects if no current user or the user is not is_attending: true
     if !current_user || !current_user.event_wines.where(is_attending: true)
       redirect_to '/my_events'
     end
@@ -79,35 +78,19 @@ class EventsController < ApplicationController
     end
   end
 
-  # def make_super_graph super_hash
-  #   correct_answers.each do |k, v|
-  #     super_score = @super_graph[k]
-  #     super_score += 1
-  #     @super_graph[k] = super_score
-  #   end
-  # end
-
   def user_scores
     if !current_user
       redirect_to '/login'
     else
       @event = Event.find(params[:id])
       @user_tastings = Tasting.where(event_wine: EventWine.where(event: @event), user: current_user)
-      @score_report = []
-      @graph_data = Hash.new(0)
-      # @super_graph = Hash.new(0)
-      @user_tastings.each do |tasting|
-        @score_report << tasting.score_report
-        make_graph_data tasting.score_report
-      end
+      @score_report = @user_tastings.map { |tasting| tasting.score_report}
+
       render :layout => "quiz"
     end
   end
 
   def show_quiz
-    # TO DO: refactor into model methods
-    # change each enumerator to a map
-
     set_user_from_email_invite
     if !current_user
       redirect_to '/'
@@ -145,7 +128,6 @@ class EventsController < ApplicationController
     end
   end
 
-  # TODO: refactor into smaller methods
   def parse_emails
     @email_array = params[:emails].split(',')
   end
